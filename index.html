@@ -1,0 +1,789 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#2B4A1B">
+<meta name="description" content="التطبيق الرسمي للنقابة المستقلة للممرضين وتقنيي الصحة: البلاغات، الانخراط، الملف المطلبي، والتواصل مع المكاتب الجهوية والإقليمية.">
+<meta property="og:title" content="النقابة المستقلة للممرضين وتقنيي الصحة">
+<meta property="og:description" content="البلاغات، الانخراط، الملف المطلبي، والتواصل مع مكاتب النقابة">
+<meta property="og:image" content="https://siits-ma.github.io/icons/icon-512.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="النقابة المستقلة">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font-size:14px}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>النقابة المستقلة للممرضين وتقنيي الصحة</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;600;700&family=Amiri:wght@400;700&family=El+Messiri:wght@700&family=Cormorant+Garamond:wght@600;700&family=Almarai:wght@400;700;800&display=swap">
+<style>
+:root{--logo:url("images/logo.png")}
+/* تخطيط: تطبيق هاتفي بعمود واحد، رأس ثابت وشريط تنقل سفلي، بطاقات فقط لما يحتاج إبرازاً */
+:root{
+  --bg:#F7F5EF; --surface:#FFFFFF; --fg:#1A2414; --muted:#5E6358; --line:#E7E2D5;
+  --brand:#93C572; --brand-ink:#17290C; --accent:#4A7A2A; --accent-ink:#FFFFFF; --signal:#C8303A; --soft:#E3F0D8;
+  --display:"Alexandria","Almarai","Segoe UI",sans-serif;
+  --body:"Almarai","Segoe UI",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#11170D; --surface:#1A2214; --fg:#E8F0E1; --muted:#A0AE95; --line:#2C3A23;
+  --brand:#93C572; --brand-ink:#17290C; --accent:#A9D68A; --accent-ink:#17290C; --signal:#EF6A70; --soft:#22301A; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#11170D; --surface:#1A2214; --fg:#E8F0E1; --muted:#A0AE95; --line:#2C3A23;
+  --brand:#93C572; --brand-ink:#17290C; --accent:#A9D68A; --accent-ink:#17290C; --signal:#EF6A70; --soft:#22301A; color-scheme:dark}
+*{box-sizing:border-box}[hidden]{display:none!important}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.7}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+.wrap{max-width:640px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:3px solid var(--brand);color:var(--fg);transition:box-shadow .2s}
+header.scrolled{box-shadow:0 6px 20px rgba(40,70,20,.18)}
+header .wrap{display:flex;align-items:center;gap:12px;padding-block:10px}
+.logo{width:44px;height:44px;border-radius:50%;background:#fff var(--logo) center/100% no-repeat;flex:none}
+.logo-lg{width:132px;height:132px;border-radius:50%;background:#fff var(--logo) center/100% no-repeat;align-self:center;box-shadow:0 4px 18px rgba(0,0,0,.12)}
+.fr{direction:ltr;text-align:center;font-size:12px;color:var(--muted);letter-spacing:.04em}
+.card .logo{width:46px;height:46px}
+.brand{display:flex;flex-direction:column;align-items:center;text-align:center;min-width:0;flex:1}
+header .hbtn{width:48px;height:48px}
+section[data-view] > div:first-child:has(> h2){text-align:center}section[data-view] > div:first-child > .lead{text-wrap:balance}
+.filters{justify-content:safe center}
+header h1{font-family:"El Messiri",serif;font-size:16px;font-weight:700;margin:0;line-height:1.45}header h1 span{display:block;white-space:nowrap}
+header h1 + span{font-size:12px;font-weight:700;opacity:.78;line-height:1.4}
+.ring{width:48px;height:48px;border-radius:50%;padding:3px;background:#fff;box-shadow:0 0 0 1.5px #C8A24A,0 4px 12px rgba(30,60,15,.14);flex:none}
+.ring .logo{display:block;width:42px;height:42px}
+.hbtn{position:relative;width:40px;height:40px;border-radius:12px;border:0;background:var(--soft);color:var(--fg);display:grid;place-items:center;cursor:pointer;flex:none;backdrop-filter:blur(6px)}
+.hbtn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.9}
+.hbtn .dot{position:absolute;top:8px;inset-inline-end:9px;width:8px;height:8px;border-radius:50%;background:#C8303A;box-shadow:0 0 0 2px var(--soft)}
+.hbtn:hover{background:var(--line)}
+
+main{padding-block:16px 110px}
+h2{font-family:var(--display);font-size:20px;margin:0 0 4px;text-wrap:balance}
+h3{font-family:var(--display);font-size:16px;margin:0}
+.lead{color:var(--muted);margin:0 0 16px}
+.eyebrow{font-size:12px;letter-spacing:.02em;color:var(--signal);font-weight:600}
+section[data-view]{display:flex;flex-direction:column;gap:14px}
+.urgent{background:var(--signal);color:#fff;border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:2px}
+.urgent b{font-family:var(--display)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.stat{background:var(--soft);border-radius:10px;padding:10px;text-align:center}
+.stat b{display:block;font-family:var(--display);font-size:20px;color:var(--accent);font-variant-numeric:tabular-nums}
+.stat span{font-size:12px;color:var(--muted)}
+.filters{display:flex;gap:8px;overflow-x:auto;padding-bottom:2px}
+.chip{border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:999px;padding:5px 14px;font:inherit;font-size:13px;cursor:pointer;white-space:nowrap}
+.chip[aria-pressed="true"]{background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
+.list{display:flex;flex-direction:column}
+.item{padding-block:14px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:4px}
+.item p{margin:0;color:var(--muted)}
+.meta{display:flex;gap:10px;font-size:12px;color:var(--muted);align-items:center}
+.tag{font-size:11px;font-weight:600;padding:1px 8px;border-radius:999px;background:var(--soft);color:var(--accent)}
+.tag.strike{background:var(--signal);color:#fff}
+form{display:flex;flex-direction:column;gap:12px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:460px){.row{grid-template-columns:1fr}}
+label{display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500;min-width:0}
+input,select,textarea{font:inherit;font-size:15px;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--fg);width:100%}
+input:focus,select:focus,textarea:focus,button:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.check{flex-direction:row;align-items:flex-start;gap:8px;font-weight:400}
+.check input{width:auto;margin-top:5px}
+.btn{font:inherit;font-weight:600;border:0;border-radius:8px;padding:12px 16px;background:var(--brand);color:var(--brand-ink);cursor:pointer}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.note{font-size:12px;color:var(--muted);margin:0}
+.ok{background:var(--soft);border-radius:10px;padding:14px;color:var(--fg)}
+.card{border-radius:16px;padding:20px;color:#17290C;background:linear-gradient(135deg,#A6D387,#7FB35C);display:flex;flex-direction:column;gap:14px;box-shadow:0 10px 30px rgba(90,140,50,.3);max-width:420px}
+.card .top{display:flex;justify-content:space-between;align-items:center;font-size:12px;opacity:.9}
+.card .name{font-family:var(--display);font-size:20px}
+.card dl{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;margin:0;font-size:13px}
+.card dt{opacity:.75}.card dd{margin:0;font-variant-numeric:tabular-nums}
+.paid{display:inline-block;background:#fff;color:#3E6B22;font-weight:700;border-radius:999px;padding:1px 10px;font-size:12px}
+.demands{display:flex;flex-direction:column;gap:0;counter-reset:d}
+.demand{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;padding-block:12px;border-bottom:1px solid var(--line)}
+.state{font-size:12px;font-weight:600}
+.state.done{color:var(--accent)}.state.open{color:var(--signal)}.state.talk{color:var(--muted)}
+.contact{display:flex;flex-direction:column;gap:8px}
+.contact div{display:flex;justify-content:space-between;gap:12px;padding-block:8px;border-bottom:1px solid var(--line)}
+.contact span{color:var(--muted)}
+.contact b{direction:ltr;unicode-bidi:plaintext;user-select:all;font-weight:500}
+nav{position:fixed;inset:auto 0 0;z-index:6;background:var(--surface);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
+nav .wrap{display:grid;grid-template-columns:repeat(5,1fr)}
+nav button{font:inherit;font-size:11px;background:none;border:0;color:var(--muted);padding:8px 2px 10px;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer}
+nav button svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8}
+nav button[aria-current="page"]{color:var(--accent);font-weight:600}
+nav button[aria-current="page"] svg{background:var(--brand);color:var(--brand-ink);border-radius:999px;width:44px;padding:2px 10px;stroke:var(--brand-ink)}
+.hero-about{display:flex;flex-direction:column;gap:6px;padding-block:4px 6px}
+.block{display:flex;flex-direction:column;gap:10px;padding-block:18px;border-top:1px solid var(--line);scroll-margin-top:90px}
+.block p{margin:0}
+.values{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.values div{background:var(--soft);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column}
+.values b{font-family:var(--display);font-size:14px;color:var(--accent)}
+.values span{font-size:13px;color:var(--muted)}
+.ticks{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+.ticks li{position:relative;padding-inline-start:22px}
+.ticks li::before{content:"";position:absolute;inset-inline-start:2px;top:9px;width:10px;height:10px;border-radius:2px;background:var(--accent)}
+.timeline{list-style:none;margin:0;padding:0;border-inline-start:2px solid var(--line);display:flex;flex-direction:column;gap:14px}
+.timeline li{position:relative;padding-inline-start:18px}
+.timeline li::before{content:"";position:absolute;inset-inline-start:-7px;top:7px;width:12px;height:12px;border-radius:50%;background:var(--surface);border:2px solid var(--accent)}
+.timeline b{font-family:var(--display);color:var(--accent);font-variant-numeric:tabular-nums;margin-inline-end:8px}
+.timeline span{color:var(--muted);display:block;font-size:13px}
+.acts{display:flex;flex-direction:column;gap:12px}
+.act{background:var(--surface);border-radius:18px;overflow:hidden;box-shadow:0 2px 12px rgba(40,70,20,.08)}
+.gal{display:flex;gap:4px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+.gal::-webkit-scrollbar{display:none}
+.gal img{flex:0 0 100%;width:100%;aspect-ratio:4/3;object-fit:cover;scroll-snap-align:center;display:block}
+.act-b{padding:12px 16px 16px;display:flex;flex-direction:column;gap:6px}
+.act-b p{color:var(--muted)}
+.bureau{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.bureau div{display:flex;flex-direction:column;padding:10px 12px;background:var(--soft);border-radius:10px}
+.bureau span{font-size:12px;color:var(--muted)}
+.offices{display:flex;flex-direction:column}
+.offices details{border-bottom:1px solid var(--line);padding-block:10px}
+.offices summary{cursor:pointer;font-weight:600;display:flex;justify-content:space-between;gap:8px}
+.offices summary small{color:var(--muted);font-weight:400}
+.offices dl{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;margin:8px 0 0;font-size:13px}
+.offices dt{color:var(--muted)}.offices dd{margin:0}
+@media (max-width:380px){.values,.acts,.bureau{grid-template-columns:1fr}}
+.greet{position:relative;overflow:hidden;display:flex;flex-direction:column;gap:10px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44'%3E%3Cpath d='M20 14h4v6h6v4h-6v6h-4v-6h-6v-4h6z' fill='%23ffffff' fill-opacity='.07'/%3E%3C/svg%3E"),linear-gradient(160deg,#2B4A1B 0%,#1A3010 100%);color:#fff;margin-inline:calc(-1*max(16px,env(safe-area-inset-left,0px)));margin-top:-16px;padding:18px max(16px,env(safe-area-inset-left,0px)) 58px;border-radius:0 0 32px 32px}
+.greet::after{content:"";position:absolute;inset-inline-start:-46px;bottom:-60px;width:220px;height:220px;border-radius:50%;background:var(--logo) center/100% no-repeat;opacity:.13;filter:grayscale(1) brightness(3);pointer-events:none}
+.greet .hello{font-size:13px;opacity:.9;display:flex;align-items:center;gap:6px}
+.greet h2{font-size:24px;line-height:1.3;margin:0;color:#fff;max-width:20ch}
+.greet .today{font-size:12px;opacity:.85}
+.motto{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:5px 12px 5px 14px;font-size:12px;font-weight:700;backdrop-filter:blur(6px);max-width:100%}
+.motto i{width:6px;height:6px;border-radius:50%;background:#fff;flex:none}
+.slider{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin-top:-46px;position:relative;z-index:1;scrollbar-width:none;padding-bottom:4px}
+.slider::-webkit-scrollbar{display:none}
+.slide{flex:0 0 88%;scroll-snap-align:center;border-radius:20px;padding:18px;min-height:150px;display:flex;flex-direction:column;justify-content:flex-end;gap:6px;color:#fff;text-decoration:none;box-shadow:0 8px 24px rgba(40,70,20,.18);position:relative;overflow:hidden}
+.slide b{font-family:var(--display);font-size:18px;line-height:1.4}
+.slide span:last-child{font-size:13px;opacity:.92}
+.slide .tag{align-self:flex-start;background:rgba(255,255,255,.9);color:#2E4A1A}
+.slide .tag.strike{background:#fff;color:#C8303A}
+.slide::after{content:"";position:absolute;inset-inline-end:-30px;top:-30px;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,.12)}
+.s1{background:linear-gradient(135deg,#B8945A,#7E5F2C)}
+.s2{background:linear-gradient(135deg,#C2453F,#8E2A2A)}
+.s3{background:linear-gradient(135deg,#2F6F73,#1D4A4D)}
+.s4{background:linear-gradient(135deg,#B8DC9C,#93C572);color:#17290C}
+.s4 .tag{background:#17290C;color:#E6F3DA}
+/* ألوان مساندة للأيقونات، والفستقي يبقى الطاغي */
+:root{--t1:#E3F0D8;--i1:#4A7A2A;--t2:#FBE9D6;--i2:#B4621E;--t3:#DCEEF0;--i3:#2F6F73;--t4:#F8E1E0;--i4:#B03A3A}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--t1:#22301A;--i1:#A9D68A;--t2:#3A2A1A;--i2:#F0A868;--t3:#173236;--i3:#7CC6CC;--t4:#3A1E1E;--i4:#F08C8C}}
+:root[data-theme="dark"]{--t1:#22301A;--i1:#A9D68A;--t2:#3A2A1A;--i2:#F0A868;--t3:#173236;--i3:#7CC6CC;--t4:#3A1E1E;--i4:#F08C8C}
+.svc:nth-child(4n+1) .ic{background:var(--t1)}.svc:nth-child(4n+1) svg{stroke:var(--i1)}
+.svc:nth-child(4n+2) .ic{background:var(--t1)}.svc:nth-child(4n+2) svg{stroke:var(--i1)}
+.svc:nth-child(3) .ic{background:var(--t4)}.svc:nth-child(3) svg{stroke:var(--i4)}
+.svc:nth-child(4) .ic{background:var(--t2)}.svc:nth-child(4) svg{stroke:var(--i2)}
+.svc:nth-child(7) .ic{background:var(--t3)}.svc:nth-child(7) svg{stroke:var(--i3)}
+.svc:nth-child(8) .ic{background:var(--t2)}.svc:nth-child(8) svg{stroke:var(--i2)}
+.svc:hover .ic{background:var(--brand)!important}.svc:hover svg{stroke:var(--brand-ink)!important}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:-4px}
+.dots i{width:6px;height:6px;border-radius:999px;background:var(--line);transition:width .2s}
+.dots i.on{width:18px;background:var(--accent)}
+.sec-head{display:flex;justify-content:space-between;align-items:center;margin-top:6px;scroll-margin-top:90px}
+.services{display:grid;grid-template-columns:repeat(4,1fr);gap:10px 6px;background:var(--surface);border-radius:20px;padding:16px 8px;box-shadow:0 2px 12px rgba(40,70,20,.06)}
+.svc{font:inherit;font-size:12px;font-weight:500;color:var(--fg);background:none;border:0;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;text-align:center;line-height:1.3}
+.svc .ic{width:52px;height:52px;border-radius:16px;background:var(--soft);display:grid;place-items:center}
+.svc svg{width:26px;height:26px;fill:none;stroke:var(--accent);stroke-width:1.8}
+.svc:hover .ic{background:var(--brand)}.svc:hover svg{stroke:var(--brand-ink)}
+.list{gap:10px}
+.item{background:var(--surface);border:0;border-radius:16px;padding:14px 16px;box-shadow:0 2px 10px rgba(40,70,20,.05)}
+.stat{background:var(--surface);border-radius:16px;box-shadow:0 2px 10px rgba(40,70,20,.05)}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0}
+.facts div{background:var(--surface);border-radius:14px;padding:10px 12px;box-shadow:0 2px 10px rgba(40,70,20,.05);min-width:0}
+.facts dt{font-size:12px;color:var(--muted)}.facts dd{margin:0;font-weight:700;display:flex;align-items:center;gap:6px}
+.swatch{width:14px;height:14px;border-radius:50%;background:var(--brand);display:inline-block;flex:none}
+h4{font-family:var(--display);font-size:14px;margin:6px 0 0;color:var(--accent)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.tiers{display:flex;flex-direction:column;gap:8px}
+.tiers div{background:var(--surface);border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:2px;box-shadow:0 2px 10px rgba(40,70,20,.05);border-inline-start:4px solid var(--brand)}
+.tiers b{font-family:var(--display);font-size:14px}.tiers span{font-size:13px;color:var(--muted)}
+.chapters{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.chapters div{background:var(--soft);border-radius:14px;padding:10px 12px;display:flex;flex-direction:column}
+.chapters span{font-size:11px;color:var(--accent);font-weight:700}.chapters b{font-family:var(--display);font-size:13px;line-height:1.5}.chapters small{font-size:11px;color:var(--muted)}
+@media (max-width:520px){.two{grid-template-columns:1fr}}
+@media (max-width:380px){.facts,.chapters{grid-template-columns:1fr}}
+.names{margin:0;line-height:2}
+.bureau>div:first-child{grid-column:1/-1;background:var(--brand);color:var(--brand-ink)}.bureau>div:first-child span{color:var(--brand-ink);opacity:.8}.bureau>div:first-child b{font-size:18px}
+.src{font-size:12px;color:var(--accent);font-weight:700;text-decoration:none}.src.muted{color:var(--muted);font-weight:400}
+.phone{display:flex;align-items:stretch;border:1px solid var(--line);border-radius:8px;background:var(--surface);overflow:hidden}
+.phone b{display:grid;place-items:center;padding:0 12px;background:var(--soft);color:var(--accent);font-variant-numeric:tabular-nums}
+.phone input{border:0;border-radius:0;letter-spacing:.08em}
+.phone:focus-within{outline:2px solid var(--accent);outline-offset:1px}.phone input:focus{outline:none}
+select:disabled{opacity:.55}
+.wa{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:12px;background:#1FA855;color:#fff;font-weight:700;text-decoration:none;border-radius:10px;padding:12px 16px}
+.wa:hover{background:#178C46}
+.ok .note{display:block;margin-top:8px}
+.share{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--accent);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:4px 12px;margin-top:4px}
+.share:hover{background:var(--soft)}
+.dl{text-align:center;text-decoration:none}
+.more{font:inherit;font-size:13px;font-weight:700;color:var(--accent);background:none;border:0;cursor:pointer;padding:4px 0}
+#newsSearch{border-radius:999px;padding-inline:18px}
+.watch{display:flex;align-items:center;justify-content:center;gap:8px;background:#C8303A;color:#fff;text-decoration:none;font-weight:700;border-radius:10px;padding:10px 14px;margin-top:6px}
+.watch:hover{background:#A82630}
+.tl-img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:14px;margin-top:8px}
+.site-foot{margin-top:28px;padding:22px 16px 8px;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:12.5px;line-height:1.8}
+.sf-brand{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;margin-bottom:6px}.sf-brand b{display:block;color:var(--fg);font-size:14px}.sf-brand small{display:block;font-size:11.5px}
+.sf-logo{width:52px;height:52px;padding:3px;flex:none}.sf-logo .logo{width:100%;height:100%}
+.sf-motto{margin:4px 0 10px;font-family:"El Messiri",serif;font-weight:700;color:#3D6B22;font-size:14px}
+.sf-links{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 16px;margin-bottom:10px}.sf-links a{color:var(--fg);font-weight:700;text-decoration:none}
+.sf-note{margin:0 auto 10px;max-width:46ch;font-size:11.5px;text-align:center;text-wrap:balance}.sf-copy{margin:0 auto;font-weight:700;color:var(--fg);text-align:center;text-wrap:balance}.sf-ver{margin:2px 0 0;font-size:11px;opacity:.8}
+.sp-copy{text-align:center;font-size:11px;line-height:1.7;opacity:.75}.sp-copy p{margin:0}.sp-copy p:first-child{font-weight:700}
+.sp-orn{display:block;position:relative;width:150px;height:12px;margin:2px auto 0}.sp-orn::before{content:"";position:absolute;inset-inline:0;top:50%;height:1.5px;background:linear-gradient(90deg,transparent,#B8945A 30%,#B8945A 70%,transparent)}.sp-orn::after{content:"";position:absolute;left:50%;top:50%;width:9px;height:9px;background:#C8A24A;border:2px solid #E7F2DC;transform:translate(-50%,-50%) rotate(45deg)}
+.sp-top .sp-logo,.sp-top .sp-logo .logo{opacity:1}
+.docs{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-top:12px}
+.doc{background:var(--surface);border-radius:16px;overflow:hidden;box-shadow:0 2px 10px rgba(40,70,20,.06);display:flex;flex-direction:column;border:0;padding:0;font:inherit;color:inherit;text-align:start;cursor:pointer}
+.doc .th{aspect-ratio:3/4;background:#fff center top/cover no-repeat;border-bottom:1px solid var(--line);position:relative}
+.doc .th .pc{position:absolute;bottom:8px;inset-inline-start:8px;background:rgba(23,41,12,.82);color:#fff;font-size:11px;font-weight:700;border-radius:999px;padding:2px 9px}
+.doc .bd{padding:10px 12px 12px;display:flex;flex-direction:column;gap:4px}
+.doc .bd b{font-size:13.5px;line-height:1.5;font-family:var(--display);font-weight:600}
+.doc .bd small{font-size:11.5px;color:var(--muted)}
+.doc:hover .th{filter:brightness(.97)}
+.viewer{position:fixed;inset:0;z-index:60;background:rgba(14,22,9,.94);display:flex;flex-direction:column}
+.vw-bar{display:flex;align-items:center;gap:10px;padding:max(10px,env(safe-area-inset-top,0px)) 14px 10px;color:#fff}
+.vw-bar b{flex:1;font-size:14px;line-height:1.4;min-width:0;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.vw-x{width:40px;height:40px;border-radius:12px;border:0;background:rgba(255,255,255,.12);color:#fff;display:grid;place-items:center;cursor:pointer;flex:none}
+.vw-dl{flex:none;background:#C8A24A;color:#17290C;font-weight:700;font-size:13px;text-decoration:none;border-radius:10px;padding:9px 14px}
+.vw-pages{flex:1;overflow-y:auto;padding:4px 12px 24px;display:flex;flex-direction:column;align-items:center;gap:12px}
+.vw-pages img{width:100%;max-width:760px;background:#fff;border-radius:6px;box-shadow:0 6px 24px rgba(0,0,0,.4)}
+.sp-top .sp-names{display:flex;flex-direction:row;align-items:center;justify-content:center;gap:10px;width:100%;line-height:inherit}
+.sp-top .sp-names .sp-name{font-size:clamp(14px,4.2vw,20px);flex:1.15 1 0;min-width:0;text-align:center}
+.sp-vl{display:block;width:1.5px;align-self:stretch;background:linear-gradient(180deg,transparent,#B8945A 20%,#B8945A 80%,transparent);flex:none}
+.sp-fr{flex:1 1 0;min-width:0;margin:0;font-family:"Cormorant Garamond",Georgia,serif;font-weight:700;font-size:clamp(12.5px,3.7vw,17px);line-height:1.3;color:#17290C;text-align:center}
+.sp-top .sp-fr span{display:block;white-space:nowrap;font-size:inherit;opacity:1;font-weight:inherit}
+.soon{display:flex;flex-direction:column;gap:4px;text-align:center;background:#FBF4E2;border:1px solid #E6D3A3;color:#5B4515;border-radius:16px;padding:14px 16px;margin-bottom:14px}.soon b{font-family:var(--display);font-size:15px}.soon span{font-size:13px;line-height:1.7}
+form.closed{opacity:.5;pointer-events:none;user-select:none}
+.badge-soon{position:absolute;top:-6px;inset-inline-start:-10px;background:#C8A24A;color:#fff;font-size:9.5px;font-weight:700;border-radius:999px;padding:1px 7px;line-height:1.6}
+.svc .ic{position:relative}
+.why-h{font-family:"El Messiri",serif;font-size:22px;text-align:center;margin:0 0 4px;color:var(--fg)}
+.why{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.why li{display:flex;gap:12px;align-items:flex-start;background:var(--surface);border-radius:14px;padding:12px 14px;box-shadow:0 2px 10px rgba(40,70,20,.05)}
+.why .wn{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-family:var(--display);font-weight:700;font-size:13px;color:#fff;background:var(--wc,#4A7A2A)}
+.why p{margin:0;font-size:14px;line-height:1.85}
+.why li:nth-child(10n+1){--wc:#3FA98A}.why li:nth-child(10n+2){--wc:#D9A90F}.why li:nth-child(10n+3){--wc:#E68A2E}.why li:nth-child(10n+4){--wc:#C8303A}.why li:nth-child(10n+5){--wc:#C2286E}.why li:nth-child(10n+6){--wc:#8E2A62}.why li:nth-child(10n+7){--wc:#4A5560}.why li:nth-child(10n+8){--wc:#1F5E8A}.why li:nth-child(10n+9){--wc:#2C8FB0}.why li:nth-child(10n){--wc:#2AA3A8}
+.sp-lock{width:100%;display:flex;flex-direction:column;align-items:center;gap:6px;margin-bottom:-8px}
+.sp-lock label{font-size:12.5px;font-weight:700;color:#3D4A33}
+.sp-lock input{width:100%;max-width:240px;text-align:center;font:inherit;font-size:20px;letter-spacing:.3em;padding:10px 14px;border-radius:14px;border:1.5px solid #D8CDB0;background:rgba(255,255,255,.85);color:#17290C}
+.sp-lock input:focus{outline:none;border-color:#C8A24A;box-shadow:0 0 0 3px rgba(200,162,74,.25)}
+.sp-lock small{color:#C8303A;font-weight:700;font-size:12.5px}
+.sp-lock.bad input{border-color:#C8303A;animation:spShake .35s}
+@keyframes spShake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.mem-hero{position:relative;overflow:hidden;text-align:center;color:#F3EAD3;background:radial-gradient(120% 90% at 50% 0%,#2A3A22 0%,#141C10 75%);margin-inline:calc(-1*max(16px,env(safe-area-inset-left,0px)));margin-top:-16px;padding:30px 20px 26px}
+.mem-hero h2{font-family:"El Messiri",serif;font-size:24px;color:#fff;margin:0 0 10px}
+.mem-hero .verse{font-family:"Amiri",serif;font-size:17px;line-height:1.9;color:#E3CF97;margin:0 auto;max-width:30ch}
+.mem-hero .verse small{display:block;font-family:var(--body);font-size:11px;color:#B5A889;margin-top:4px}
+.mem-orn{display:block;width:140px;height:12px;margin:14px auto 0;position:relative}.mem-orn::before{content:"";position:absolute;left:0;right:0;top:50%;height:1.5px;background:linear-gradient(90deg,transparent,#C8A24A,transparent)}.mem-orn::after{content:"";position:absolute;left:50%;top:50%;width:8px;height:8px;background:#C8A24A;transform:translate(-50%,-50%) rotate(45deg)}
+.candle{width:26px;height:42px;margin:0 auto 10px;position:relative}
+.candle i{position:absolute;left:50%;top:0;width:12px;height:20px;margin-left:-6px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;background:radial-gradient(circle at 50% 70%,#FFF4C9,#F2B33D 60%,rgba(242,179,61,0) 72%)}
+.candle s{position:absolute;left:50%;bottom:0;width:10px;height:20px;margin-left:-5px;background:linear-gradient(#E9DFC6,#C9BC9A);border-radius:2px}
+@media (prefers-reduced-motion:no-preference){.candle i{animation:fl 2.4s ease-in-out infinite}@keyframes fl{0%,100%{transform:scale(1) rotate(-2deg)}50%{transform:scale(1.08,1.12) rotate(2deg)}}}
+.mem-intro{text-align:center;font-size:13.5px;line-height:1.9;color:var(--muted);margin:16px auto 6px;max-width:44ch;text-wrap:balance}
+.mem-wall{display:grid;gap:14px;margin:10px 0 18px}
+.mcard{background:var(--surface);border-radius:20px;padding:22px 18px 18px;text-align:center;box-shadow:0 4px 18px rgba(40,50,20,.08);position:relative;overflow:hidden}
+.mcard::before{content:"";position:absolute;inset:0 0 auto;height:70px;background:linear-gradient(180deg,#F4EEDD,transparent);pointer-events:none}
+.mph{position:relative;width:118px;height:118px;margin:0 auto 12px;border-radius:50%;padding:4px;background:conic-gradient(from 200deg,#E9D8A6,#B8945A,#F3E6C2,#B8945A,#E9D8A6)}
+.mph img{width:100%;height:100%;border-radius:50%;object-fit:cover;border:3px solid #fff;display:block}
+.mph .ini{width:100%;height:100%;border-radius:50%;border:3px solid #fff;display:block;overflow:hidden;background:#D9DCD4}.mph .ini svg{width:100%;height:100%;display:block;fill:#F4F5F1}
+.mph .rb{position:absolute;bottom:-2px;left:50%;transform:translateX(-50%);background:#1A2414;color:#E3CF97;font-size:10.5px;font-weight:700;border-radius:999px;padding:2px 10px;white-space:nowrap}
+.mcard h3{font-family:"Amiri",serif;font-size:26px;margin:6px 0 2px;line-height:1.3}
+.rah{font-size:12.5px;color:#8A7A4E;font-weight:700}
+.mmeta{list-style:none;margin:14px 0 0;padding:12px 0 0;border-top:1px solid #EEE7D6;display:grid;gap:7px;font-size:13px;text-align:start}
+.mmeta li{display:flex;justify-content:space-between;gap:10px}.mmeta span{color:var(--muted)}.mmeta b{font-weight:700;text-align:end}
+.mstory{margin:12px 0 0;font-size:13.5px;line-height:1.9}
+.mem-empty{text-align:center;border:1.5px dashed #D9D2BF;border-radius:20px;padding:24px 18px;color:var(--muted);font-size:13.5px;line-height:1.9}
+.mem-empty a{color:var(--accent);font-weight:700}
+.mem-family{background:linear-gradient(180deg,#FFFDF7,#F6F0E0);border:1px solid #E6D9B5;border-radius:22px;padding:18px 16px;margin-bottom:8px}
+.mem-family .fh{text-align:center;margin-bottom:12px}.mem-family h3{font-family:"El Messiri",serif;font-size:20px;margin:0 0 4px;color:#5B4515}.mem-family .fh p{margin:0;font-size:12.5px;color:#7A6A3E;line-height:1.8}
+.fcard{display:flex;flex-direction:column;align-items:center;text-align:center;color:#2A2A1E}.fcard+.fcard{margin-top:16px;padding-top:16px;border-top:1px solid #E6D9B5}
+.fcard .mph{width:92px;height:92px}.fcard h4{font-family:"Amiri",serif;font-size:24px;margin:4px 0 0;color:#2A2A1E}
+.fcard p{margin:8px 0 0;font-size:13px;line-height:1.85;color:#4A4535}
+.mstone{display:flex;align-items:center;gap:10px;width:100%;margin-top:12px;padding:8px;border:1px solid #EEE7D6;border-radius:14px;background:#FBF8F0;font:inherit;color:inherit;cursor:pointer;text-align:start}
+.mstone img{width:56px;height:56px;border-radius:10px;object-fit:cover;flex:none}
+.mstone span{font-size:12.5px;font-weight:700;color:#8A7A4E}
+.wa-off{display:block;text-align:center;margin:10px 0 4px;background:#25D366;color:#fff;font-weight:700;font-size:13px;text-decoration:none;border-radius:12px;padding:9px 12px}
+/* دمج الرأس مع الترحيب: كتلة واحدة داكنة */
+header{border-bottom:0;background:#2B4A1B;color:#fff}
+body::before{background:#2B4A1B}
+header h1{color:#fff}
+header .hbtn{background:rgba(255,255,255,.12);color:#fff}header .hbtn:hover{background:rgba(255,255,255,.2)}
+header .hbtn .dot{box-shadow:0 0 0 2px #2B4A1B}
+header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
+.greet{background:radial-gradient(120% 70% at 50% 0%,#2B4A1B 0%,#1A3010 100%)}
+.splash{position:fixed;inset:0;z-index:50;overflow-y:auto;background:radial-gradient(90% 45% at 50% 0%,#E6F1DA 0%,rgba(230,241,218,0) 100%),linear-gradient(180deg,#FBFAF5 0%,#F3EFE4 100%);color:#17290C;display:flex;justify-content:center;padding:max(24px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(24px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));transition:opacity .45s ease,transform .45s ease}
+.splash{background:radial-gradient(90% 45% at 50% 0%,#E6F1DA 0%,rgba(230,241,218,0) 100%),linear-gradient(180deg,#FBFAF5 0%,#F3EFE4 100%)}
+.splash::before,.splash::after{content:"";position:fixed;left:50%;width:520px;height:520px;margin-left:-260px;background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%20viewBox%3D%220%200%20600%20600%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%2393C572%22%20stroke-opacity%3D%22.3%22%20stroke-width%3D%221.2%22%3E%3Cpolygon%20points%3D%22300.0%2C10.0%20344.1%2C78.1%20411.0%2C32.1%20425.7%2C111.9%20505.1%2C94.9%20488.1%2C174.3%20567.9%2C189.0%20521.9%2C255.9%20590.0%2C300.0%20521.9%2C344.1%20567.9%2C411.0%20488.1%2C425.7%20505.1%2C505.1%20425.7%2C488.1%20411.0%2C567.9%20344.1%2C521.9%20300.0%2C590.0%20255.9%2C521.9%20189.0%2C567.9%20174.3%2C488.1%2094.9%2C505.1%20111.9%2C425.7%2032.1%2C411.0%2078.1%2C344.1%2010.0%2C300.0%2078.1%2C255.9%2032.1%2C189.0%20111.9%2C174.3%2094.9%2C94.9%20174.3%2C111.9%20189.0%2C32.1%20255.9%2C78.1%22/%3E%3Cpolygon%20points%3D%22324.0%2C61.2%20354.7%2C121.0%20413.5%2C88.5%20419.0%2C155.5%20485.8%2C148.1%20465.3%2C212.1%20529.8%2C230.8%20486.3%2C282.0%20538.8%2C324.0%20479.0%2C354.7%20511.5%2C413.5%20444.5%2C419.0%20451.9%2C485.8%20387.9%2C465.3%20369.2%2C529.8%20318.0%2C486.3%20276.0%2C538.8%20245.3%2C479.0%20186.5%2C511.5%20181.0%2C444.5%20114.2%2C451.9%20134.7%2C387.9%2070.2%2C369.2%20113.7%2C318.0%2061.2%2C276.0%20121.0%2C245.3%2088.5%2C186.5%20155.5%2C181.0%20148.1%2C114.2%20212.1%2C134.7%20230.8%2C70.2%20282.0%2C113.7%22/%3E%3Cpolygon%20points%3D%22337.7%2C113.8%20357.2%2C163.3%20406.1%2C142.4%20405.2%2C195.6%20458.4%2C195.0%20437.1%2C243.8%20486.5%2C263.6%20448.2%2C300.5%20486.2%2C337.7%20436.7%2C357.2%20457.6%2C406.1%20404.4%2C405.2%20405.0%2C458.4%20356.2%2C437.1%20336.4%2C486.5%20299.5%2C448.2%20262.3%2C486.2%20242.8%2C436.7%20193.9%2C457.6%20194.8%2C404.4%20141.6%2C405.0%20162.9%2C356.2%20113.5%2C336.4%20151.8%2C299.5%20113.8%2C262.3%20163.3%2C242.8%20142.4%2C193.9%20195.6%2C194.8%20195.0%2C141.6%20243.8%2C162.9%20263.6%2C113.5%20300.5%2C151.8%22/%3E%3Cpolygon%20points%3D%22341.4%2C166.3%20352.0%2C204.0%20389.4%2C192.3%20384.8%2C231.2%20423.8%2C234.7%20404.7%2C268.9%20439.4%2C287.0%20408.6%2C311.3%20433.7%2C341.4%20396.0%2C352.0%20407.7%2C389.4%20368.8%2C384.8%20365.3%2C423.8%20331.1%2C404.7%20313.0%2C439.4%20288.7%2C408.6%20258.6%2C433.7%20248.0%2C396.0%20210.6%2C407.7%20215.2%2C368.8%20176.2%2C365.3%20195.3%2C331.1%20160.6%2C313.0%20191.4%2C288.7%20166.3%2C258.6%20204.0%2C248.0%20192.3%2C210.6%20231.2%2C215.2%20234.7%2C176.2%20268.9%2C195.3%20287.0%2C160.6%20311.3%2C191.4%22/%3E%3Cpolygon%20points%3D%22337.0%2C212.5%20341.6%2C238.7%20367.7%2C233.3%20361.9%2C259.3%20388.0%2C264.3%20372.8%2C286.1%20395.0%2C300.7%20372.6%2C315.0%20387.5%2C337.0%20361.3%2C341.6%20366.7%2C367.7%20340.7%2C361.9%20335.7%2C388.0%20313.9%2C372.8%20299.3%2C395.0%20285.0%2C372.6%20263.0%2C387.5%20258.4%2C361.3%20232.3%2C366.7%20238.1%2C340.7%20212.0%2C335.7%20227.2%2C313.9%20205.0%2C299.3%20227.4%2C285.0%20212.5%2C263.0%20238.7%2C258.4%20233.3%2C232.3%20259.3%2C238.1%20264.3%2C212.0%20286.1%2C227.2%20300.7%2C205.0%20315.0%2C227.4%22/%3E%3Cpolygon%20points%3D%22326.4%2C251.7%20327.5%2C267.1%20342.8%2C265.5%20338.0%2C280.1%20352.8%2C284.5%20342.7%2C296.2%20354.7%2C305.9%20340.9%2C312.8%20348.3%2C326.4%20332.9%2C327.5%20334.5%2C342.8%20319.9%2C338.0%20315.5%2C352.8%20303.8%2C342.7%20294.1%2C354.7%20287.2%2C340.9%20273.6%2C348.3%20272.5%2C332.9%20257.2%2C334.5%20262.0%2C319.9%20247.2%2C315.5%20257.3%2C303.8%20245.3%2C294.1%20259.1%2C287.2%20251.7%2C273.6%20267.1%2C272.5%20265.5%2C257.2%20280.1%2C262.0%20284.5%2C247.2%20296.2%2C257.3%20305.9%2C245.3%20312.8%2C259.1%22/%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22270%22/%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22215%22/%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22165%22/%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22118%22/%3E%3C/g%3E%3C/svg%3E") center/contain no-repeat;pointer-events:none;z-index:0}.splash::before{top:-170px}.splash::after{bottom:-260px}.sp-in{position:relative;z-index:1}
+.sp-enter{position:relative;overflow:hidden}.sp-enter::after{content:"";position:absolute;top:0;bottom:0;width:40%;left:-60%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.22),transparent);transform:skewX(-18deg)}
+@media (prefers-reduced-motion:no-preference){
+.splash::before{animation:spSpin 140s linear infinite}.splash::after{animation:spSpin 160s linear infinite reverse}
+@keyframes spSpin{to{transform:rotate(360deg)}}
+@keyframes spRise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes spPop{0%{opacity:0;transform:scale(.6)}70%{opacity:1;transform:scale(1.06)}100%{transform:scale(1)}}
+@keyframes spGrow{from{transform:scaleX(0);opacity:0}to{transform:scaleX(1);opacity:1}}
+@keyframes spGlow{0%,100%{box-shadow:0 0 0 1.5px #C8A24A,0 4px 12px rgba(30,60,15,.14)}50%{box-shadow:0 0 0 1.5px #C8A24A,0 0 0 8px rgba(200,162,74,.18),0 4px 16px rgba(30,60,15,.18)}}
+@keyframes spBreath{0%,100%{box-shadow:0 18px 40px rgba(30,60,15,.28)}50%{box-shadow:0 18px 40px rgba(30,60,15,.28),0 0 0 10px rgba(200,162,74,.16)}}
+@keyframes spShine{0%,70%{left:-60%}100%{left:130%}}
+.sp-logo{animation:spPop .9s cubic-bezier(.2,.8,.2,1) both,spGlow 3.5s 1.2s ease-in-out infinite}
+.sp-name span{animation:spRise .7s ease both}.sp-name span:first-child{animation-delay:.25s}.sp-name span:last-child{animation-delay:.42s}.sp-vl{animation:spGrowY .7s .4s ease both}.sp-fr span{animation:spRise .7s ease both}.sp-fr span:nth-child(1){animation-delay:.3s}.sp-fr span:nth-child(2){animation-delay:.42s}.sp-fr span:nth-child(3){animation-delay:.54s}@keyframes spGrowY{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+.sp-orn{animation:spGrow .8s .65s ease both}
+.sp-motto{animation:spRise .8s .85s ease both}
+.sp-mem .sp-photo{animation:spRise .8s 1s ease both,spBreath 4s 2s ease-in-out infinite}
+.sp-mem figcaption{animation:spRise .8s 1.15s ease both}
+.sp-enter{animation:spRise .7s 1.35s ease both}.sp-enter::after{animation:spShine 4.5s 2.2s ease-in-out infinite}
+.sp-copy{animation:spRise .7s 1.5s ease both}
+}
+.splash.out{opacity:0;transform:scale(1.03);pointer-events:none}
+.sp-in{width:100%;max-width:420px;min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:20px}
+.sp-top{display:flex;flex-direction:column;align-items:center;gap:12px;align-self:stretch;text-align:center}
+.sp-logo{width:72px;height:72px;padding:4px}.sp-logo .logo{width:64px;height:64px}
+.sp-name{font-family:"El Messiri",serif;font-weight:700;font-size:clamp(22px,7.2vw,30px);line-height:1.6;margin:0;color:#17290C;text-align:center}
+.sp-top .sp-name span{display:block;white-space:nowrap;font-size:inherit;opacity:1}
+.sp-top div{display:flex;flex-direction:column;line-height:1.25}.sp-top b{font-family:var(--display);font-size:18px}.sp-top span{font-size:12px;font-weight:700;opacity:.75}
+.sp-mem{margin:0;display:flex;flex-direction:row;align-items:center;gap:16px;text-align:center;width:100%;max-width:400px}
+.sp-verse{font-family:"Amiri",serif;font-size:24px;margin:0;color:#5B4A1E;letter-spacing:.01em}
+.sp-photo{flex:none;width:min(36vw,140px);aspect-ratio:1;border-radius:50%;padding:5px;background:conic-gradient(from 200deg,#E9D8A6,#B8945A,#F3E6C2,#B8945A,#E9D8A6);box-shadow:0 18px 40px rgba(30,60,15,.28)}
+.sp-photo img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block;border:4px solid #F6FBF1}
+.sp-mem figcaption{flex:1;display:flex;flex-direction:column;gap:4px;align-items:center;padding-inline-start:16px;border-inline-start:2px solid #C8A24A;min-width:0}
+.sp-mem small{font-size:13px;font-weight:700;letter-spacing:.04em;opacity:.7}
+.sp-mem strong{font-family:"Amiri",var(--display),serif;font-size:clamp(24px,7vw,30px);line-height:1.2}
+.sp-mem figcaption span{font-size:13px;opacity:.85;line-height:1.7}
+.sp-enter{width:100%;display:flex;align-items:center;justify-content:center;gap:10px;font:inherit;font-family:var(--display);font-size:17px;font-weight:700;color:#F6FBF1;background:#1F3A12;border:0;border-radius:16px;padding:16px 20px;cursor:pointer;box-shadow:0 10px 24px rgba(20,40,10,.3)}
+.sp-enter:hover{background:#2A4D19}
+.sp-motto{margin:2px 0 0;font-family:"El Messiri",serif;font-size:12.5px;font-weight:700;line-height:1.8;text-align:center;max-width:34ch;text-wrap:balance;color:#17290C;opacity:.85}
+
+.demo{font-size:11px;text-align:center;color:var(--muted)}
+@media (prefers-reduced-motion:no-preference){section[data-view]:not([hidden]){animation:in .2s ease-out}@keyframes in{from{transform:translateY(4px)}to{transform:none}}}
+</style>
+
+</head>
+<body>
+<div dir="rtl" lang="ar">
+<div class="splash" id="splash" role="dialog" aria-label="صفحة الدخول">
+  <div class="sp-in">
+    <div class="sp-top"><span class="ring sp-logo"><span class="logo"></span></span><div class="sp-names"><h1 class="sp-name"><span>النقابة المستقلة</span><span>للممرضين وتقنيي الصحة</span></h1><i class="sp-vl" aria-hidden="true"></i><p class="sp-fr" lang="fr" dir="ltr"><span>Syndicat Indépendant</span><span>des Infirmiers et</span><span>Techniciens de Santé</span></p></div><i class="sp-orn" aria-hidden="true"></i><p class="sp-motto">قوتنا في وحدتنا واستقلاليتنا، واجبنا تحصين المكتسبات، هدفنا انتزاع المزيد من المطالب التمريضية المستحقة</p></div>
+    <figure class="sp-mem">
+      <div class="sp-photo"><img src="images/chaki.jpg" alt="الفقيد عبد الإله الشاكي"></div>
+      <figcaption>
+        <small>فقيد النقابة</small>
+        <strong>عبد الإله الشاكي</strong>
+        <span>رحمه الله</span>
+      </figcaption>
+    </figure>
+    <div class="sp-lock" id="spLock" hidden><label for="spCode">رمز الدخول (للمعاينة الداخلية)</label><input id="spCode" type="password" inputmode="numeric" autocomplete="off" placeholder="••••••"><small id="spErr" role="alert" hidden>الرمز غير صحيح</small></div>
+    <button class="sp-enter" id="enterBtn" type="button">دخول<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+    <div class="sp-copy"><p>© <span class="cyear">2026</span> | النقابة المستقلة للممرضين وتقنيي الصحة | جميع الحقوق محفوظة</p><p>التطبيق الرسمي للنقابة · الإصدار 1.0</p></div>
+  </div>
+</div>
+<header id="topbar"><div class="wrap">
+  <span class="ring"><span class="logo" role="img" aria-label="شعار النقابة"></span></span>
+  <div class="brand"><h1><span>النقابة المستقلة</span><span>للممرضين وتقنيي الصحة</span></h1></div>
+  <button class="hbtn" id="bellBtn" aria-label="آخر البلاغات"><svg viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15zM10 20a2 2 0 0 0 4 0"/></svg><span class="dot"></span></button>
+</div></header>
+
+<main class="wrap">
+  <!-- الرئيسية -->
+  <section data-view="home">
+    <div class="greet">
+      <h2 id="hello">مرحباً بك</h2>
+      <span class="today" id="today"></span>
+    </div>
+
+    <div class="slider" id="slider" aria-label="بلاغات بارزة">
+      <a class="slide s4" href="#news"><span class="tag">هسبريس · 1 نونبر 2026</span><b>الكاتب الوطني: سنطرح ملفنا المطلبي كاملاً في حوار 14 نونبر</b><span>تصريح عبد الله ميروش حول دعوة الوزير النقابات الصحية لاجتماع تثمين الموارد البشرية.</span></a>
+      <a class="slide s1" href="#about" data-to="ab-path"><span class="tag">البلاغ الختامي · 30 يونيو 2026</span><b>المؤتمر الوطني الثاني: دورة الفقيد المناضل عبد الإله الشاكي</b><span>صودق بالإجماع على التقريرين الأدبي والمالي وعلى تعديلات القانون الأساسي، وانتُخب عبد الله ميروش كاتباً وطنياً.</span></a>
+      <a class="slide s2" href="#about" data-to="ab-demands"><span class="tag">رسالة مفتوحة · 23 أكتوبر 2026</span><b>مركزية المناصب المالية على رأس أولوياتنا</b><span>رسالة عاجلة إلى وزير الصحة والحماية الاجتماعية في أفق قانون مالية 2027.</span></a>
+      <a class="slide s3" href="#about" data-to="ab-offices"><span class="tag">المكتب الوطني الجديد</span><b>عبد الله ميروش كاتباً وطنياً للنقابة</b><span>تعرّف على أعضاء المكتب الوطني والكتاب الجهويين لـ12 جهة.</span></a>
+    </div>
+    <div class="dots" id="dots"><i class="on"></i><i></i><i></i><i></i></div>
+
+    <div class="sec-head"><h3>الخدمات</h3></div>
+    <div class="services">
+      <button class="svc" data-go="join"><span class="ic"><svg viewBox="0 0 24 24"><circle cx="10" cy="8" r="4"/><path d="M2 21c0-4 4-6 8-6s8 2 8 6M19 8v6M16 11h6"/></svg></span>طلب الانخراط</button>
+<button class="svc" data-go="library"><span class="ic"><svg viewBox="0 0 24 24"><path d="M4 4h5v16H4zM10 4h4v16h-4zM15.5 4.6l3.9-1 4 15.5-3.9 1z"/></svg></span>مكتبة الوثائق</button>
+      <button class="svc" data-go="contact"><span class="ic"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H8l-4 4z"/><path d="M12 8v4M12 14v.5"/></svg></span>شكاية</button>
+      <button class="svc" data-go="about" data-to="ab-demands"><span class="ic"><svg viewBox="0 0 24 24"><path d="M9 4h6v3H9zM6 6H5v15h14V6h-1M8 12l2 2 4-4M8 18h8"/></svg></span>الملف المطلبي</button>
+      <button class="svc" data-go="about" data-to="ab-offices"><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span>المكاتب</button>
+      <button class="svc" data-go="about" data-to="ab-acts"><span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span>الأنشطة</button>
+      <button class="svc" data-go="memorial"><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 3c1.6 2 2.4 3.4 2.4 4.6A2.4 2.4 0 0 1 12 10a2.4 2.4 0 0 1-2.4-2.4C9.6 6.4 10.4 5 12 3zM9 12h6v9H9zM6 21h12"/></svg></span>شهداء الواجب</button>
+      <button class="svc" data-go="about" data-to="ab-missions"><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 3v18M5 7h14M5 7l-3 7a3 3 0 0 0 6 0zM19 7l-3 7a3 3 0 0 0 6 0zM8 21h8"/></svg></span>أهدافنا</button>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><b>2020</b><span>سنة التأسيس</span></div>
+      <div class="stat"><b>12</b><span>جهة ممثلة</span></div>
+      <div class="stat"><b>1000</b><span>مؤتمر تقريباً في المؤتمر الثاني</span></div>
+    </div>
+
+    <div class="sec-head" id="newsHead"><h3>آخر البلاغات</h3><button class="more" data-jump="news">عرض الكل</button></div>
+    <div class="list" id="latest"></div>
+    <p class="demo">بلاغات صادرة عن هياكل النقابة</p>
+  </section>
+
+  <!-- الانخراط -->
+  <section data-view="join" hidden>
+    <div><h2>طلب الانخراط</h2><p class="lead">املأ الاستمارة، وسيتصل بك المكتب الجهوي لتأكيد انخراطك واستلام البطاقة.</p></div>
+    <div class="soon" id="joinSoon" hidden><b>خدمة الانخراط في طور الإعداد</b><span>ستُفتح الاستمارة مع انطلاق عملية الانخراط الوطني. تابعوا البلاغات للإعلان عن موعدها.</span></div>
+    <form id="joinForm" novalidate>
+      <label for="fName">الاسم الكامل<input id="fName" required autocomplete="name" placeholder="الاسم العائلي والشخصي"></label>
+      <div class="row">
+        <label for="fCin">رقم بطاقة التعريف الوطنية<input id="fCin" required dir="ltr" placeholder="AB123456" style="text-transform:uppercase"></label>
+        <label for="fPpr">رقم التأجير<input id="fPpr" required inputmode="numeric" dir="ltr" placeholder="1234567"></label>
+      </div>
+      <div class="row">
+        <label for="fPhone">الهاتف
+          <span class="phone" dir="ltr"><b>06</b><input id="fPhone" type="tel" inputmode="numeric" required maxlength="8" placeholder="12345678"></span></label>
+        <label for="fSpec">التخصص<input id="fSpec" required placeholder="مثال: ممرض متعدد الاختصاصات"></label>
+      </div>
+      <div class="row">
+        <label for="fRegion">الجهة
+          <select id="fRegion" required><option value="">اختر الجهة</option></select></label>
+        <label for="fProv">الإقليم
+          <select id="fProv" required disabled><option value="">اختر الجهة أولاً</option></select></label>
+      </div>
+      <label for="fWork">المؤسسة الصحية<input id="fWork" required placeholder="اسم المستشفى أو المركز الصحي"></label>
+      <label class="check" for="fOk"><input type="checkbox" id="fOk" required> أقبل مبادئ النقابة وقانونها الأساسي والداخلي، وألتزم بأداء واجب الانخراط السنوي، وأصرّح بعدم انتمائي إلى نقابة أخرى.</label>
+      <p class="note" id="joinErr" hidden style="color:var(--signal)"></p>
+      <button class="btn" type="submit">إرسال طلب الانخراط</button>
+    </form>
+    <div class="ok" id="joinOk" hidden></div>
+  </section>
+
+  <!-- البلاغات -->
+  <section data-view="news" hidden>
+    <div><h2>البلاغات والأخبار</h2><p class="lead">كل ما صدر عن المكتب الوطني والمكاتب الجهوية والإقليمية.</p></div>
+    <input id="newsSearch" type="search" placeholder="ابحث في البلاغات: اسم، مدينة، موضوع...">
+    <div class="filters" id="filters"></div>
+    <div class="list" id="news"></div>
+    <p class="note" id="newsEmpty" hidden>لا توجد بلاغات تطابق بحثك.</p>
+  </section>
+
+  <!-- شهداء وضحايا الواجب -->
+  <section data-view="memorial" hidden>
+    <div class="mem-hero"><div class="candle"><i></i><s></s></div><h2>شهداء وضحايا الواجب المهني</h2>
+      <p class="verse">﴿مِنَ الْمُؤْمِنِينَ رِجَالٌ صَدَقُوا مَا عَاهَدُوا اللَّهَ عَلَيْهِ﴾<small>سورة الأحزاب، الآية 23</small></p><i class="mem-orn" aria-hidden="true"></i></div>
+    <p class="mem-intro">وفاءً لزميلات وزملاء رحلوا وهم يؤدون رسالتهم في خدمة المرضى. أسماؤهم باقية في ذاكرة النقابة.</p>
+    <div class="mem-wall" id="martyrs"></div>
+    <section class="mem-family"><div class="fh"><h3>فقداء أسرة النقابة</h3><p>مناضلات ومناضلون رحلوا عنا، وتركوا بصمتهم في مسيرة النقابة.</p></div><div id="family"></div></section>
+  </section>
+
+  <!-- مكتبة الوثائق -->
+  <section data-view="library" hidden>
+    <div><h2>مكتبة الوثائق</h2><p class="lead">البلاغات والرسائل والوثائق التنظيمية الرسمية للنقابة، للاطلاع والتحميل.</p></div>
+    <div class="filters" id="docFilters"></div>
+    <div class="docs" id="docs"></div>
+  </section>
+
+  <!-- عن النقابة -->
+  <section data-view="about" hidden>
+    <div class="hero-about">
+      <div class="logo-lg" role="img" aria-label="شعار النقابة المستقلة للممرضين وتقنيي الصحة"></div>
+      <span class="eyebrow" style="text-align:center">تأسست في نونبر 2020 · المملكة المغربية</span>
+      <h2 style="text-align:center">النقابة المستقلة للممرضين وتقنيي الصحة</h2>
+      <p class="fr">Syndicat Indépendant des Infirmiers et Techniciens de Santé · SIITS</p>
+      <p class="lead" style="margin:0;text-align:center">نقابة مهنية مستقلة، مفتوحة لعموم الممرضين وتقنيي الصحة والأطر الصحية العليا المزاولين بالقطاع العمومي.</p>
+    </div>
+    <div class="filters" id="aboutNav">
+      <button class="chip" data-to="ab-about">التعريف</button>
+      <button class="chip" data-to="ab-why">لماذا المستقلة؟</button>
+      <button class="chip" data-to="ab-missions">الأهداف</button>
+      <button class="chip" data-to="ab-members">العضوية</button>
+      <button class="chip" data-to="ab-offices">الهيكلة</button>
+      <button class="chip" data-to="ab-path">المسار</button>
+      <button class="chip" data-to="ab-statute">القانون الأساسي</button>
+      <button class="chip" data-to="ab-acts">الأنشطة</button>
+      <button class="chip" data-to="ab-demands">الملف المطلبي</button>
+    </div>
+
+    <article class="block" id="ab-about">
+      <h3>التعريف بالنقابة</h3>
+      <p>تأسست النقابة المستقلة للممرضين وتقنيي الصحة في نونبر 2020، بناءً على مقتضيات الدستور، ولا سيما الفصل 8 منه، وعلى الظهير الشريف رقم 1.57.119 الصادر في 16 يوليوز 1957 بشأن النقابات المهنية.</p>
+      <p>تضم الممرضين وتقنيي الصحة والأطر الصحية العليا، والممرضين الدكاترة والأساتذة، والممرضين المساعدين والإعداديين، المزاولين بالقطاع العمومي.</p>
+      <dl class="facts">
+        <div><dt>الرمز</dt><dd>ن.م.ل.ت.ص · SIITS</dd></div>
+        <div><dt>اللون الرسمي</dt><dd><i class="swatch"></i>الفستقي الفاتح</dd></div>
+        <div><dt>المقر</dt><dd>رقم 562، حي زلاغ بن صفار، صفرو</dd></div>
+        <div><dt>الانتماء</dt><dd>مستقلة عن أي مركزية نقابية أو هيئة سياسية</dd></div>
+      </dl>
+      <h3 style="margin-top:6px">أسسنا</h3>
+      <div class="values">
+        <div><b>الاستقلالية</b><span>لا تنتمي لأي مركزية نقابية، ومستقلة عن المنظمات العقائدية والهيئات السياسية.</span></div>
+        <div><b>المساواة</b><span>في الحقوق والواجبات بين جميع المنخرطين والمنخرطات.</span></div>
+        <div><b>حرية التعبير والنقاش</b><span>في كل القضايا التي تهم سير النقابة وتطويرها.</span></div>
+        <div><b>الديمقراطية الداخلية</b><span>انتخاب ديمقراطي وتصويت سري على مناصب المسؤولية.</span></div>
+      </div>
+    </article>
+
+    <article class="block" id="ab-why">
+      <h3 class="why-h">لماذا المستقلة؟</h3>
+      <ol class="why"><li><span class="wn">01</span><p>لأن الممرض وتقني الصحة والقابلة والمساعد الاجتماعي أقدر وأكفأ على أخذ زمام الأمور بيده، بدل الدفاع عنه بالوكالة.</p></li><li><span class="wn">02</span><p>لأن الممرضين وتقنيي الصحة والقابلات والمساعدين الاجتماعيين والمروضين يناضلون وينزلون للميدان، لكن في التفاوض تعوم مطالبهم فيضيع الحق. ونموذج ذلك التعويض عن الأخطار المهنية.</p></li><li><span class="wn">03</span><p>لأن الممرض وتقني الصحة والقابلة والمساعد الاجتماعي والمروض يمثلون 60 في المائة من الكتلة الانتخابية، لكنهم ليسوا قادة، بل مجرد قواعد يتم تحريكها بناءً على منطق الحاجة والمصلحة.</p></li><li><span class="wn">04</span><p>لأن الممرضين وتقنيي الصحة والقابلات والمساعدين الاجتماعيين إن تكتلوا أصبحوا قوة بالقطاع، وإن تشتتوا ضاعت مطالبهم.</p></li><li><span class="wn">05</span><p>لأن المرحلة القادمة بالقطاع حاسمة، ولا بد من حضور قوي لكيان نقابي مستقل لكل الأطر التمريضية بالمغرب.</p></li><li><span class="wn">06</span><p>لأن الساحة تحتاج نفساً جديداً وطريقة عمل مهنية محضة، جوهرها الدفاع عن المطالب المهنية لأطر التمريض، بعيداً عن كل حسابات سياسية أو إيديولوجية.</p></li><li><span class="wn">07</span><p>لأن تحقيق حلم الهيئة الوطنية للممرضين وتقنيي الصحة لن يأتي إلا عبر أطر التمريض أنفسهم، وليس عبر أطراف ترفض بتاتاً تشكيل الهيئة أو خروجها لحيز الوجود، بل ترفض حتى خروج مصنف الأعمال، تروّج له في العلن وتجمّده في السر.</p></li><li><span class="wn">08</span><p>لأن الإطار التمريضي الحالي له من الشواهد والقدرة والتكوين ما يؤهله لأن يكون فاعلاً وليس مفعولاً به.</p></li><li><span class="wn">09</span><p>لأن الدفاع عن المطالب وتحقيقها يمر عبر تجميع كل العقول والأطر والفعاليات التمريضية، واستقطاب كل من له نفور من العمل النقابي، وبعث الثقة من جديد في مشروع واحد متنوع المشارب لكن موحد الرؤية والأهداف.</p></li><li><span class="wn">10</span><p>لأن الانحياز لفئة التمريض أصبح من الضروريات بعد استنفاد عدة خيارات، والانتماء للمستقلة وعي وقناعة.</p></li></ol>
+    </article>
+    <article class="block" id="ab-missions">
+      <h3>أهداف النقابة</h3>
+      <p class="note">كما تنص عليها المادة الأولى من القانون الأساسي.</p>
+      <ul class="ticks"><li>الدفاع عن المصالح المعنوية والمادية والاجتماعية للممرضين وتقنيي الصحة.</li><li>العمل من أجل تطوير المؤسسات الصحية ودمقرطة هياكلها لتلعب الدور المنوط بها في المجال الصحي.</li><li>تحسين ظروف اشتغال الممرضين وتقنيي الصحة وضمان مشاركتهم النشيطة والفعالة في تسيير المؤسسات الصحية باعتبارها مجالهم الحيوي.</li><li>تحسين الظروف الصحية والخدمات العلاجية للمواطنين.</li><li>الدفاع عن الحريات النقابية.</li><li>تعزيز علاقات التشارك والتضامن مع باقي الشغيلة الصحية.</li><li>المساهمة الفعلية في بلورة سياسة وطنية صحية.</li><li>المساهمة في التكوين المستمر والمشاركة في التظاهرات العلمية جهوياً ووطنياً ودولياً، والتواصل مع الهيئات ذات الأهداف المشتركة.</li><li>الحفاظ على مكتسبات الممرضين وتقنيي الصحة التي نص عليها النظام الأساسي للوظيفة العمومية، والترافع عنها والسعي إلى تجويدها.</li><li>تشجيع البحث العلمي والأكاديمي وتبادل التجارب في المجالين العلمي والبيداغوجي المرتبط بالعلوم التمريضية وتقنيات الصحة.</li></ul>
+    </article>
+
+    <article class="block" id="ab-members">
+      <h3>العضوية</h3>
+      <p>العضوية مفتوحة لجميع الممرضين وتقنيي الصحة والأطر الصحية العليا المزاولين بالقطاع العمومي، وكذا الموجودين في انقطاع مؤقت أو إلحاق، والمتقاعدين الراغبين في الانخراط، شرط الالتزام بمبادئ النقابة وقانونها، وأداء واجب الانخراط السنوي، وعدم الانتماء إلى نقابة أخرى.</p>
+      <p class="note">تُمنح العضوية الشرفية لطلبة وخريجي المعاهد العليا لمهن التمريض وتقنيات الصحة.</p>
+      <div class="two">
+        <div><h4>حقوق المنخرط</h4><ul class="ticks"><li>الترشح داخل مختلف الهياكل التنظيمية للنقابة.</li><li>التصويت.</li><li>حرية التعبير وإبداء الرأي والنقد.</li><li>الحصول على المعلومة المرتبطة بعمل النقابة وطنياً وجهوياً ومحلياً.</li><li>تفعيل مبدأ ربط المسؤولية النقابية بالمحاسبة.</li></ul></div>
+        <div><h4>واجبات المنخرط</h4><ul class="ticks"><li>الانضباط لأدبيات وأخلاقيات العمل النقابي والامتثال لقوانين النقابة وضوابطها الداخلية.</li><li>احترام قرارات الهياكل التنظيمية المسيرة.</li><li>الاستجابة الإرادية للخطوات والأشكال النضالية التي تدعو إليها النقابة.</li><li>تجنب أي تصرف يسيء إلى سمعة النقابة، والعمل بمبدأ التضامن بين كل فعالياتها.</li><li>أداء واجب الانخراط السنوي، علماً أن العضوية تُفقد بعدم أدائه لسنتين متتاليتين.</li></ul></div>
+      </div>
+      <button class="btn" type="button" data-jump="join">قدّم طلب الانخراط</button>
+    </article>
+
+    <article class="block" id="ab-offices">
+      <h3>الهيكلة التنظيمية</h3>
+      <p class="note">هياكل منتخبة بشكل ديمقراطي مباشر، من المستوى الوطني إلى المؤسسة الصحية.</p>
+      <h4>المكتب الوطني</h4>
+      <div class="bureau"><div><span>الكاتب الوطني</span><b>عبد الله ميروش</b></div><div><span>رئيس المجلس الوطني</span><b>رضى تالوستن</b></div><div><span>رئيس هيئة التحكيم والأخلاقيات</span><b>يوسف جمالي العلوي</b></div><div><span>الكاتب الوطني الأسبق</span><b>عمر كومنا</b></div><div><span>الشق القانوني والمتابعات القضائية</span><b>عبد الرفيع بوشارب</b></div><div><span>تمثيلية ذوي الهمم</span><b>أحمد لشتيوي</b></div><div><span>تمثيلية المستشفيات الجامعية</span><b>ياسين كاظم · سفيان فحصي</b></div><div><span>التمثيلية النسائية</span><b>كلثوم بن إبراهيم · زينب لبرم</b></div><div><span>المنسق الوطني للوكالة المغربية للدم ومشتقاته</span><b>حسن تمارة</b></div><div><span>المنسق الوطني للمعاهد العليا لمهن التمريض وتقنيات الصحة</span><b>لحسن بيضارن</b></div></div>
+      <p class="note">كما أعلنه البلاغ الختامي للمؤتمر الوطني الثاني، 30 يونيو 2026. يضم المكتب أيضاً الكتاب الجهويين وممثلَين منتخبَين عن كل جهة.</p>
+      <h4>الهياكل الوطنية</h4>
+      <div class="tiers"><div><b>المؤتمر الوطني</b><span>أعلى هيئة تقريرية. يحدد الاختيارات الاستراتيجية ويحاسب الأجهزة المسيرة. ينعقد كل أربع سنوات، بمؤتمر واحد عن كل عشرة منخرطين.</span></div><div><b>المجلس الوطني</b><span>هيئة استشارية بصبغة تقريرية في التوجهات العامة والمعارك النضالية. يصادق على القانون الداخلي، ويجتمع في دورتين: أبريل وأكتوبر.</span></div><div><b>المكتب الوطني</b><span>الجهاز التنفيذي. يُنتخب لأربع سنوات قابلة للتجديد مرة واحدة، يجتمع كل شهر، ويمثل النقابة أمام السلطات الإدارية والقضائية.</span></div><div><b>الهيئة الوطنية للتحكيم والأخلاقيات</b><span>13 عضواً: 12 عن الجهات ورئيس يصوّت عليه المؤتمر. تبتّ في الملفات التأديبية مع ضمان حق الدفاع والاستئناف.</span></div><div><b>هيئة الملاءمة والرقابة</b><span>تتولى الافتحاص الداخلي للنقابة، بما فيه الافتحاص المالي السنوي.</span></div><div><b>الهيئة العلمية والتقنية</b><span>يحدد النظام الداخلي تشكيلتها واختصاصاتها.</span></div></div>
+      <h4>الهياكل الجهوية والإقليمية والمحلية</h4>
+      <div class="tiers"><div><b>المستوى الجهوي</b><span>مؤتمر جهوي كل 4 سنوات، مجلس جهوي يجتمع مرتين في السنة، ومكتب جهوي من 5 إلى 29 عضواً.</span></div><div><b>المستوى الإقليمي</b><span>مؤتمر إقليمي ومكتب إقليمي من 5 إلى 29 عضواً، يدبّر الحوار القطاعي والتكوين النقابي بالإقليم.</span></div><div><b>المستوى الجامعي</b><span>مكتب بكل مستشفى جامعي من 5 إلى 29 عضواً، ويمكن للمكاتب الجامعية التكتل في لجنة تنسيق وطنية.</span></div><div><b>المستوى المحلي</b><span>مكاتب محلية بالمؤسسات الصحية تدبّر شؤون النقابة وأعضائها على مستوى المؤسسة.</span></div></div>
+      <h4>المكاتب الجهوية</h4>
+      <input id="officeSearch" placeholder="ابحث عن جهة أو مدينة أو اسم">
+      <div class="offices" id="offices"></div>
+      <p class="note">المصدر: البلاغ الختامي للمؤتمر الوطني الثاني.</p>
+    </article>
+
+    <article class="block" id="ab-path">
+      <h3>مسار النقابة</h3>
+      <ol class="timeline" id="timeline"></ol>
+      <h4>تكريم الجيل المؤسس</h4>
+      <p class="note">كرّم المؤتمر الوطني الثاني وجوهاً من الجيل المؤسس عرفاناً بمبادراتهم التاريخية في تأسيس النقابة:</p>
+      <p class="names">عمر كومنا · سعدان مصطفى · لحسن اهركاشن · محمد الركلاوي · احمد حركي · فاطمة الناسيمي · مصطفى جعى · عبد الصمد لوزالي، مالك مقر النقابة الأول · بيبجديكن محمد وشهبون عبد الله، المقبلان على التقاعد · وعائلة الفقيد عبد الإله الشاكي، رحمه الله.</p>
+    </article>
+
+    <article class="block" id="ab-statute">
+      <h3>القانون الأساسي</h3>
+      <p class="note">صادق عليه المؤتمر الوطني الثاني يوم 27 يونيو 2026 بالدار البيضاء. 25 مادة في ستة أبواب:</p>
+      <a class="btn ghost dl" id="statuteDl" href="docs/statute-scan.pdf" target="_blank" rel="noopener" hidden>تحميل القانون الأساسي (PDF)</a>
+      <div class="chapters"><div><span>الباب الأول</span><b>الأهداف، الأسس، الانتماء</b><small>المواد 1 إلى 3</small></div><div><span>الباب الثاني</span><b>العضوية</b><small>المواد 4 إلى 6</small></div><div><span>الباب الثالث</span><b>الهيكلة الوطنية</b><small>المواد 7 إلى 13</small></div><div><span>الباب الرابع</span><b>الهياكل الجهوية</b><small>المواد 14 إلى 16</small></div><div><span>الباب الخامس</span><b>الهيكلة الإقليمية والجامعية والمحلية</b><small>المواد 17 إلى 21</small></div><div><span>الباب السادس</span><b>مقتضيات عامة: الانتقال، الموارد، التعديل، الحل</b><small>المواد 22 إلى 25</small></div></div>
+    </article>
+
+    <article class="block" id="ab-acts">
+      <h3>الأنشطة</h3>
+      <div class="acts" id="acts"></div>
+      <p class="note">اسحب الصورة لرؤية الصور الأخرى.</p>
+    </article>
+
+    <article class="block" id="ab-demands">
+      <h3>الملف المطلبي</h3>
+      <p class="note">أولويات النقابة المرفوعة إلى الوزارة الوصية، في أفق قانون مالية 2027.</p>
+      <div class="demands" id="demands"></div>
+      <p class="note">المصادر: رسالة المكتب الوطني إلى وزير الصحة (23 أكتوبر 2026)، والبيان الاحتجاجي للمكتب الوطني (15 أكتوبر 2026)، وبلاغ مكتب التنسيق الوطني للمعاهد العليا (13 شتنبر 2026)، وبلاغ المكتب الوطني إلى المعنيين بقطاع الصحة (8 شتنبر 2026).</p>
+    </article>
+  </section>
+
+  <!-- تواصل -->
+  <section data-view="contact" hidden>
+    <div><h2>تواصل مع النقابة</h2><p class="lead">بلّغ عن مشكلة في مكان عملك أو اطرح سؤالاً، وسيرد عليك المكتب المختص.</p></div>
+    <form id="msgForm" novalidate>
+      <div class="row">
+        <label for="mRegion">الجهة
+          <select id="mRegion" required><option value="">اختر الجهة</option></select></label>
+        <label for="mProv">الإقليم
+          <select id="mProv" required disabled><option value="">اختر الجهة أولاً</option></select></label>
+      </div>
+      <p class="note" id="mHint">اختر الجهة ثم الإقليم ليُوجَّه طلبك إلى المكتب المختص.</p>
+      <div id="mRest" hidden style="display:flex;flex-direction:column;gap:12px">
+      <div class="row">
+        <label for="mName">الاسم<input id="mName" required></label>
+        <label for="mType">نوع الرسالة
+          <select id="mType"><option>شكاية / تظلم</option><option>استشارة قانونية</option><option>اقتراح</option><option>سؤال عام</option></select></label>
+      </div>
+      <label for="mText">الرسالة<textarea id="mText" rows="5" required placeholder="صف المشكلة باختصار: المؤسسة، التاريخ، ما حدث."></textarea></label>
+      <button class="btn" type="submit">إرسال</button>
+      </div>
+    </form>
+    <div class="ok" id="msgOk" hidden></div>
+    <div class="contact">
+      <h3>المكتب الوطني</h3>
+      <div><span>هاتف الكاتب الوطني</span><b>+212 777 602 818</b></div>
+      <div><span>فايسبوك</span><a href="https://www.facebook.com/share/1JN3U2gz1E/" target="_blank" rel="noopener" style="color:var(--accent);font-weight:700">صفحة النقابة الرسمية</a></div>
+      <div><span>المقر</span><b style="direction:rtl">رقم 562، حي زلاغ بن صفار، صفرو</b></div>
+    </div>
+  </section>
+  <footer class="site-foot">
+    <div class="sf-brand"><span class="ring sf-logo"><span class="logo"></span></span><div><b>النقابة المستقلة للممرضين وتقنيي الصحة</b></div></div>
+    <div class="sf-links"><a href="#about">من نحن</a><a href="#join">الانخراط</a><a href="#news">البلاغات</a><a href="#library">الوثائق</a><a href="#memorial">شهداء الواجب</a><a href="#contact">تواصل معنا</a></div>
+    <p class="sf-note">تُستعمل المعطيات الشخصية المرسلة عبر هذا التطبيق حصرياً لأغراض نقابية، ولا تُشارك مع أي جهة أخرى.</p>
+    <p class="sf-copy">© <span id="sfYear">2026</span> النقابة المستقلة للممرضين وتقنيي الصحة. جميع الحقوق محفوظة.</p>
+    <p class="sf-ver">التطبيق الرسمي للنقابة · الإصدار 1.0</p>
+  </footer>
+</main>
+
+<nav aria-label="التنقل"><div class="wrap">
+  <button data-go="home" aria-current="page"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>الرئيسية</button>
+  <button data-go="about"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V10M19 21V10M9 21v-7h6v7M2 10l10-6 10 6"/></svg>النقابة</button>
+  <button data-go="join"><svg viewBox="0 0 24 24"><circle cx="10" cy="8" r="4"/><path d="M2 21c0-4 4-6 8-6s8 2 8 6M19 8v6M16 11h6"/></svg>انخراط</button>
+  <button data-go="news"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l6 4V5L8 9zM18 9a4 4 0 0 1 0 6"/></svg>البلاغات</button>
+  <button data-go="contact"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H8l-4 4z"/></svg>تواصل</button>
+</div></nav>
+</div>
+
+<div class="viewer" id="viewer" hidden role="dialog" aria-modal="true" aria-label="عرض الوثيقة">
+  <div class="vw-bar"><button class="vw-x" id="vwClose" type="button" aria-label="إغلاق"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 6l12 12M18 6L6 18"/></svg></button><b id="vwTitle"></b><a class="vw-dl" id="vwDl" href="#" download hidden>تحميل PDF</a></div>
+  <div class="vw-pages" id="vwPages"></div>
+</div>
+<script>window.SIITS_SITE=true;window.SIITS_SITE_URL="https://siits-ma.github.io/";</script>
+<script src="content.js"></script>
+<script>
+(function(){
+  var NEWS=SIITS.NEWS;
+  var DEM=SIITS.DEM;
+  var REG=["طنجة تطوان الحسيمة","الشرق","فاس مكناس","الرباط سلا القنيطرة","بني ملال خنيفرة","الدار البيضاء سطات","مراكش آسفي","درعة تافيلالت","سوس ماسة","كلميم واد نون","العيون الساقية الحمراء","الداخلة وادي الذهب"];
+  var $=function(s){return document.querySelector(s)};
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+  function load(k){try{return JSON.parse(localStorage.getItem(k)||"null")}catch(e){return null}}
+  function save(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+  function fmt(d){try{return new Date(d).toLocaleDateString("ar-MA",{day:"numeric",month:"long",year:"numeric"})}catch(e){return d}}
+
+  // تنقل
+  var views=["home","news","about","join","contact","library","memorial"];
+  var PATH=SIITS.PATH;
+  var IMG=SIITS.IMG;
+  var ACTS=SIITS.ACTS;
+  var BUREAU=[["الكاتب العام","الاسم الكامل"],["نائب الكاتب العام","الاسم الكامل"],["أمين المال","الاسم الكامل"],["المقرر","الاسم الكامل"],["المكلف بالإعلام","الاسم الكامل"],["المكلف بالشؤون القانونية","الاسم الكامل"]];
+  var CITY={"طنجة تطوان الحسيمة":"طنجة","الشرق":"وجدة","فاس مكناس":"فاس","الرباط سلا القنيطرة":"الرباط","بني ملال خنيفرة":"بني ملال","الدار البيضاء سطات":"الدار البيضاء","مراكش آسفي":"مراكش","درعة تافيلالت":"الرشيدية","سوس ماسة":"أكادير","كلميم واد نون":"كلميم","العيون الساقية الحمراء":"العيون","الداخلة وادي الذهب":"الداخلة"};
+  function show(v){if(views.indexOf(v)<0)v="home";
+    document.querySelectorAll("section[data-view]").forEach(function(s){s.hidden=s.dataset.view!==v});
+    document.querySelectorAll("nav button").forEach(function(b){b.dataset.go===v?b.setAttribute("aria-current","page"):b.removeAttribute("aria-current")});
+    window.scrollTo(0,0)}
+  document.querySelectorAll("nav button").forEach(function(b){b.addEventListener("click",function(){location.hash=b.dataset.go})});
+  function goTo(v,to){if(location.hash.slice(1)!==v){location.hash=v}else{show(v)}
+    if(to)setTimeout(function(){var t=document.getElementById(to);if(t)t.scrollIntoView({behavior:"smooth",block:"start"})},60)}
+  document.querySelectorAll(".svc").forEach(function(b){b.addEventListener("click",function(){goTo(b.dataset.go,b.dataset.to)})});
+  document.querySelectorAll(".slide").forEach(function(a){a.addEventListener("click",function(e){e.preventDefault();var h=a.getAttribute("href").slice(1);goTo(h,a.dataset.to||"")})});
+  (function(){var sl=$("#slider"),dots=document.querySelectorAll("#dots i"),n=dots.length,i=0,paused=false;
+    function idx(){var w=sl.firstElementChild.offsetWidth+12;return Math.min(n-1,Math.round(Math.abs(sl.scrollLeft)/w))}
+    sl.addEventListener("scroll",function(){var k=idx();dots.forEach(function(d,j){d.classList.toggle("on",j===k)})},{passive:true});
+    sl.addEventListener("pointerdown",function(){paused=true});
+    if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)setInterval(function(){if(paused||sl.offsetParent===null)return;i=(idx()+1)%n;sl.scrollTo({left:-i*(sl.firstElementChild.offsetWidth+12),behavior:"smooth"})},5000)})();
+  var sfy=document.getElementById("sfYear");if(sfy)sfy.textContent=new Date().getFullYear();document.querySelectorAll(".cyear").forEach(function(e){e.textContent=new Date().getFullYear()});
+  window.addEventListener("hashchange",function(){show(location.hash.slice(1))});
+
+  // شهداء وضحايا الواجب
+  (function(){var M=SIITS.MARTYRS||[],F=SIITS.FAMILY||[];
+    function ph(x,rb){return '<div class="mph">'+(x.img?'<img src="'+x.img+'" alt="'+esc(x.name)+'" loading="lazy">':'<span class="ini"><svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="38" r="18"/><path d="M14 92c3-20 18-32 36-32s33 12 36 32z"/></svg></span>')+(rb?'<span class="rb">'+rb+'</span>':'')+'</div>'}
+    $("#martyrs").innerHTML=M.length?M.map(function(x){var rows=[["المهنة",x.job],["المكان",x.place],[x.dateLabel||"تاريخ الوفاة",x.date?fmt(x.date):""]].filter(function(r){return r[1]});
+      return '<article class="mcard">'+ph(x,x.badge||"شهيد الواجب")+'<h3>'+esc(x.name)+'</h3>'+(x.rah===""?'':'<div class="rah">'+(x.rah||"رحمه الله")+'</div>')+''+(rows.length?'<ul class="mmeta">'+rows.map(function(r){return '<li><span>'+r[0]+'</span><b>'+esc(r[1])+'</b></li>'}).join("")+'</ul>':'')+(x.story?'<p class="mstory">'+esc(x.story)+'</p>':'')+(x.stone?'<button class="mstone" type="button" data-src="'+x.stone+'" data-t="'+esc(x.name)+'"><img src="'+x.stone+'" alt="" loading="lazy"><span>'+(x.stoneLabel||"شاهد القبر")+'</span></button>':'')+'</article>'}).join("")
+      :'<div class="mem-empty">نعمل حالياً على جمع أسماء شهداء وضحايا الواجب المهني وسيرهم بدقة وبموافقة عائلاتهم.<br>لديكم اسم أو معلومة؟ <a href="#contact">راسلونا</a>.</div>';
+    $("#martyrs").querySelectorAll(".mstone").forEach(function(b){b.onclick=function(){$("#vwTitle").textContent=b.dataset.t;$("#vwPages").innerHTML='<img src="'+b.dataset.src+'" alt="">';$("#vwDl").hidden=true;$("#viewer").hidden=false;document.body.style.overflow="hidden";$("#vwClose").focus()}});
+    $("#family").innerHTML=F.map(function(x){return '<article class="fcard">'+ph(x)+'<h4>'+esc(x.name)+'</h4><div class="rah">'+(x.rah||"رحمه الله")+'</div>'+(x.story?'<p>'+esc(x.story)+'</p>':'')+'</article>'}).join("")})();
+  // مكتبة الوثائق
+  (function(){var D=SIITS.DOCS||[],cur="الكل",types=["الكل"];D.forEach(function(d){if(types.indexOf(d.type)<0)types.push(d.type)});
+    function render(){$("#docFilters").innerHTML=types.map(function(t){return '<button class="chip'+(t===cur?' on':'')+'" type="button"'+(t===cur?' aria-pressed="true"':'')+'>'+t+'</button>'}).join("");
+      $("#docFilters").querySelectorAll("button").forEach(function(b){b.onclick=function(){cur=b.textContent;render()}});
+      $("#docs").innerHTML=D.map(function(d,i){return (cur==="الكل"||d.type===cur)?'<button class="doc" type="button" data-i="'+i+'"><span class="th" style="background-image:url(\''+d.pages[0]+'\')"><span class="pc">'+(d.pages.length===2?'صفحتان':d.pages.length===1?'صفحة واحدة':d.pages.length+(d.pages.length<11?' صفحات':' صفحة'))+'</span></span><span class="bd"><b>'+esc(d.t)+'</b><small>'+(d.date?fmt(d.date)+' · ':'')+esc(d.from)+'</small></span></button>':''}).join("");
+      $("#docs").querySelectorAll(".doc").forEach(function(b){b.onclick=function(){openDoc(D[+b.dataset.i])}})}
+    var V=$("#viewer"),last=null;
+    function openDoc(d){last=document.activeElement;$("#vwTitle").textContent=d.t;$("#vwPages").innerHTML=d.pages.map(function(p,k){return '<img src="'+p+'" alt="'+esc(d.t)+' - الصفحة '+(k+1)+'" loading="lazy">'}).join("");
+      var dl=$("#vwDl");if(window.SIITS_SITE&&d.file){dl.href=d.file;dl.hidden=false}else dl.hidden=true;
+      V.hidden=false;document.body.style.overflow="hidden";$("#vwClose").focus()}
+    function closeDoc(){V.hidden=true;document.body.style.overflow="";if(last)last.focus()}
+    $("#vwClose").onclick=closeDoc;document.addEventListener("keydown",function(e){if(e.key==="Escape"&&!V.hidden)closeDoc()});
+    render()})();
+
+
+  // أخبار
+  var cats=["الكل"].concat(NEWS.map(function(n){return n.c}).filter(function(c,i,a){return a.indexOf(c)===i}));
+  var cur="الكل";
+  var SITE_URL=window.SIITS_SITE_URL||"";
+  var SHARE_ICON='<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>';
+  function shareLink(n){var t="*"+n.t+"*\n\n"+n.d+"\n\n— النقابة المستقلة للممرضين وتقنيي الصحة"+(SITE_URL?"\n"+SITE_URL:"");return "https://wa.me/?text="+encodeURIComponent(t)}
+  function card(n){return '<article class="item"><div class="meta"><span class="tag'+(n.c==="إضراب"||n.c==="بيان احتجاجي"?" strike":"")+'">'+n.c+'</span>'+(n.date?'<span>'+fmt(n.date)+'</span>':'')+'<span>'+n.r+'</span></div><h3>'+n.t+'</h3><p>'+n.d+'</p>'+(n.src&&!n.url?'<span class="src">المصدر: '+n.src+'</span>':'')+'<a class="share" href="'+shareLink(n)+'" target="_blank" rel="noopener">'+SHARE_ICON+'مشاركة</a>'+(n.video?'<a class="watch" href="'+n.video+'" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>مشاهدة الحوار على يوتيوب</a>':'')+(n.url?'<a class="src" href="'+n.url+'" target="_blank" rel="noopener">المصدر: '+n.src+'</a>':(n.src?'':'<span class="src muted">خبر تجريبي</span>'))+'</article>'}
+  var q="";
+  function renderNews(){
+    $("#filters").innerHTML=cats.map(function(c){return '<button class="chip" aria-pressed="'+(c===cur)+'">'+c+'</button>'}).join("");
+    $("#filters").querySelectorAll("button").forEach(function(b){b.onclick=function(){cur=b.textContent;renderNews()}});
+    var list=NEWS.filter(function(n){return (cur==="الكل"||n.c===cur)&&(!q||(n.t+" "+n.d+" "+n.r+" "+n.c).indexOf(q)>=0)});
+    $("#news").innerHTML=list.map(card).join("");$("#newsEmpty").hidden=list.length>0;
+    $("#latest").innerHTML=NEWS.slice(0,3).map(card).join("")}
+  $("#newsSearch").addEventListener("input",function(e){q=e.target.value.trim();renderNews()});
+  renderNews();
+
+  // مطالب
+  $("#demands").innerHTML=DEM.map(function(d){return '<div class="demand"><span class="state '+d.s+'">'+d.l+'</span><span>'+d.t+'</span></div>'}).join("");
+
+  // عن النقابة
+  $("#timeline").innerHTML=PATH.map(function(p){return '<li><b>'+p.y+'</b>'+p.t+'<span>'+p.d+'</span>'+(p.img?'<img class="tl-img" src="'+IMG[p.img]+'" alt="'+p.t+'" loading="lazy">':'')+'</li>'}).join("");
+  $("#acts").innerHTML=ACTS.map(function(a){return '<article class="act">'+(a.img?'<div class="gal">'+a.img.map(function(k){return '<img src="'+IMG[k]+'" alt="'+a.t+'" loading="lazy">'}).join("")+'</div>':'')+'<div class="act-b"><div class="meta"><span class="tag">'+a.type+'</span>'+(a.date?'<span>'+fmt(a.date)+'</span>':'')+'<span>'+a.place+'</span></div><h3>'+a.t+'</h3><p>'+a.d+'</p></div></article>'}).join("");
+  document.querySelectorAll("[data-jump]").forEach(function(b){b.onclick=function(){location.hash=b.dataset.jump}});
+  var RSEC={"الرباط سلا القنيطرة": ["مصطفى زروال", "الفقير عبد الرزاق · الجوهري يونس"], "الدار البيضاء سطات": ["بوعبيد العباسي", "ياسين العثماني · عبد العالي صدقي"], "طنجة تطوان الحسيمة": ["رضى بنموسى", "أيوب الروكي · أحمد حمدي"], "فاس مكناس": ["ابراهيم الطراف", "جمال السحيمي · مراد اعميرات"], "مراكش آسفي": ["مروان البوهي", "محمد بوغمزة · أيوب الشقوري"], "سوس ماسة": ["بيهروشن محمد", "مصطفى بويس · رشيد آيت العباسين"], "الشرق": ["حسن الكاسمي", "محمد بوضى · عبد الحفيظ بركة"], "بني ملال خنيفرة": ["عبد اللطيف اهنوش", "محمد زيدوح · مهدي سمحان"], "درعة تافيلالت": ["", "عبد الحق العزيزي · عبد الحميد دادسي"], "كلميم واد نون": ["إدموسى محمد", "حدوش سعيد · إلياس أمزيل"], "العيون الساقية الحمراء": ["محمد الحميدي", "أمين مخيمش · أنس سليماني"], "الداخلة وادي الذهب": ["رضوان الشيكر", "كوثر النبيري · خولال إكرام"]};
+  function renderOffices(q){q=(q||"").trim();
+    var list=REG.filter(function(r){return !q||r.indexOf(q)>=0||CITY[r].indexOf(q)>=0||(RSEC[r][0]+RSEC[r][1]).indexOf(q)>=0});
+    $("#offices").innerHTML=list.length?list.map(function(r){return '<details><summary>'+r+'<small>'+CITY[r]+'</small></summary><dl><dt>الكاتب الجهوي</dt><dd>'+(RSEC[r][0]||"مؤتمر جهوي استثنائي مرتقب لانتخابه")+'</dd><dt>ممثلا الجهة بالمكتب الوطني</dt><dd>'+RSEC[r][1]+'</dd></dl>'+((SIITS.WA_REGION||{})[r]?'<a class="wa-off" href="https://wa.me/'+SIITS.WA_REGION[r]+'" target="_blank" rel="noopener">تواصل مع الكاتب الجهوي عبر واتساب</a>':'')+'</details>'}).join(""):'<p class="note" style="padding-block:10px">لا توجد جهة بهذا الاسم.</p>'}
+  renderOffices(); $("#officeSearch").addEventListener("input",function(e){renderOffices(e.target.value)});
+  $("#aboutNav").querySelectorAll("button").forEach(function(b){b.onclick=function(){var t=document.getElementById(b.dataset.to);if(t)t.scrollIntoView({behavior:"smooth",block:"start"})}});
+
+  // انخراط
+  $("#fRegion").innerHTML+='' + REG.map(function(r){return "<option>"+r+"</option>"}).join("");
+  // أرقام واتساب المسؤولين حسب الجهة. إلى أن تتوفر، تُرسل كل الطلبات إلى الكاتب الوطني.
+  var WA_DEFAULT="212777602818", WA_REGION=SIITS.WA_REGION||{};
+  function waLink(region,txt){return "https://wa.me/"+(WA_REGION[region]||WA_DEFAULT)+"?text="+encodeURIComponent(txt)}
+  var WA_ICON='<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 4.9 4.9 0 0 0 1 2.6 11.2 11.2 0 0 0 4.3 3.8c1.6.7 2.2.7 3 .6a2.6 2.6 0 0 0 1.7-1.2 2.1 2.1 0 0 0 .1-1.2c0-.1-.2-.2-.4-.3z"/></svg>';
+  var PROV={"طنجة تطوان الحسيمة": ["طنجة أصيلة", "المضيق الفنيدق", "تطوان", "الفحص أنجرة", "العرائش", "الحسيمة", "شفشاون", "وزان"], "الشرق": ["وجدة أنكاد", "الناظور", "الدريوش", "جرادة", "بركان", "تاوريرت", "جرسيف", "فجيج"], "فاس مكناس": ["فاس", "مكناس", "الحاجب", "إفران", "مولاي يعقوب", "صفرو", "بولمان", "تازة", "تاونات"], "الرباط سلا القنيطرة": ["الرباط", "سلا", "الصخيرات تمارة", "القنيطرة", "الخميسات", "سيدي قاسم", "سيدي سليمان"], "بني ملال خنيفرة": ["بني ملال", "أزيلال", "الفقيه بن صالح", "خنيفرة", "خريبكة"], "الدار البيضاء سطات": ["الدار البيضاء", "المحمدية", "الجديدة", "النواصر", "مديونة", "بنسليمان", "برشيد", "سطات", "سيدي بنور"], "مراكش آسفي": ["مراكش", "شيشاوة", "الحوز", "قلعة السراغنة", "الصويرة", "الرحامنة", "آسفي", "اليوسفية"], "درعة تافيلالت": ["الرشيدية", "ورزازات", "ميدلت", "تنغير", "زاكورة"], "سوس ماسة": ["أكادير إداوتنان", "إنزكان أيت ملول", "اشتوكة أيت باها", "تارودانت", "تزنيت", "طاطا"], "كلميم واد نون": ["كلميم", "أسا الزاك", "طانطان", "سيدي إفني"], "العيون الساقية الحمراء": ["العيون", "بوجدور", "طرفاية", "السمارة"], "الداخلة وادي الذهب": ["وادي الذهب", "أوسرد"]};
+  function fillProv(v){var el=$("#fProv"),list=PROV[$("#fRegion").value]||[];
+    el.innerHTML='<option value="">'+(list.length?"اختر الإقليم":"اختر الجهة أولاً")+'</option>'+list.map(function(x){return "<option>"+x+"</option>"}).join("");
+    el.disabled=!list.length; if(v)el.value=v}
+  var draft=load("join-draft")||{};
+  var F=["fName","fCin","fPpr","fPhone","fSpec","fRegion","fProv","fWork"];
+  F.forEach(function(id){var el=$("#"+id);if(draft[id]&&id!=="fProv")el.value=draft[id];el.addEventListener("input",function(){draft[id]=el.value;save("join-draft",draft)})});
+  fillProv(draft.fProv);
+  $("#fRegion").addEventListener("change",function(){fillProv();draft.fProv="";save("join-draft",draft)});
+  $("#fPhone").addEventListener("input",function(e){e.target.value=e.target.value.replace(/\D/g,"").slice(0,8)});
+  $("#fPpr").addEventListener("input",function(e){e.target.value=e.target.value.replace(/\D/g,"")});
+
+  if(SIITS.JOIN_OPEN===false){$("#joinSoon").hidden=false;var jf=$("#joinForm");jf.classList.add("closed");jf.setAttribute("aria-disabled","true");jf.querySelectorAll("input,select,button,textarea").forEach(function(x){x.disabled=true});
+    var jb=document.querySelector('.svc[data-go="join"] .ic');if(jb)jb.insertAdjacentHTML("beforeend",'<span class="badge-soon">قريباً</span>')}
+  $("#joinForm").addEventListener("submit",function(e){e.preventDefault();
+    var labels={fName:"الاسم الكامل",fCin:"رقم بطاقة التعريف",fPpr:"رقم التأجير",fPhone:"الهاتف",fSpec:"التخصص",fRegion:"الجهة",fProv:"الإقليم",fWork:"المؤسسة الصحية"};
+    var miss=F.filter(function(id){return !$("#"+id).value.trim()}).map(function(id){return labels[id]});
+    var err=miss.length?"أكمل الحقول التالية: "+miss.join("، ")+".":($("#fPhone").value.length!==8?"رقم الهاتف يجب أن يتكون من 8 أرقام بعد 06.":(!$("#fOk").checked?"ضع علامة على خانة الموافقة لإرسال الطلب.":""));
+    $("#joinErr").textContent=err;$("#joinErr").hidden=!err; if(err)return;
+    var m={name:$("#fName").value.trim(),cin:$("#fCin").value.trim().toUpperCase(),ppr:$("#fPpr").value.trim(),phone:"06"+$("#fPhone").value,grade:$("#fSpec").value.trim(),region:$("#fRegion").value,prov:$("#fProv").value,work:$("#fWork").value.trim(),no:"NI-"+(10000+Math.floor(Math.random()*89999)),since:new Date().toISOString().slice(0,10),paid:false};
+    save("member",m); save("join-draft",{});
+    var txt="طلب انخراط في النقابة المستقلة للممرضين وتقنيي الصحة\nرقم الطلب: "+m.no+"\nالاسم الكامل: "+m.name+"\nرقم بطاقة التعريف: "+m.cin+"\nرقم التأجير: "+m.ppr+"\nالهاتف: "+m.phone+"\nالتخصص: "+m.grade+"\nالجهة: "+m.region+"\nالإقليم: "+m.prov+"\nالمؤسسة الصحية: "+m.work;
+    $("#joinOk").hidden=false; $("#joinOk").innerHTML="<b>بقيت خطوة أخيرة يا "+esc(m.name)+".</b><br>اضغط على الزر لإرسال طلبك عبر واتساب إلى مسؤول جهة "+esc(m.region)+". رقم الطلب: "+m.no+".<a class='wa' href='"+waLink(m.region,txt)+"' target='_blank' rel='noopener'>"+WA_ICON+"إرسال الطلب عبر واتساب</a><span class='note'>سيتصل بك مكتب جهتك لتأكيد انخراطك.</span>";
+    $("#joinForm").hidden=true});
+
+
+  // تواصل
+  $("#mRegion").innerHTML+=REG.map(function(r){return "<option>"+r+"</option>"}).join("");
+  function mSync(){var list=PROV[$("#mRegion").value]||[],el=$("#mProv");
+    el.innerHTML='<option value="">'+(list.length?"اختر الإقليم":"اختر الجهة أولاً")+'</option>'+list.map(function(x){return "<option>"+x+"</option>"}).join("");el.disabled=!list.length;mShow()}
+  function mShow(){var ok=!!$("#mProv").value;$("#mRest").hidden=!ok;$("#mHint").hidden=ok}
+  $("#mRegion").addEventListener("change",mSync);$("#mProv").addEventListener("change",mShow);
+  $("#msgForm").addEventListener("submit",function(e){e.preventDefault();
+    if(!$("#mName").value.trim()||!$("#mText").value.trim())return;
+    var reg=$("#mRegion").value,prv=$("#mProv").value,txt=$("#mType").value+"\nالاسم: "+$("#mName").value.trim()+"\nالجهة: "+reg+"\nالإقليم: "+prv+"\n\n"+$("#mText").value.trim();
+    $("#msgOk").hidden=false;$("#msgOk").innerHTML="<b>رسالتك جاهزة.</b> اضغط على الزر لإرسالها عبر واتساب إلى مسؤول جهة "+esc(reg)+".<a class='wa' href='"+waLink(reg,txt)+"' target='_blank' rel='noopener'>"+WA_ICON+"إرسال عبر واتساب</a>";
+    $("#msgForm").reset();mSync()});
+
+  (function(){
+    try{$("#today").textContent=new Date().toLocaleDateString("ar-MA",{weekday:"long",day:"numeric",month:"long",year:"numeric"})}catch(e){}
+    var latest=SIITS.NEWS.reduce(function(m,n){return n.date&&n.date>m?n.date:m},""),dot=$("#bellBtn .dot");
+    function seenNews(){save("siits-news-seen",latest);if(dot)dot.hidden=true}
+    if(dot)dot.hidden=!latest||load("siits-news-seen")>=latest;
+    $("#bellBtn").onclick=function(){seenNews();location.hash="news"};
+    window.addEventListener("hashchange",function(){if(location.hash==="#news")seenNews()});
+    var tb=$("#topbar");window.addEventListener("scroll",function(){tb.classList.toggle("scrolled",window.scrollY>8)},{passive:true})})();
+  if(window.SIITS_SITE)$("#statuteDl").hidden=false;
+  (function(){var sp=$("#splash"),seen=false,LOCK=SIITS.LOCK||"";
+    function hex(buf){return Array.prototype.map.call(new Uint8Array(buf),function(b){return("0"+b.toString(16)).slice(-2)}).join("")}
+    function hash(v){try{return crypto.subtle.digest("SHA-256",new TextEncoder().encode("siits:"+v)).then(hex)}catch(e){return Promise.resolve("")}}
+    var unlocked=!LOCK;try{unlocked=unlocked||localStorage.getItem("siits-unlock")===LOCK;seen=sessionStorage.getItem("siits-entered")==="1"}catch(e){}
+    if(unlocked&&(seen||location.hash.length>1)){sp.hidden=true;return}
+    document.body.style.overflow="hidden";
+    var lk=$("#spLock"),inp=$("#spCode");if(!unlocked){lk.hidden=false}
+    function enter(){try{sessionStorage.setItem("siits-entered","1")}catch(e){}
+      sp.classList.add("out");document.body.style.overflow="";setTimeout(function(){sp.hidden=true},450)}
+    function tryEnter(){if(unlocked)return enter();
+      hash(inp.value.trim()).then(function(h){if(h&&h===LOCK){unlocked=true;try{localStorage.setItem("siits-unlock",LOCK)}catch(e){}lk.hidden=true;enter()}
+        else{$("#spErr").hidden=false;lk.classList.remove("bad");void lk.offsetWidth;lk.classList.add("bad");inp.select()}})}
+    $("#enterBtn").onclick=tryEnter;inp.addEventListener("keydown",function(e){if(e.key==="Enter")tryEnter()})})();
+  show(location.hash.slice(1));
+})();
+</script>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})})}</script>
+</body>
+</html>
