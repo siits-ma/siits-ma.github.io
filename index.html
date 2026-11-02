@@ -274,12 +274,6 @@ form.closed{opacity:.5;pointer-events:none;user-select:none}
 .why .wn{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-family:var(--display);font-weight:700;font-size:13px;color:#fff;background:var(--wc,#4A7A2A)}
 .why p{margin:0;font-size:14px;line-height:1.85}
 .why li:nth-child(10n+1){--wc:#3FA98A}.why li:nth-child(10n+2){--wc:#D9A90F}.why li:nth-child(10n+3){--wc:#E68A2E}.why li:nth-child(10n+4){--wc:#C8303A}.why li:nth-child(10n+5){--wc:#C2286E}.why li:nth-child(10n+6){--wc:#8E2A62}.why li:nth-child(10n+7){--wc:#4A5560}.why li:nth-child(10n+8){--wc:#1F5E8A}.why li:nth-child(10n+9){--wc:#2C8FB0}.why li:nth-child(10n){--wc:#2AA3A8}
-.sp-lock{width:100%;display:flex;flex-direction:column;align-items:center;gap:6px;margin-bottom:-8px}
-.sp-lock label{font-size:12.5px;font-weight:700;color:#3D4A33}
-.sp-lock input{width:100%;max-width:240px;text-align:center;font:inherit;font-size:20px;letter-spacing:.3em;padding:10px 14px;border-radius:14px;border:1.5px solid #D8CDB0;background:rgba(255,255,255,.85);color:#17290C}
-.sp-lock input:focus{outline:none;border-color:#C8A24A;box-shadow:0 0 0 3px rgba(200,162,74,.25)}
-.sp-lock small{color:#C8303A;font-weight:700;font-size:12.5px}
-.sp-lock.bad input{border-color:#C8303A;animation:spShake .35s}
 @keyframes spShake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
 .mem-hero{position:relative;overflow:hidden;text-align:center;color:#F3EAD3;background:radial-gradient(120% 90% at 50% 0%,#2A3A22 0%,#141C10 75%);margin-inline:calc(-1*max(16px,env(safe-area-inset-left,0px)));margin-top:-16px;padding:30px 20px 26px}
 .mem-hero h2{font-family:"El Messiri",serif;font-size:24px;color:#fff;margin:0 0 10px}
@@ -381,7 +375,6 @@ header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
         <span>رحمه الله</span>
       </figcaption>
     </figure>
-    <div class="sp-lock" id="spLock" hidden><label for="spCode">رمز الدخول (للمعاينة الداخلية)</label><input id="spCode" type="password" inputmode="numeric" autocomplete="off" placeholder="••••••"><small id="spErr" role="alert" hidden>الرمز غير صحيح</small></div>
     <button class="sp-enter" id="enterBtn" type="button">دخول<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
     <div class="sp-copy"><p>© <span class="cyear">2026</span> | النقابة المستقلة للممرضين وتقنيي الصحة | جميع الحقوق محفوظة</p><p>التطبيق الرسمي للنقابة · الإصدار 1.0</p></div>
   </div>
@@ -646,7 +639,7 @@ header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
   <div class="vw-pages" id="vwPages"></div>
 </div>
 <script>window.SIITS_SITE=true;window.SIITS_SITE_URL="https://siits.org/";</script>
-<script src="content.js"></script>
+<script src="content.js?v=ebc73838"></script>
 <script>
 (function(){
   var NEWS=SIITS.NEWS;
@@ -799,19 +792,13 @@ header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
     window.addEventListener("hashchange",function(){if(location.hash==="#news")seenNews()});
     var tb=$("#topbar");window.addEventListener("scroll",function(){tb.classList.toggle("scrolled",window.scrollY>8)},{passive:true})})();
   if(window.SIITS_SITE)$("#statuteDl").hidden=false;
-  (function(){var sp=$("#splash"),seen=false,LOCK=SIITS.LOCK||"";
-    function hex(buf){return Array.prototype.map.call(new Uint8Array(buf),function(b){return("0"+b.toString(16)).slice(-2)}).join("")}
-    function hash(v){try{return crypto.subtle.digest("SHA-256",new TextEncoder().encode("siits:"+v)).then(hex)}catch(e){return Promise.resolve("")}}
-    var unlocked=!LOCK;try{unlocked=unlocked||localStorage.getItem("siits-unlock")===LOCK;seen=sessionStorage.getItem("siits-entered")==="1"}catch(e){}
-    if(unlocked&&(seen||location.hash.length>1)){sp.hidden=true;return}
+  (function(){var sp=$("#splash"),seen=false;
+    try{localStorage.removeItem("siits-unlock");seen=sessionStorage.getItem("siits-entered")==="1"}catch(e){}
+    if(seen||location.hash.length>1){sp.hidden=true;return}
     document.body.style.overflow="hidden";
-    var lk=$("#spLock"),inp=$("#spCode");if(!unlocked){lk.hidden=false}
     function enter(){try{sessionStorage.setItem("siits-entered","1")}catch(e){}
       sp.classList.add("out");document.body.style.overflow="";setTimeout(function(){sp.hidden=true},450)}
-    function tryEnter(){if(unlocked)return enter();
-      hash(inp.value.trim()).then(function(h){if(h&&h===LOCK){unlocked=true;try{localStorage.setItem("siits-unlock",LOCK)}catch(e){}lk.hidden=true;enter()}
-        else{$("#spErr").hidden=false;lk.classList.remove("bad");void lk.offsetWidth;lk.classList.add("bad");inp.select()}})}
-    $("#enterBtn").onclick=tryEnter;inp.addEventListener("keydown",function(e){if(e.key==="Enter")tryEnter()})})();
+    $("#enterBtn").onclick=enter})();
   show(location.hash.slice(1));
 })();
 </script>
