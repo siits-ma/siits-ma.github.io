@@ -38,6 +38,7 @@ var SIITS={};
   ];
   SIITS.PATH=[
     {y:"نونبر 2020",t:"التأسيس",d:"تأسيس النقابة المستقلة للممرضين وتقنيي الصحة كنقابة مهنية مفتوحة لعموم الممرضين وتقنيي الصحة."},
+    {y:"2021",t:"الأولى في انتخابات اللجان الإدارية الثنائية",d:"تصدّرت النقابة المستقلة نتائج انتخابات اللجان الإدارية الثنائية لفئة الممرضين وتقنيي الصحة بـ70 مقعداً ونسبة 26.61%، متقدمةً على جميع النقابات الأخرى.",img:"elec2021",fit:true},
     {y:"27 يونيو 2026",t:"المؤتمر الوطني الثاني: دورة الفقيد المناضل عبد الإله الشاكي",d:"بالدار البيضاء وبحضور قرابة 1000 مؤتمر ومؤتمرة. صودق بالإجماع على التقريرين الأدبي والمالي، وعلى تعديلات القانون الأساسي مادة بمادة، وانتُخب عبد الله ميروش كاتباً وطنياً.",img:"c1"},
     {y:"30 يونيو 2026",t:"البلاغ الختامي للمؤتمر",d:"دعوة المكتب الوطني الجديد لعقد أول اجتماع في أجل شهر، وإعداد أرضية لترتيب أولويات الملف الترافعي، وعقد مؤتمر جهوي استثنائي بدرعة تافيلالت في غضون ثلاثة أشهر."}
   ];
@@ -77,5 +78,5 @@ var SIITS={};
     {t:"لماذا المستقلة؟ عشرة أسباب للانتماء",date:"",type:"تعريفية",folder:"ملفات النقابة",from:"النقابة المستقلة للممرضين وتقنيي الصحة",file:"docs/why-siits.pdf",pages:["images/docs/why-1.jpg"]},
     {t:"القانون الأساسي للنقابة",date:"",type:"تنظيمية",folder:"ملفات النقابة",from:"النقابة المستقلة للممرضين وتقنيي الصحة",file:"docs/statute-scan.pdf",pages:["images/docs/statut-1.jpg","images/docs/statut-2.jpg","images/docs/statut-3.jpg","images/docs/statut-4.jpg","images/docs/statut-5.jpg","images/docs/statut-6.jpg","images/docs/statut-7.jpg","images/docs/statut-8.jpg","images/docs/statut-9.jpg","images/docs/statut-10.jpg","images/docs/statut-11.jpg","images/docs/statut-12.jpg"]}
   ];
-  SIITS.IMG={"c1": "images/congres2-1.jpg", "c2": "images/congres2-2.jpg", "c3": "images/congres2-3.jpg", "c4": "images/congres2-4.jpg", "c5": "images/congres2-5.jpg", "act2": "images/sidi-slimane-congres-1.jpg", "act3": "images/sidi-slimane-congres-2.jpg", "act0": "images/casa-conseil-2026-10-31-1.jpg", "act1": "images/casa-conseil-2026-10-31-2.jpg"};
+  SIITS.IMG={"elec2021": "images/elections-2021.jpg", "c1": "images/congres2-1.jpg", "c2": "images/congres2-2.jpg", "c3": "images/congres2-3.jpg", "c4": "images/congres2-4.jpg", "c5": "images/congres2-5.jpg", "act2": "images/sidi-slimane-congres-1.jpg", "act3": "images/sidi-slimane-congres-2.jpg", "act0": "images/casa-conseil-2026-10-31-1.jpg", "act1": "images/casa-conseil-2026-10-31-2.jpg"};
 })();

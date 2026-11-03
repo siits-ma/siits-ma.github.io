@@ -372,6 +372,7 @@ header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
 .nimg{display:block;margin-top:8px;border-radius:12px;overflow:hidden;box-shadow:0 0 0 1px var(--line)}.nimg img{display:block;width:100%;height:auto}
 .item{scroll-margin-top:90px}.item.hl{animation:nhl 2.4s ease}@keyframes nhl{0%,40%{box-shadow:0 0 0 2px #C8A24A,0 6px 18px rgba(200,162,74,.25)}100%{box-shadow:0 2px 10px rgba(40,70,20,.05)}}
 .vw-sh{flex:none;display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.12);color:#fff;font-weight:700;font-size:13px;text-decoration:none;border-radius:10px;padding:9px 12px}
+.tl-img.fit{aspect-ratio:auto;object-fit:contain;background:#fff}
 </style>
 
 </head>
@@ -650,7 +651,7 @@ header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
   <div class="vw-pages" id="vwPages"></div>
 </div>
 <script>window.SIITS_SITE=true;window.SIITS_SITE_URL="https://siits.org/";</script>
-<script src="content.js?v=9cc7533c"></script>
+<script src="content.js?v=ed15e4b7"></script>
 <script>
 (function(){
   var NEWS=SIITS.NEWS;
@@ -745,7 +746,7 @@ header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
   $("#demands").innerHTML=DEM.map(function(d){return '<div class="demand"><span class="state '+d.s+'">'+d.l+'</span><span>'+d.t+'</span></div>'}).join("");
 
   // عن النقابة
-  $("#timeline").innerHTML=PATH.map(function(p){return '<li><b>'+p.y+'</b>'+p.t+'<span>'+p.d+'</span>'+(p.img?'<img class="tl-img" src="'+IMG[p.img]+'" alt="'+p.t+'" loading="lazy">':'')+'</li>'}).join("");
+  $("#timeline").innerHTML=PATH.map(function(p){return '<li><b>'+p.y+'</b>'+p.t+'<span>'+p.d+'</span>'+(p.img?'<img class="tl-img'+(p.fit?' fit':'')+'" src="'+IMG[p.img]+'" alt="'+p.t+'" loading="lazy">':'')+'</li>'}).join("");
   $("#acts").innerHTML=ACTS.map(function(a){return '<article class="act">'+(a.img?'<div class="gal">'+a.img.map(function(k){return '<img src="'+IMG[k]+'" alt="'+a.t+'" loading="lazy">'}).join("")+'</div>':'')+'<div class="act-b"><div class="meta"><span class="tag">'+a.type+'</span>'+(a.date?'<span>'+fmt(a.date)+'</span>':'')+'<span>'+a.place+'</span></div><h3>'+a.t+'</h3><p>'+a.d+'</p></div></article>'}).join("");
   document.querySelectorAll("[data-jump]").forEach(function(b){b.onclick=function(){location.hash=b.dataset.jump}});
   var RSEC={"الرباط سلا القنيطرة": ["مصطفى زروال", "الفقير عبد الرزاق · الجوهري يونس"], "الدار البيضاء سطات": ["بوعبيد العباسي", "ياسين العثماني · عبد العالي صدقي"], "طنجة تطوان الحسيمة": ["", "أيوب الروكي · أحمد حمدي"], "فاس مكناس": ["ابراهيم الطراف", "جمال السحيمي · مراد اعميرات"], "مراكش آسفي": ["مروان البوهي", "محمد بوغمزة · أيوب الشقوري"], "سوس ماسة": ["بيهروشن محمد", "مصطفى بويس · رشيد آيت العباسين"], "الشرق": ["حسن الكاسمي", "محمد بوضى · عبد الحفيظ بركة"], "بني ملال خنيفرة": ["عبد اللطيف اهنوش", "محمد زيدوح · مهدي سمحان"], "درعة تافيلالت": ["", "عبد الحق العزيزي · عبد الحميد دادسي"], "كلميم واد نون": ["إدموسى محمد", "حدوش سعيد · إلياس أمزيل"], "العيون الساقية الحمراء": ["محمد الحميدي", "أمين مخيمش · أنس سليماني"], "الداخلة وادي الذهب": ["رضوان الشيكر", "كوثر النبيري · خولال إكرام"]};
