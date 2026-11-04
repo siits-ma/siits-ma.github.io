@@ -345,10 +345,24 @@ header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
 .sp-motto{animation:spRise .8s .85s ease both}
 .sp-mem .sp-photo{animation:spRise .8s 1s ease both,spBreath 4s 2s ease-in-out infinite}
 .sp-mem figcaption{animation:spRise .8s 1.15s ease both}
-.sp-enter{animation:spRise .7s 1.35s ease both}.sp-enter::after{animation:spShine 4.5s 2.2s ease-in-out infinite}
+.sp-enter{animation:spRise .7s 5s ease both}.sp-wreath ellipse{animation:spLeaf .5s ease both}.sp-wn span{animation:spWn 9s ease infinite both}.sp-enter::after{animation:spShine 4.5s 2.2s ease-in-out infinite}
 .sp-copy{animation:spRise .7s 1.5s ease both}
 }
 .splash.out{opacity:0;transform:scale(1.03);pointer-events:none}
+.sp-top .sp-wr{display:grid;place-items:center;position:relative;width:150px;height:150px;flex:none;margin-bottom:-8px}
+.sp-wreath{position:absolute;inset:0;width:100%;height:100%}
+.sp-wreath .lf{fill:#7FA35A}.sp-wreath .lf.d{fill:#56783A}
+.sp-wr .sp-logo{width:84px;height:84px}.sp-wr .sp-logo .logo{width:76px;height:76px}
+.sp-top .sp-mart{display:flex;flex-direction:column;align-items:center;gap:2px;text-decoration:none;color:inherit;width:100%}
+.sp-top .sp-wn{display:block;position:relative;height:48px;width:100%;opacity:1}
+.sp-top .sp-wn span{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;font-size:inherit;opacity:0}.sp-top .sp-wn b{font-family:"Amiri",serif;font-size:21px;font-weight:700;color:#2B4A1B;line-height:30px}.sp-top .sp-wn small{font-size:12px;font-weight:700;color:#8A6D1F;line-height:16px;letter-spacing:.06em}
+.sp-top .sp-wn span:first-child{opacity:1}
+.sp-pledge{font-style:normal;font-family:"Amiri",serif;font-weight:700;font-size:14.5px;line-height:1.6;color:#5B4A1E;max-width:30ch;text-wrap:balance;margin-top:4px}
+.sp-top .sp-motto{max-width:none;width:100%;font-size:clamp(10.5px,3.15vw,13px)}.sp-top .sp-motto span{display:block;white-space:nowrap;font-size:inherit;opacity:1}
+.sp-copy p:first-child{white-space:nowrap;font-size:clamp(8.5px,2.7vw,11px)}
+.sp-mart small{font-size:11.5px;font-weight:700;color:#8A6D1F}
+@keyframes spLeaf{from{opacity:0}to{opacity:1}}
+@keyframes spWn{0%{opacity:0;transform:translateY(6px)}3%,17%{opacity:1;transform:none}20%,100%{opacity:0;transform:translateY(-4px)}}
 .sp-in{width:100%;max-width:420px;min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:20px}
 .sp-top{display:flex;flex-direction:column;align-items:center;gap:12px;align-self:stretch;text-align:center}
 .sp-logo{width:72px;height:72px;padding:4px}.sp-logo .logo{width:64px;height:64px}
@@ -369,6 +383,29 @@ header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
 
 .demo{font-size:11px;text-align:center;color:var(--muted)}
 @media (prefers-reduced-motion:no-preference){section[data-view]:not([hidden]){animation:in .2s ease-out}@keyframes in{from{transform:translateY(4px)}to{transform:none}}}
+/* صفحة البداية: تصميم نبض القلب */
+.splash{background:radial-gradient(130% 60% at 50% 12%,#2E5220 0%,#14260B 72%);color:#F3F0E4}
+.splash::before,.splash::after{opacity:.35}
+.sp-top{gap:8px}
+.sp-top .sp-logo{width:92px;height:92px;box-shadow:0 0 0 2px #C8A24A,0 8px 22px rgba(0,0,0,.35)}.sp-top .sp-logo .logo{width:84px;height:84px}
+.sp-top .sp-name{color:#fff;font-size:clamp(20px,6.4vw,26px);line-height:1.45;margin-top:4px}
+.sp-top .sp-fr{flex:none;color:#E9D49A;font-size:clamp(12.5px,3.8vw,15px);line-height:1.3}.sp-top .sp-fr span{display:block;font-size:inherit;opacity:1;font-weight:700}
+.sp-ecg{display:block;width:calc(100% + 32px);height:56px;margin:2px -16px 0;flex:none}
+.sp-ecg path{fill:none;stroke:#C8A24A;stroke-width:2;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;filter:drop-shadow(0 0 4px rgba(242,201,76,.7))}
+.sp-mart small{color:#E9D49A}
+.sp-top .sp-wn b{color:#fff}.sp-top .sp-wn small{color:#C8A24A}
+.sp-pledge{color:#E8DDB8}
+.sp-top .sp-motto{color:#CFD8C3;opacity:1;margin-top:6px}
+.sp-enter{background:#C8A24A;color:#14260B;box-shadow:0 10px 24px rgba(0,0,0,.35)}.sp-enter:hover{background:#D6B25A}
+.sp-copy{color:#CFD8C3}.sp-copy .beta{background:rgba(200,162,74,.16);color:#E9D49A;border-color:rgba(200,162,74,.5)}
+@media (prefers-reduced-motion:no-preference){.sp-ecg path{animation:spDraw 2.4s .4s ease-out forwards}.sp-top .sp-logo{animation:spPop .9s cubic-bezier(.2,.8,.2,1) both,spBeat 1.6s 2.2s ease-in-out infinite}}
+@media (prefers-reduced-motion:reduce){.sp-ecg path{stroke-dashoffset:0}}
+@keyframes spDraw{to{stroke-dashoffset:0}}
+@keyframes spBeat{0%,100%{transform:scale(1)}12%{transform:scale(1.06)}24%{transform:scale(1)}36%{transform:scale(1.04)}}
+.sp-top .sp-wn{height:34px}.sp-top .sp-wn span{flex-direction:row;justify-content:center;align-items:center;gap:12px}.sp-top .sp-wn small{font-size:15px;line-height:22px;padding-inline-start:12px;border-inline-start:1.5px solid #C8A24A}
+.sp-dec{display:flex;align-items:center;gap:8px;width:100%;margin:2px 0}.sp-dec:before,.sp-dec:after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,#C8A24A)}.sp-dec:after{background:linear-gradient(270deg,transparent,#C8A24A)}.sp-dec svg{width:46px;height:14px;flex:none;fill:#C8A24A}
+.sp-top .sp-mart{gap:4px;width:92%}
+.sp-enter{flex:none}
 .nimg{display:block;margin-top:8px;border-radius:12px;overflow:hidden;box-shadow:0 0 0 1px var(--line)}.nimg img{display:block;width:100%;height:auto}
 .item{scroll-margin-top:90px}.item.hl{animation:nhl 2.4s ease}@keyframes nhl{0%,40%{box-shadow:0 0 0 2px #C8A24A,0 6px 18px rgba(200,162,74,.25)}100%{box-shadow:0 2px 10px rgba(40,70,20,.05)}}
 .vw-sh{flex:none;display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.12);color:#fff;font-weight:700;font-size:13px;text-decoration:none;border-radius:10px;padding:9px 12px}
@@ -380,17 +417,9 @@ header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
 <div dir="rtl" lang="ar">
 <div class="splash" id="splash" role="dialog" aria-label="صفحة الدخول">
   <div class="sp-in">
-    <div class="sp-top"><span class="ring sp-logo"><span class="logo"></span></span><div class="sp-names"><h1 class="sp-name"><span>النقابة المستقلة</span><span>للممرضين وتقنيي الصحة</span></h1><i class="sp-vl" aria-hidden="true"></i><p class="sp-fr" lang="fr" dir="ltr"><span>Syndicat Indépendant</span><span>des Infirmiers et</span><span>Techniciens de Santé</span></p></div><i class="sp-orn" aria-hidden="true"></i><p class="sp-motto">قوتنا في وحدتنا واستقلاليتنا، واجبنا تحصين المكتسبات، هدفنا انتزاع المزيد من المطالب التمريضية المستحقة</p></div>
-    <figure class="sp-mem">
-      <div class="sp-photo"><img src="images/chaki.jpg" alt="الفقيد عبد الإله الشاكي"></div>
-      <figcaption>
-        <small>فقيد النقابة</small>
-        <strong>عبد الإله الشاكي</strong>
-        <span>رحمه الله</span>
-      </figcaption>
-    </figure>
+    <div class="sp-top"><span class="ring sp-logo"><span class="logo"></span></span><h1 class="sp-name"><span>النقابة المستقلة</span><span>للممرضين وتقنيي الصحة</span></h1><p class="sp-fr" lang="fr" dir="ltr"><span>Syndicat Indépendant des Infirmiers</span><span>et Techniciens de Santé</span></p><svg class="sp-ecg" viewBox="0 0 300 60" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M0,34 H92 L102,34 L110,14 L120,52 L130,4 L140,44 L148,34 H300"/></svg><a class="sp-mart" id="spMart" href="#memorial" aria-label="شهداء وضحايا الواجب المهني"><i class="sp-dec" aria-hidden="true"><svg viewBox="0 0 46 14"><path d="M23 1 L27 7 L23 13 L19 7Z"/><circle cx="11" cy="7" r="2"/><circle cx="35" cy="7" r="2"/></svg></i><small>وفاءً لشهداء وضحايا الواجب المهني</small><span class="sp-wn" id="spWn"></span><em class="sp-pledge">ذكراهم أمانة، ونضالنا من أجل ظروف عمل آمنة عهدٌ لا نحيد عنه</em><i class="sp-dec" aria-hidden="true"><svg viewBox="0 0 46 14"><path d="M23 1 L27 7 L23 13 L19 7Z"/><circle cx="11" cy="7" r="2"/><circle cx="35" cy="7" r="2"/></svg></i></a><p class="sp-motto"><span>قوتنا في وحدتنا واستقلاليتنا، واجبنا تحصين المكتسبات،</span><span>هدفنا انتزاع المزيد من المطالب التمريضية المستحقة</span></p></div>
     <button class="sp-enter" id="enterBtn" type="button">دخول<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
-    <div class="sp-copy"><p>© <span class="cyear">2026</span> | النقابة المستقلة للممرضين وتقنيي الصحة | جميع الحقوق محفوظة</p><p>التطبيق الرسمي للنقابة · <b class="beta">نسخة تجريبية 1.0</b></p></div>
+    <div class="sp-copy"><p>© <span class="cyear">2026</span> | النقابة المستقلة للممرضين وتقنيي الصحة | جميع الحقوق محفوظة</p><p><b class="beta">نسخة تجريبية 1.0</b></p></div>
   </div>
 </div>
 <header id="topbar"><div class="wrap">
@@ -634,7 +663,7 @@ header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
     <div class="sf-links"><a href="#about">من نحن</a><a href="#join">الانخراط</a><a href="#news">البلاغات</a><a href="#library">الوثائق</a><a href="#memorial">شهداء الواجب</a><a href="#contact">تواصل معنا</a></div>
     <p class="sf-note">تُستعمل المعطيات الشخصية المرسلة عبر هذا التطبيق حصرياً لأغراض نقابية، ولا تُشارك مع أي جهة أخرى.</p>
     <p class="sf-copy">© <span id="sfYear">2026</span> النقابة المستقلة للممرضين وتقنيي الصحة. جميع الحقوق محفوظة.</p>
-    <p class="sf-ver">التطبيق الرسمي للنقابة · <b class="beta">نسخة تجريبية 1.0</b></p>
+    <p class="sf-ver"><b class="beta">نسخة تجريبية 1.0</b></p>
   </footer>
 </main>
 
@@ -816,7 +845,13 @@ header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
     document.body.style.overflow="hidden";
     function enter(){try{sessionStorage.setItem("siits-entered","1")}catch(e){}
       sp.classList.add("out");document.body.style.overflow="";setTimeout(function(){sp.hidden=true},450)}
-    $("#enterBtn").onclick=enter})();
+    $("#enterBtn").onclick=enter;$("#spMart").onclick=function(){enter()}})();
+  (function(){var g=$("#spWreath")||document.createElementNS("http://www.w3.org/2000/svg","svg"),w=$("#spWn");if(!w)return;var h="",n=0;
+    for(var sd=0;sd<2;sd++)for(var k=0;k<13;k++){var t=-200+k*12.5,a=(sd?180-t:t),r=a*Math.PI/180,x=110+92*Math.cos(r),y=110+92*Math.sin(r),rot=a+90+(sd?-35:35);
+      h+='<ellipse class="lf'+(k%2?' d':'')+'" style="animation-delay:'+(0.3+(12-k)*0.07).toFixed(2)+'s" cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" rx="4.4" ry="10.5" transform="rotate('+rot.toFixed(1)+' '+x.toFixed(1)+' '+y.toFixed(1)+')"/>'}
+    h+='<path d="M64,188 Q110,212 156,188" fill="none" stroke="#56783A" stroke-width="1.8"/>';g.innerHTML=h;
+    var M=(SIITS.MARTYRS||[]),d=1.5;M.forEach(function(m,i){var s=document.createElement("span"),b=document.createElement("b"),y=document.createElement("small");b.textContent=m.name;y.textContent=(m.date||"").slice(0,4);s.appendChild(b);if(y.textContent)s.appendChild(y);s.style.animationDelay=(i*d).toFixed(2)+"s";w.appendChild(s)});
+    [].forEach.call(w.children,function(s){s.style.animationDuration=(M.length*d).toFixed(2)+"s"})})();
   show(location.hash.slice(1));
 })();
 </script>
