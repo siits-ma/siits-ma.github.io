@@ -229,6 +229,16 @@ select:disabled{opacity:.55}
 .ok .note{display:block;margin-top:8px}
 .share{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--accent);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:4px 12px;margin-top:4px}
 .share:hover{background:var(--soft)}
+.shs{position:fixed;inset:0;z-index:80;display:flex;align-items:flex-end;justify-content:center}
+.shs-bg{position:absolute;inset:0;background:rgba(10,20,5,.45)}
+.shs-box{position:relative;width:100%;max-width:520px;background:var(--surface);color:var(--fg);border-radius:22px 22px 0 0;padding:16px max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));display:flex;flex-direction:column;gap:4px;animation:shsUp .22s ease}
+@keyframes shsUp{from{transform:translateY(30px);opacity:0}}
+.shs-t{font-family:var(--display);font-size:16px;text-align:center;padding-bottom:8px}
+.shs-o{display:flex;align-items:center;gap:12px;padding:10px 6px;border:0;background:none;color:var(--fg);font:inherit;font-size:15px;font-weight:700;text-decoration:none;border-radius:12px;cursor:pointer;text-align:start}
+.shs-o:hover{background:var(--soft)}
+.shs-i{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;flex:none}.shs-i svg{width:20px;height:20px}
+.shs-c{margin-top:6px;border:1px solid var(--line);background:none;color:var(--muted);font:inherit;font-weight:700;border-radius:12px;padding:10px;cursor:pointer}
+
 .dl{text-align:center;text-decoration:none}
 .more{font:inherit;font-size:13px;font-weight:700;color:var(--accent);background:none;border:0;cursor:pointer;padding:4px 0}
 #newsSearch{border-radius:999px;padding-inline:18px}
@@ -696,6 +706,12 @@ header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
     <p class="sf-ver"><b class="beta">نسخة تجريبية 1.0</b></p>
   </footer>
 </main>
+<div class="shs" id="shSheet" hidden><div class="shs-bg" data-x></div><div class="shs-box" role="dialog" aria-label="مشاركة"><b class="shs-t">مشاركة</b>
+<a class="shs-o" id="shWa" href="#" target="_blank" rel="noopener"><span class="shs-i" style="background:#25D366"><svg viewBox="0 0 24 24"><path fill="#fff" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.8 0-1.3.7-2 1-2.3.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.1.1.3 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.7 1.2 1.6 1.9 1.1 1 2 1.3 2.3 1.4.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.2z"/></svg></span>واتساب</a>
+<a class="shs-o" id="shFb" href="#" target="_blank" rel="noopener"><span class="shs-i" style="background:#1877F2"><svg viewBox="0 0 24 24"><path fill="#fff" d="M14 8.5V6.8c0-.8.2-1.3 1.4-1.3H17V2.3c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2H7.6V12h2.7v9.8H14V12h2.7l.4-3.5H14z"/></svg></span>فيسبوك</a>
+<button class="shs-o" id="shCopy" type="button"><span class="shs-i" style="background:var(--accent)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg></span><span id="shCopyT">نسخ الرابط</span></button>
+<button class="shs-o" id="shMore" type="button" hidden><span class="shs-i" style="background:#6B7280"><svg viewBox="0 0 24 24" fill="#fff"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg></span>تطبيقات أخرى</button>
+<button class="shs-c" type="button" data-x>إلغاء</button></div></div>
 
 <nav aria-label="التنقل"><div class="wrap">
   <button data-go="home" aria-current="page"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>الرئيسية</button>
@@ -806,6 +822,19 @@ header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
   function nimgs(n){var L=n.img?(Array.isArray(n.img)?n.img:[n.img]):[];if(!L.length)return "";
     var one=function(u,k){return '<a class="nimg" href="'+u+'" target="_blank" rel="noopener"><img src="'+u+'" alt="'+esc(n.t)+(L.length>1?' - صورة '+(k+1):'')+'" loading="lazy"></a>'};
     return L.length===1?one(L[0],0):'<div class="nimgs">'+L.map(one).join("")+'</div><span class="nimgs-hint">'+L.length+' صور · اسحب لرؤية البقية</span>'}
+  (function(){var sh=$("#shSheet"),cur={};
+    function close(){sh.hidden=true}
+    sh.querySelectorAll("[data-x]").forEach(function(x){x.onclick=close});
+    document.addEventListener("keydown",function(e){if(e.key==="Escape"&&!sh.hidden)close()});
+    document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a.share,#vwShare");if(!a)return;var h=a.getAttribute("href")||"";if(h.indexOf("wa.me")<0)return;
+      e.preventDefault();var txt="";try{txt=new URL(h).searchParams.get("text")||""}catch(x){}var m=txt.match(/https?:\/\/\S+\/?$/);var url=m?m[0]:(window.SIITS_SITE_URL||location.href);
+      cur={wa:h,url:url,text:txt,title:(txt.split("\n")[0]||"").replace(/\*/g,"")};
+      $("#shWa").href=h;$("#shFb").href="https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(url);$("#shCopyT").textContent="نسخ الرابط";
+      $("#shMore").hidden=!navigator.share;sh.hidden=false},true);
+    $("#shWa").addEventListener("click",function(){setTimeout(close,100)});$("#shFb").addEventListener("click",function(){setTimeout(close,100)});
+    $("#shCopy").onclick=function(){var done=function(){$("#shCopyT").textContent="تم نسخ الرابط ✓";setTimeout(close,900)};
+      if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(cur.url).then(done,function(){window.prompt("انسخ الرابط:",cur.url)});else window.prompt("انسخ الرابط:",cur.url)};
+    $("#shMore").onclick=function(){navigator.share({title:cur.title,url:cur.url}).catch(function(){});close()}})();
   var GC="https://siits.goatcounter.com",GCON=!!window.SIITS_SITE&&/(^|\.)siits\.org$/.test(location.hostname),VC={},gcIO=null;
   function gcHit(p,t){if(!GCON)return;try{var k="gc:"+p;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1")}catch(e){}
     var i=new Image();i.src=GC+"/count?p="+encodeURIComponent(p)+"&t="+encodeURIComponent(t||"")+"&r="+encodeURIComponent(document.referrer||"")+"&s="+(screen.width||0)+"&rnd="+Math.random().toString(36).slice(2)}
