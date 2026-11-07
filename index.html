@@ -168,6 +168,7 @@ nav button[aria-current="page"] svg{background:var(--brand);color:var(--brand-in
 .slide .tag{align-self:flex-start;background:rgba(255,255,255,.9);color:#2E4A1A}
 .slide .tag.strike{background:#fff;color:#C8303A}
 .slide::after{content:"";position:absolute;inset-inline-end:-30px;top:-30px;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,.12)}
+.s-cn{background:#0F3B1E;padding:0;min-height:190px}.s-cn img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 55%}.s-cn .ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,59,30,0) 15%,rgba(15,59,30,.55) 50%,rgba(12,48,24,.95) 100%)}.s-cn .in{position:relative;z-index:1;padding:16px 18px;display:flex;flex-direction:column;align-items:flex-start;gap:4px;margin-top:auto;width:100%;box-sizing:border-box}.s-cn b{font-size:26px;line-height:1.2}.s-cn b em{font-style:normal;color:#B6E07A}.s-cn .in>span:last-child{font-size:13px;opacity:.9}
 .s1{background:linear-gradient(135deg,#B8945A,#7E5F2C)}
 .s2{background:linear-gradient(135deg,#C2453F,#8E2A2A)}
 .s3{background:linear-gradient(135deg,#2F6F73,#1D4A4D)}
@@ -488,6 +489,7 @@ header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
     </div>
 
     <div class="slider" id="slider" aria-label="بلاغات بارزة">
+      <a class="slide s-cn" href="#n-20261107-1kmwe" data-until="2026-11-14"><img src="images/news/conseil-national-2026-11-07-photo1.jpg" alt="" loading="lazy"><span class="ov"></span><span class="in"><span class="tag">المجلس الوطني · 7 نونبر 2026</span><b>لنواصل <em>المسار</em></b><span>«الهوية التمريضية: فكر وبناء ونضال»</span></span></a>
       <a class="slide s4" href="#n-20261101-5hrad"><span class="tag">هسبريس · 1 نونبر 2026</span><b>الكاتب الوطني: سنطرح ملفنا المطلبي كاملاً في حوار 14 نونبر</b><span>تصريح عبد الله ميروش حول دعوة الوزير النقابات الصحية لاجتماع تثمين الموارد البشرية.</span></a>
       <a class="slide s1" href="#about" data-to="ab-path"><span class="tag">البلاغ الختامي · 30 يونيو 2026</span><b>المؤتمر الوطني الثاني: دورة الفقيد المناضل عبد الإله الشاكي</b><span>صودق بالإجماع على التقريرين الأدبي والمالي وعلى تعديلات القانون الأساسي، وانتُخب عبد الله ميروش كاتباً وطنياً.</span></a>
       <a class="slide s2" href="#about" data-to="ab-demands"><span class="tag">رسالة مفتوحة · 23 أكتوبر 2026</span><b>مركزية المناصب المالية على رأس أولوياتنا</b><span>رسالة عاجلة إلى وزير الصحة والحماية الاجتماعية في أفق قانون مالية 2027.</span></a>
@@ -727,7 +729,7 @@ header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
   <div class="vw-pages" id="vwPages"></div>
 </div>
 <script>window.SIITS_SITE=true;window.SIITS_SITE_URL="https://siits.org/";</script>
-<script src="content.js?v=621cb76a"></script>
+<script src="content.js?v=8dda2c27"></script>
 <script>
 (function(){
   (function(){var t=window.SIITS_TODAY?new Date(window.SIITS_TODAY):new Date(),k=t.getFullYear()+"-"+("0"+(t.getMonth()+1)).slice(-2)+"-"+("0"+t.getDate()).slice(-2);SIITS.NEWS=SIITS.NEWS.filter(function(n){var f=n.from||n.date;return !f||f<=k});SIITS.NEWS.forEach(function(n){n._pin=!!(n.pin&&k<=n.pin)});SIITS.NEWS=SIITS.NEWS.filter(function(n){return n._pin}).concat(SIITS.NEWS.filter(function(n){return !n._pin}))})();
@@ -760,6 +762,7 @@ header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
   function goTo(v,to){if(location.hash.slice(1)!==v){location.hash=v}else{show(v)}
     if(to)setTimeout(function(){var t=document.getElementById(to);if(t)t.scrollIntoView({behavior:"smooth",block:"start"})},60)}
   document.querySelectorAll(".svc").forEach(function(b){b.addEventListener("click",function(){goTo(b.dataset.go,b.dataset.to)})});
+  (function(){var t=window.SIITS_TODAY?new Date(window.SIITS_TODAY):new Date(),k=t.getFullYear()+"-"+("0"+(t.getMonth()+1)).slice(-2)+"-"+("0"+t.getDate()).slice(-2);[].forEach.call(document.querySelectorAll("#slider [data-until]"),function(e){if(k>e.getAttribute("data-until"))e.remove()})})();
   (function(){var now=window.SIITS_TODAY?new Date(window.SIITS_TODAY):new Date(),y=now.getFullYear(),t0=new Date(y,now.getMonth(),now.getDate()).getTime();
     var ORD=["","الأولى","الثانية","الثالثة","الرابعة","الخامسة","السادسة","السابعة","الثامنة","التاسعة","العاشرة"];
     if(!SIITS.ANNIV)return;
