@@ -489,6 +489,21 @@ header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
 .sp-top .sp-anniv b{font-family:"Reem Kufi","Amiri",serif;font-weight:700;font-size:clamp(34px,10vw,44px);line-height:1.25;color:#2B4A1B}
 .sp-top .sp-anniv span{font-size:13px;line-height:1.7;color:#8A6D1F;opacity:1;font-weight:600}
 .sp-top .sp-anniv em{font-style:normal;font-family:"Amiri",serif;font-weight:700;font-size:15px;line-height:1.6;color:#5B4A1E;max-width:28ch;text-wrap:balance}
+.sp-top,.sp-enter,.sp-copy{position:relative;z-index:2}
+.sp-pics{position:fixed;inset:0;z-index:0;overflow:hidden;background:#0E1A08;pointer-events:none}
+.sp-pics::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,22,6,.86) 0%,rgba(14,30,8,.62) 50%,rgba(8,18,4,.92) 100%)}
+.splash:has(.sp-pics)::before,.splash:has(.sp-pics)::after{z-index:1;opacity:.18}
+.sp-pics figure{position:absolute;inset:0;margin:0;opacity:0;transition:opacity 1.2s ease}
+.sp-pics figure.on{opacity:1}
+.sp-pics img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.02)}
+.sp-pics figure.on img{animation:spKB 6s ease-out forwards}
+@keyframes spKB{from{transform:scale(1.04)}to{transform:scale(1.16)}}
+.sp-pics figcaption{display:none}
+.sp-pd{position:absolute;z-index:2;bottom:max(10px,env(safe-area-inset-bottom,0px));left:0;right:0;display:flex;gap:5px;justify-content:center}
+.sp-pd i{width:6px;height:6px;border-radius:3px;background:rgba(255,255,255,.45);transition:all .4s}
+.sp-pd i.on{width:16px;background:#C8A24A}
+.splash.anniv .sp-pics{display:none}
+@media (prefers-reduced-motion:reduce){.sp-pics figure.on img{animation:none}}
 </style>
 
 </head>
@@ -497,6 +512,7 @@ header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
 <div class="splash" id="splash" role="dialog" aria-label="صفحة الدخول">
   <div class="sp-in">
     <div class="sp-top"><span class="ring sp-logo"><span class="logo"></span></span><h1 class="sp-name"><span>النقابة المستقلة</span><span>للممرضين وتقنيي الصحة</span></h1><p class="sp-fr" lang="fr" dir="ltr"><span>Syndicat Indépendant des Infirmiers</span><span>et Techniciens de Santé</span></p><svg class="sp-ecg" viewBox="0 0 300 60" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M0,34 H92 L102,34 L110,14 L120,52 L130,4 L140,44 L148,34 H300"/></svg><a class="sp-anniv" id="spAnniv" href="#memorial" hidden></a><a class="sp-mart" id="spMart" href="#memorial" aria-label="شهداء وضحايا الواجب المهني"><i class="sp-dec" aria-hidden="true"><svg viewBox="0 0 46 14"><path d="M23 1 L27 7 L23 13 L19 7Z"/><circle cx="11" cy="7" r="2"/><circle cx="35" cy="7" r="2"/></svg></i><small>وفاءً لشهداء وضحايا الواجب المهني</small><span class="sp-wn" id="spWn"></span><em class="sp-pledge">ذكراهم أمانة، ونضالنا من أجل ظروف عمل آمنة عهدٌ لا نحيد عنه</em><i class="sp-dec" aria-hidden="true"><svg viewBox="0 0 46 14"><path d="M23 1 L27 7 L23 13 L19 7Z"/><circle cx="11" cy="7" r="2"/><circle cx="35" cy="7" r="2"/></svg></i></a><p class="sp-motto"><span>قوتنا في وحدتنا واستقلاليتنا، واجبنا تحصين المكتسبات،</span><span>هدفنا انتزاع المزيد من المطالب التمريضية المستحقة</span></p></div>
+    <div class="sp-pics" id="spPics" aria-hidden="true"><figure class="on"><img src="images/splash/sp1.jpg" alt=""  decoding="async"><figcaption>المؤتمر الوطني الثاني</figcaption></figure><figure class=""><img src="images/splash/sp2.jpg" alt="" loading="lazy" decoding="async"><figcaption>الدورة السابعة للمجلس الوطني · 7 نونبر 2026</figcaption></figure><figure class=""><img src="images/splash/sp3.jpg" alt="" loading="lazy" decoding="async"><figcaption>المؤتمر الوطني الثاني</figcaption></figure><figure class=""><img src="images/splash/sp4.jpg" alt="" loading="lazy" decoding="async"><figcaption>الدورة السابعة للمجلس الوطني</figcaption></figure><figure class=""><img src="images/splash/sp5.jpg" alt="" loading="lazy" decoding="async"><figcaption>المؤتمر الوطني الثاني</figcaption></figure><div class="sp-pd"><i class="on"></i><i></i><i></i><i></i><i></i></div></div>
     <button class="sp-enter" id="enterBtn" type="button">دخول<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
     <div class="sp-copy"><p>© <span class="cyear">2026</span> | النقابة المستقلة للممرضين وتقنيي الصحة | جميع الحقوق محفوظة</p><p><b class="beta">نسخة تجريبية 1.0</b></p></div>
   </div>
@@ -770,7 +786,7 @@ header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
   <div class="vw-pages" id="vwPages"></div>
 </div>
 <script>window.SIITS_SITE=true;window.SIITS_SITE_URL="https://siits.org/";</script>
-<script src="content.js?v=c50b4d04"></script>
+<script src="content.js?v=73545ef1"></script>
 <script>
 (function(){
   (function(){var t=window.SIITS_TODAY?new Date(window.SIITS_TODAY):new Date(),k=t.getFullYear()+"-"+("0"+(t.getMonth()+1)).slice(-2)+"-"+("0"+t.getDate()).slice(-2);SIITS.NEWS=SIITS.NEWS.filter(function(n){var f=n.from||n.date;return !f||f<=k});SIITS.NEWS.forEach(function(n){n._pin=!!(n.pin&&k<=n.pin)});SIITS.NEWS=SIITS.NEWS.filter(function(n){return n._pin}).concat(SIITS.NEWS.filter(function(n){return !n._pin}))})();
@@ -807,7 +823,7 @@ header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
   (function(){var now=window.SIITS_TODAY?new Date(window.SIITS_TODAY):new Date(),y=now.getFullYear(),t0=new Date(y,now.getMonth(),now.getDate()).getTime();
     var ORD=["","الأولى","الثانية","الثالثة","الرابعة","الخامسة","السادسة","السابعة","الثامنة","التاسعة","العاشرة"];
     if(!SIITS.ANNIV)return;
-    var m=(SIITS.MARTYRS||[]).filter(function(x){if(!x.date||+x.date.slice(0,4)>=y)return false;var d=new Date(y,+x.date.slice(5,7)-1,+x.date.slice(8,10)).getTime(),k=Math.round((t0-d)/864e5);return k>=-1&&k<=6})[0];if(!m)return;
+    var m=(SIITS.MARTYRS||[]).filter(function(x){if(!x.date||+x.date.slice(0,4)>=y)return false;var d=new Date(y,+x.date.slice(5,7)-1,+x.date.slice(8,10)).getTime(),k=Math.round((t0-d)/864e5);return k>=-1&&(k<=6||!!(x.until&&t0<=new Date(x.until+"T00:00").getTime()))})[0];if(!m)return;
     var n=y-(+m.date.slice(0,4)),MO=["يناير","فبراير","مارس","أبريل","ماي","يونيو","يوليوز","غشت","شتنبر","أكتوبر","نونبر","دجنبر"];
     var br='<svg class="sa-br" viewBox="0 0 200 60" aria-hidden="true"><path d="M10,40 Q100,10 190,40" fill="none" stroke="#56783A" stroke-width="2"/>'+[[20,42,40],[36,26.6,-40],[52,35.5,40],[68,20.9,-40],[84,31.1,40],[100,18.1,-40],[116,30.1,40],[132,19.1,-40],[148,32,40],[164,22,-40]].map(function(a,i){return '<ellipse cx="'+a[0]+'" cy="'+a[1]+'" rx="4" ry="9" fill="'+(i%2?"#7FA35A":"#56783A")+'" transform="rotate('+a[2]+' '+a[0]+' '+a[1]+')"/>'}).join("")+'</svg>';
     $("#slider").insertAdjacentHTML("afterbegin",'<a class="slide s-anniv" href="#memorial">'+br+'<span class="tag">الذكرى '+(ORD[n]||n)+' · '+(+m.date.slice(8,10))+' '+MO[+m.date.slice(5,7)-1]+' '+m.date.slice(0,4)+'</span><b>'+m.name+'</b><span>'+(m.job?m.job+" · ":"")+(m.badge||"")+'. ذكراها أمانة، ونضالنا من أجل ظروف عمل آمنة عهدٌ لا نحيد عنه.</span>'+(function(){var v=(SIITS.NEWS||[]).filter(function(x){return x.vid})[0];if(!v)return '';var t=v.t,h=5381;for(var i=0;i<t.length;i++)h=((h*33)^t.charCodeAt(i))>>>0;return '<span class="sa-vid" data-href="#n-'+(v.date||'').replace(/-/g,'')+'-'+h.toString(36).slice(0,5)+'">▶ شاهد الفيديو</span>'})()+'</a>');document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.sa-vid');if(!b)return;e.preventDefault();e.stopPropagation();location.hash=b.getAttribute('data-href').slice(1)},true);
@@ -1001,11 +1017,14 @@ header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
       sp.classList.add("out");document.body.style.overflow="";var sl0=$("#slider");if(sl0)sl0.scrollLeft=0;setTimeout(function(){sp.hidden=true},450)}
     $("#enterBtn").onclick=enter;$("#spMart").onclick=function(){enter()}})();
 
+  (function(){var b=$("#spPics");if(!b)return;var f=b.querySelectorAll("figure"),d=b.querySelectorAll(".sp-pd i"),i=0,sp=$("#splash");
+    setInterval(function(){if(sp.hidden||sp.classList.contains("anniv"))return;f[i].classList.remove("on");d[i].classList.remove("on");i=(i+1)%f.length;f[i].classList.add("on");d[i].classList.add("on")},4500)})();
+
   // يوم ذكرى شهيد: صفحة بداية خاصة به (تلقائياً كل سنة)
   (function(){var sp=$("#splash"),box=$("#spAnniv");if(!box||sp.hidden)return;
     var now=window.SIITS_TODAY?new Date(window.SIITS_TODAY):new Date(),md=("0"+(now.getMonth()+1)).slice(-2)+"-"+("0"+now.getDate()).slice(-2);
     if(!SIITS.ANNIV)return;
-    var y0=now.getFullYear(),t0=new Date(y0,now.getMonth(),now.getDate()).getTime(),m=(SIITS.MARTYRS||[]).filter(function(x){if(!x.date||+x.date.slice(0,4)>=y0)return false;var k=Math.round((t0-new Date(y0,+x.date.slice(5,7)-1,+x.date.slice(8,10)).getTime())/864e5);return k>=-1&&k<=6})[0];if(!m)return;
+    var y0=now.getFullYear(),t0=new Date(y0,now.getMonth(),now.getDate()).getTime(),m=(SIITS.MARTYRS||[]).filter(function(x){if(!x.date||+x.date.slice(0,4)>=y0)return false;var k=Math.round((t0-new Date(y0,+x.date.slice(5,7)-1,+x.date.slice(8,10)).getTime())/864e5);return k>=-1&&(k<=6||!!(x.until&&t0<=new Date(x.until+"T00:00").getTime()))})[0];if(!m)return;
     var n=now.getFullYear()-(+m.date.slice(0,4));if(n<1)return;
     var ORD=["","الأولى","الثانية","الثالثة","الرابعة","الخامسة","السادسة","السابعة","الثامنة","التاسعة","العاشرة","الحادية عشرة","الثانية عشرة","الثالثة عشرة","الرابعة عشرة","الخامسة عشرة","السادسة عشرة","السابعة عشرة","الثامنة عشرة","التاسعة عشرة","العشرون"];
     var MO=["يناير","فبراير","مارس","أبريل","ماي","يونيو","يوليوز","غشت","شتنبر","أكتوبر","نونبر","دجنبر"];
