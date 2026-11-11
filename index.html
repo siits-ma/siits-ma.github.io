@@ -176,6 +176,20 @@ nav button[aria-current="page"] svg{background:var(--brand);color:var(--brand-in
 .s-anniv{background:linear-gradient(180deg,#FFFDF6,#F1EBDB);color:#1F2A17;box-shadow:0 8px 24px rgba(40,70,20,.18),inset 0 0 0 1px #E2D3A6}
 .s-anniv::after{display:none}
 .slide.s-anniv{padding-top:44px}
+.vstrip{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:4px;margin-inline:-4px;padding-inline:4px;scrollbar-width:none}.vstrip::-webkit-scrollbar{display:none}
+.vtile{flex:0 0 42%;max-width:180px;scroll-snap-align:start;font:inherit;text-align:start;background:none;border:0;padding:0;cursor:pointer;color:var(--fg);display:flex;flex-direction:column;gap:6px}
+.vthumb{position:relative;display:block;aspect-ratio:9/16;max-width:100%;border-radius:14px;overflow:hidden;background:#1d2a14 center/cover no-repeat;box-shadow:0 2px 10px rgba(40,70,20,.12)}
+.vthumb::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.55),transparent 45%)}
+.vplay{position:absolute;z-index:1;inset:0;margin:auto;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.92);display:grid;place-items:center}.vplay svg{width:20px;height:20px;fill:#2B4A1B;margin-inline-start:3px}
+.vdur{position:absolute;z-index:1;bottom:8px;inset-inline-start:8px;font-size:11px;font-weight:700;color:#fff;background:rgba(0,0,0,.45);border-radius:6px;padding:1px 6px}
+.vtile b{font-size:12.5px;font-weight:700;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px 10px}
+.vcard{display:flex;flex-direction:column;gap:6px;min-width:0;scroll-margin-top:90px}
+.vcard video{display:block;width:100%;max-width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:14px;background:#000}
+.vcard h3{margin:0;font-size:13px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}.vcard .vmeta{font-size:11.5px;color:var(--muted)}
+.vcard .vact{display:flex;flex-wrap:wrap;gap:6px}.vcard .share,.vcard .vnews{margin:0;font-size:11.5px;padding:3px 10px}
+.vnews{display:inline-flex;align-items:center;gap:4px;font-weight:700;color:var(--muted);text-decoration:none;border:1px solid var(--line);border-radius:999px}
+.vcard.hl video{animation:nhl 2.4s ease}
 .nvid{display:block;width:100%;max-height:72vh;border-radius:14px;margin-top:12px;background:#000}
 .s-anniv .sa-vid{display:inline-flex;align-items:center;gap:6px;margin-top:10px;background:#2B4A1B;color:#F6EFD9!important;font-weight:700;font-size:13px;padding:7px 14px;border-radius:999px;align-self:flex-start;opacity:1!important}
 .s-anniv .sa-br{position:absolute;inset-inline-start:-6px;top:6px;width:150px;opacity:.9}
@@ -528,6 +542,9 @@ header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
       <div class="stat"><b>1000</b><span>مؤتمر تقريباً في المؤتمر الثاني</span></div>
     </div>
 
+    <div class="sec-head" id="vidHead"><h3>الفيديوهات</h3><button class="more" data-jump="videos">عرض الكل</button></div>
+    <div class="vstrip" id="vstrip"></div>
+
     <div class="sec-head" id="newsHead"><h3>آخر البلاغات</h3><button class="more" data-jump="news">عرض الكل</button></div>
     <div class="list" id="latest"></div>
     <p class="demo">بلاغات صادرة عن هياكل النقابة</p>
@@ -569,6 +586,12 @@ header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
     <div class="filters" id="filters"></div>
     <div class="list" id="news"></div>
     <p class="note" id="newsEmpty" hidden>لا توجد بلاغات تطابق بحثك.</p>
+  </section>
+
+  <!-- الفيديوهات -->
+  <section data-view="videos" hidden>
+    <div><h2>الفيديوهات</h2><p class="lead">فيديوهات النقابة: البلاغات المصوّرة، المسيرات والوقفات، والتصريحات. شاركها مع زميلاتك وزملائك.</p></div>
+    <div class="vgrid" id="vgrid"></div>
   </section>
 
   <!-- شهداء وضحايا الواجب -->
@@ -715,7 +738,7 @@ header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
   </section>
   <footer class="site-foot">
     <div class="sf-brand"><span class="ring sf-logo"><span class="logo"></span></span><div><b>النقابة المستقلة للممرضين وتقنيي الصحة</b></div></div>
-    <div class="sf-links"><a href="#about">من نحن</a><a href="#join">الانخراط</a><a href="#news">البلاغات</a><a href="#library">الوثائق</a><a href="#memorial">شهداء الواجب</a><a href="#contact">تواصل معنا</a></div>
+    <div class="sf-links"><a href="#about">من نحن</a><a href="#join">الانخراط</a><a href="#news">البلاغات</a><a href="#library">الوثائق</a><a href="#videos">الفيديوهات</a><a href="#memorial">شهداء الواجب</a><a href="#contact">تواصل معنا</a></div>
     <p class="sf-note">تُستعمل المعطيات الشخصية المرسلة عبر هذا التطبيق حصرياً لأغراض نقابية، ولا تُشارك مع أي جهة أخرى.</p>
     <p class="sf-copy">© <span id="sfYear">2026</span> النقابة المستقلة للممرضين وتقنيي الصحة. جميع الحقوق محفوظة.</p>
     <p class="sf-ver"><b class="beta">نسخة تجريبية 1.0</b></p>
@@ -747,7 +770,7 @@ header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
   <div class="vw-pages" id="vwPages"></div>
 </div>
 <script>window.SIITS_SITE=true;window.SIITS_SITE_URL="https://siits.org/";</script>
-<script src="content.js?v=42f20743"></script>
+<script src="content.js?v=c50b4d04"></script>
 <script>
 (function(){
   (function(){var t=window.SIITS_TODAY?new Date(window.SIITS_TODAY):new Date(),k=t.getFullYear()+"-"+("0"+(t.getMonth()+1)).slice(-2)+"-"+("0"+t.getDate()).slice(-2);SIITS.NEWS=SIITS.NEWS.filter(function(n){var f=n.from||n.date;return !f||f<=k});SIITS.NEWS.forEach(function(n){n._pin=!!(n.pin&&k<=n.pin)});SIITS.NEWS=SIITS.NEWS.filter(function(n){return n._pin}).concat(SIITS.NEWS.filter(function(n){return !n._pin}))})();
@@ -764,7 +787,7 @@ header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
   function fmt(d){try{return new Date(d).toLocaleDateString("ar-MA",{day:"numeric",month:"long",year:"numeric"})}catch(e){return d}}
 
   // تنقل
-  var views=["home","news","about","join","contact","library","memorial"];
+  var views=["home","news","about","join","contact","library","memorial","videos"];
   var PATH=SIITS.PATH;
   var IMG=SIITS.IMG;
   var ACTS=SIITS.ACTS;
@@ -888,6 +911,20 @@ header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
     $("#latest").innerHTML=NEWS.slice(0,3).map(card).join("");gcWatch()}
   $("#newsSearch").addEventListener("input",function(e){q=e.target.value.trim();renderNews()});
   renderNews();
+  (function(){var MOV=["يناير","فبراير","مارس","أبريل","ماي","يونيو","يوليوز","غشت","شتنبر","أكتوبر","نونبر","دجنبر"];
+    function df(d){return d?(+d.slice(8,10))+" "+MOV[+d.slice(5,7)-1]+" "+d.slice(0,4):""}
+    var V=NEWS.filter(function(n){return n.vid}).map(function(n){var L=n.img?(Array.isArray(n.img)?n.img:[n.img]):[];return {t:n.t,date:n.date,vid:n.vid,poster:L[0]||"",news:n}})
+      .concat((SIITS.VIDEOS||[]).map(function(v){return {t:v.t,date:v.date,vid:v.vid,poster:v.poster||"",d:v.d||""}}))
+      .sort(function(a,b){return (b.date||"").localeCompare(a.date||"")});
+    V.forEach(function(v,i){v.id="v"+i});
+    if(!V.length){$("#vidHead").hidden=true;$("#vstrip").hidden=true}
+    var PLAY='<span class="vplay"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>';
+    function sh(v){if(v.news)return shareLink(v.news);var t="*"+v.t+"*"+(v.d?"\n\n"+v.d:"")+"\n\n🎬 شاهد الفيديو في تطبيق النقابة المستقلة للممرضين وتقنيي الصحة"+(SITE_URL?"\n"+SITE_URL+"#videos":"");return "https://wa.me/?text="+encodeURIComponent(t)}
+    $("#vstrip").innerHTML=V.slice(0,8).map(function(v){return '<button class="vtile" type="button" data-v="'+v.id+'"><span class="vthumb"'+(v.poster?' style="background-image:url(\''+v.poster+'\')"':'')+'>'+PLAY+'</span><b>'+v.t+'</b></button>'}).join("");
+    $("#vgrid").innerHTML=V.map(function(v){return '<article class="vcard" id="'+v.id+'"><video controls playsinline preload="none"'+(v.poster?' poster="'+v.poster+'"':'')+' src="'+v.vid+'"></video><h3>'+v.t+'</h3><span class="vmeta">'+df(v.date)+'</span><div class="vact"><a class="share" href="'+sh(v)+'" target="_blank" rel="noopener">'+SHARE_ICON+'مشاركة</a>'+(v.news?'<a class="vnews" href="#'+nid(v.news)+'">قراءة الخبر</a>':'')+'</div></article>'}).join("");
+    var vs=$("#vgrid").querySelectorAll("video");vs.forEach(function(x){x.addEventListener("play",function(){vs.forEach(function(o){if(o!==x)o.pause()})})});
+    window.addEventListener("hashchange",function(){if(location.hash!=="#videos")vs.forEach(function(o){o.pause()})});
+    $("#vstrip").querySelectorAll(".vtile").forEach(function(b){b.onclick=function(){location.hash="videos";setTimeout(function(){var c=document.getElementById(b.dataset.v);if(!c)return;c.scrollIntoView({block:"start"});c.classList.remove("hl");void c.offsetWidth;c.classList.add("hl");var x=c.querySelector("video");try{var p=x.play();if(p&&p.catch)p.catch(function(){})}catch(e){}},150)}})})();
 
   // مطالب
   $("#demands").innerHTML=DEM.map(function(d){return '<div class="demand"><span class="state '+d.s+'">'+d.l+'</span><span>'+d.t+'</span></div>'}).join("");
