@@ -786,7 +786,7 @@ header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
   <div class="vw-pages" id="vwPages"></div>
 </div>
 <script>window.SIITS_SITE=true;window.SIITS_SITE_URL="https://siits.org/";</script>
-<script src="content.js?v=a3aceb0e"></script>
+<script src="content.js?v=567f918b"></script>
 <script>
 (function(){
   (function(){var t=window.SIITS_TODAY?new Date(window.SIITS_TODAY):new Date(),k=t.getFullYear()+"-"+("0"+(t.getMonth()+1)).slice(-2)+"-"+("0"+t.getDate()).slice(-2);SIITS.NEWS=SIITS.NEWS.filter(function(n){var f=n.from||n.date;return !f||f<=k});SIITS.NEWS.forEach(function(n){n._pin=!!(n.pin&&k<=n.pin)});SIITS.NEWS=SIITS.NEWS.filter(function(n){return n._pin}).concat(SIITS.NEWS.filter(function(n){return !n._pin}))})();
@@ -889,7 +889,7 @@ header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
   var cur="الكل";
   var SITE_URL=window.SIITS_SITE_URL||"";
   var SHARE_ICON='<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>';
-  function nid(n){var s=n.t,h=5381;for(var i=0;i<s.length;i++)h=((h*33)^s.charCodeAt(i))>>>0;return "n-"+(n.date||"").replace(/-/g,"")+"-"+h.toString(36).slice(0,5)}
+  function nid(n){if(n.id)return n.id;var s=n.t,h=5381;for(var i=0;i<s.length;i++)h=((h*33)^s.charCodeAt(i))>>>0;return "n-"+(n.date||"").replace(/-/g,"")+"-"+h.toString(36).slice(0,5)}
   function shareLink(n){var t="*"+n.t+"*\n\n"+n.d+"\n\n— النقابة المستقلة للممرضين وتقنيي الصحة"+(SITE_URL?"\n"+SITE_URL+"s/"+nid(n)+"/":"");return "https://wa.me/?text="+encodeURIComponent(t)}
   function nimgs(n){var L=n.img?(Array.isArray(n.img)?n.img:[n.img]):[];if(n.vid)return '<video class="nvid" controls playsinline preload="none"'+(L[0]?' poster="'+L[0]+'"':'')+' src="'+n.vid+'"></video>';if(!L.length)return "";
     var one=function(u,k){return '<a class="nimg" href="'+u+'" target="_blank" rel="noopener"><img src="'+u+'" alt="'+esc(n.t)+(L.length>1?' - صورة '+(k+1):'')+'" loading="lazy"></a>'};
