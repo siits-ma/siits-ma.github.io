@@ -515,17 +515,44 @@ header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
 .mo h2 .w{display:inline-block;opacity:0;transform:translateY(.45em)}
 .mo h2.wup .w{opacity:1;transform:none;transition:opacity .45s var(--mo-ease),transform .45s var(--mo-ease);transition-delay:calc(var(--i)*.06s)}
 .mo button:active,.mo .svc:active,.mo .item:active,.mo .doc:active{transform:scale(.97);transition:transform .15s var(--mo-ease)}
+
+/* صفحة الترحيب: النمط الداكن */
+.splash.nv{background:#0E0E11!important;color:#F4F4F5;padding:0!important;display:block}
+.splash.nv::before,.splash.nv::after{display:none!important}
+.nv-hero{position:relative;width:100%;max-width:640px;margin:0 auto;aspect-ratio:3/2;overflow:hidden}
+.nv-hero img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+.nv-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,14,17,.15) 0%,rgba(14,14,17,0) 45%,rgba(14,14,17,.75) 85%,#0E0E11 100%)}
+.nv-in{position:relative;z-index:2;margin:-56px auto 0;max-width:440px;min-height:auto;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:0;padding:0 max(20px,env(safe-area-inset-right,0px)) calc(24px + env(safe-area-inset-bottom,0px)) max(20px,env(safe-area-inset-left,0px));text-align:center}
+.nv-logo{width:132px;height:132px;border-radius:50%;background:#fff;box-shadow:0 0 0 6px #0E0E11,0 10px 30px rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center}
+.nv-logo{position:relative}.nv-logo::before{content:"";position:absolute;inset:-6px;border-radius:50%;border:4px solid #E5383B;box-shadow:0 0 18px rgba(229,56,59,.55);pointer-events:none}
+@media (prefers-reduced-motion:no-preference){.nv-logo::before{animation:nvPulse 2.2s ease-in-out infinite}@keyframes nvPulse{0%,100%{inset:-6px;border-width:3px;box-shadow:0 0 10px rgba(229,56,59,.4)}50%{inset:-14px;border-width:6px;box-shadow:0 0 28px rgba(229,56,59,.75)}}}
+.nv-logo .logo{width:124px;height:124px;border-radius:50%;background:var(--logo) center/100% no-repeat;display:block}
+.nv-name{margin:22px 0 0;font-family:var(--display);font-weight:700;font-size:clamp(15px,4.4vw,19px);white-space:nowrap;color:#F4F4F5}
+.nv-bar{display:block;width:56px;height:4px;border-radius:4px;background:#E5383B;margin:18px 0 22px}
+.nv-slogan{margin:0;font-family:var(--display);font-weight:800;font-size:clamp(32px,9.6vw,44px);line-height:1.5;display:flex;flex-direction:column;gap:4px;color:#FFFFFF}
+.nv-slogan .r{color:#E5383B}
+.nv-sub{margin:14px 0 0;font-size:20px;font-weight:600;color:#D4D4D8}
+.nv-enter{margin:34px 0 0;width:100%;display:flex;align-items:center;justify-content:center;gap:10px;background:#E5383B;color:#fff;border:0;border-radius:18px;padding:18px;font:inherit;font-family:var(--display);font-weight:800;font-size:22px;cursor:pointer;box-shadow:0 10px 26px rgba(229,56,59,.32)}
+.nv-enter:active{transform:scale(.98)}
+.nv-copy{margin-top:22px;font-size:12px;color:#A1A1AA}.nv-copy p{margin:0 0 10px}
+.nv-beta{display:inline-block;border:1px solid #3F3F46;border-radius:999px;padding:6px 18px;font-weight:700;color:#E4E4E7}
+@media (prefers-reduced-motion:no-preference){.nv-in>*{animation:nvUp .6s cubic-bezier(.215,.61,.355,1) both}.nv-in>:nth-child(2){animation-delay:.08s}.nv-in>:nth-child(3){animation-delay:.14s}.nv-in>:nth-child(4){animation-delay:.2s}.nv-in>:nth-child(5){animation-delay:.28s}.nv-in>:nth-child(6){animation-delay:.36s}.nv-in>:nth-child(7){animation-delay:.42s}@keyframes nvUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}}
 </style>
 
 </head>
 <body>
 <div dir="rtl" lang="ar">
-<div class="splash" id="splash" role="dialog" aria-label="صفحة الدخول">
-  <div class="sp-in">
-    <div class="sp-top"><span class="ring sp-logo"><span class="logo"></span></span><h1 class="sp-name"><span>النقابة المستقلة</span><span>للممرضين وتقنيي الصحة</span></h1><p class="sp-fr" lang="fr" dir="ltr"><span>Syndicat Indépendant des Infirmiers</span><span>et Techniciens de Santé</span></p><svg class="sp-ecg" viewBox="0 0 300 60" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M0,34 H92 L102,34 L110,14 L120,52 L130,4 L140,44 L148,34 H300"/></svg><a class="sp-anniv" id="spAnniv" href="#memorial" hidden></a><a class="sp-mart" id="spMart" href="#memorial" aria-label="شهداء وضحايا الواجب المهني"><i class="sp-dec" aria-hidden="true"><svg viewBox="0 0 46 14"><path d="M23 1 L27 7 L23 13 L19 7Z"/><circle cx="11" cy="7" r="2"/><circle cx="35" cy="7" r="2"/></svg></i><small>وفاءً لشهداء وضحايا الواجب المهني</small><span class="sp-wn" id="spWn"></span><em class="sp-pledge">ذكراهم أمانة، ونضالنا من أجل ظروف عمل آمنة عهدٌ لا نحيد عنه</em><i class="sp-dec" aria-hidden="true"><svg viewBox="0 0 46 14"><path d="M23 1 L27 7 L23 13 L19 7Z"/><circle cx="11" cy="7" r="2"/><circle cx="35" cy="7" r="2"/></svg></i></a><p class="sp-motto"><span>قوتنا في وحدتنا واستقلاليتنا، واجبنا تحصين المكتسبات،</span><span>هدفنا انتزاع المزيد من المطالب التمريضية المستحقة</span></p></div>
-    <div class="sp-pics" id="spPics" aria-hidden="true"><figure class="on"><img src="images/splash/sp1.jpg" alt=""  decoding="async"><figcaption>المؤتمر الوطني الثاني</figcaption></figure><figure class=""><img src="images/splash/sp2.jpg" alt="" loading="lazy" decoding="async"><figcaption>الدورة السابعة للمجلس الوطني · 7 نونبر 2026</figcaption></figure><figure class=""><img src="images/splash/sp3.jpg" alt="" loading="lazy" decoding="async"><figcaption>المؤتمر الوطني الثاني</figcaption></figure><figure class=""><img src="images/splash/sp4.jpg" alt="" loading="lazy" decoding="async"><figcaption>الدورة السابعة للمجلس الوطني</figcaption></figure><figure class=""><img src="images/splash/sp5.jpg" alt="" loading="lazy" decoding="async"><figcaption>المؤتمر الوطني الثاني</figcaption></figure><div class="sp-pd"><i class="on"></i><i></i><i></i><i></i><i></i></div></div>
-    <button class="sp-enter" id="enterBtn" type="button">دخول<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
-    <div class="sp-copy"><p>© <span class="cyear">2026</span> | النقابة المستقلة للممرضين وتقنيي الصحة | جميع الحقوق محفوظة</p><p><b class="beta">نسخة تجريبية 1.0</b></p></div>
+<div class="splash nv" id="splash" role="dialog" aria-label="صفحة الدخول">
+  <div class="nv-hero" aria-hidden="true"><img src="images/splash/hero.jpg" alt="" decoding="async"></div>
+  <div class="sp-in nv-in">
+    <span class="nv-logo"><span class="logo" role="img" aria-label="شعار النقابة"></span></span>
+    <p class="nv-name">النقابة المستقلة للممرضين وتقنيي الصحة</p>
+    <i class="nv-bar" aria-hidden="true"></i>
+    <h1 class="nv-slogan"><span>نتكلم باسمنا</span><span class="r">ونقرر بأنفسنا</span></h1>
+    <p class="nv-sub">لنكمل المسار</p>
+    <button class="nv-enter" id="enterBtn" type="button">ابدأ<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+    <div class="nv-copy"><p>© <span class="cyear">2026</span> | النقابة المستقلة للممرضين وتقنيي الصحة | جميع الحقوق محفوظة</p><p><b class="nv-beta">نسخة تجريبية 1.0</b></p></div>
+    <span id="spMart" hidden></span>
   </div>
 </div>
 <header id="topbar"><div class="wrap">
