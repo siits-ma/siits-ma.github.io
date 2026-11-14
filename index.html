@@ -537,6 +537,14 @@ header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
 .nv-copy{margin-top:16px;font-size:12px;color:#A1A1AA}.nv-copy p{margin:0 0 10px}
 .nv-beta{display:inline-block;border:1px solid #3F3F46;border-radius:999px;padding:4px 14px;font-weight:700;color:#E4E4E7}
 @media (prefers-reduced-motion:no-preference){.nv-in>*{animation:nvUp .6s cubic-bezier(.215,.61,.355,1) both}.nv-in>:nth-child(2){animation-delay:.08s}.nv-in>:nth-child(3){animation-delay:.14s}.nv-in>:nth-child(4){animation-delay:.2s}.nv-in>:nth-child(5){animation-delay:.28s}.nv-in>:nth-child(6){animation-delay:.36s}.nv-in>:nth-child(7){animation-delay:.42s}@keyframes nvUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}}
+
+.s-nw{background:#0E0E11}
+.s-nw .ov{background:linear-gradient(180deg,rgba(14,14,17,.1) 10%,rgba(14,14,17,.6) 48%,rgba(14,14,17,.97) 100%)}
+.s-nw .tag{background:#E5383B!important;color:#fff!important}
+.s-nw b em{color:#FF5A5D!important}
+.s-nw::after{display:none}
+.nw-play{position:absolute;top:14px;inset-inline-end:14px;z-index:1;width:44px;height:44px;border-radius:50%;background:#E5383B;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 6px rgba(229,56,59,.25)}
+.nw-play svg{margin-left:3px}
 </style>
 
 </head>
@@ -570,6 +578,7 @@ header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
     </div>
 
     <div class="slider" id="slider" aria-label="بلاغات بارزة">
+      <a class="slide s-cn s-nw" href="#n-20261114-naamwala-vid"><img src="images/splash/hero.jpg" alt="" loading="lazy"><span class="ov"></span><span class="nw-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span><span class="in"><span class="tag">المكتب الوطني · 14 نونبر 2026</span><b>سياسة <em>نعم ولا</em></b><span>3 ساعات من الحوار مع الوزير… والطريق واحد: النضال</span></span></a>
       <a class="slide s-cn" href="#n-20261107-1kmwe"><img src="images/news/conseil-national-2026-11-07-photo1.jpg" alt="" loading="lazy"><span class="ov"></span><span class="in"><span class="tag">المجلس الوطني · 7 نونبر 2026</span><b>لنواصل <em>المسار</em></b><span>«الهوية التمريضية: فكر وبناء ونضال»</span></span></a>
       <a class="slide s-cn sm tg" href="#n-20261101-5hrad"><img src="images/news/bureau-national-2026-11-06-3.jpg" alt="" loading="lazy"><span class="ov"></span><span class="in"><span class="tag">هسبريس · 1 نونبر 2026</span><b>الكاتب الوطني: سنطرح ملفنا المطلبي كاملاً في حوار 14 نونبر</b><span>تصريح عبد الله ميروش حول دعوة الوزير النقابات الصحية لاجتماع تثمين الموارد البشرية.</span></span></a>
       <a class="slide s-cn sm tb" href="#about" data-to="ab-path"><img src="images/congres2-1.jpg" alt="" loading="lazy"><span class="ov"></span><span class="in"><span class="tag">البلاغ الختامي · 30 يونيو 2026</span><b>المؤتمر الوطني الثاني: دورة الفقيد المناضل عبد الإله الشاكي</b><span>صودق بالإجماع على التقريرين الأدبي والمالي وعلى تعديلات القانون الأساسي، وانتُخب عبد الله ميروش كاتباً وطنياً.</span></span></a>
@@ -864,7 +873,7 @@ header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
     var m=(SIITS.MARTYRS||[]).filter(function(x){if(!x.date||+x.date.slice(0,4)>=y)return false;var d=new Date(y,+x.date.slice(5,7)-1,+x.date.slice(8,10)).getTime(),k=Math.round((t0-d)/864e5);return k>=-1&&(k<=6||!!(x.until&&t0<=new Date(x.until+"T00:00").getTime()))})[0];if(!m)return;
     var n=y-(+m.date.slice(0,4)),MO=["يناير","فبراير","مارس","أبريل","ماي","يونيو","يوليوز","غشت","شتنبر","أكتوبر","نونبر","دجنبر"];
     var br='<svg class="sa-br" viewBox="0 0 200 60" aria-hidden="true"><path d="M10,40 Q100,10 190,40" fill="none" stroke="#56783A" stroke-width="2"/>'+[[20,42,40],[36,26.6,-40],[52,35.5,40],[68,20.9,-40],[84,31.1,40],[100,18.1,-40],[116,30.1,40],[132,19.1,-40],[148,32,40],[164,22,-40]].map(function(a,i){return '<ellipse cx="'+a[0]+'" cy="'+a[1]+'" rx="4" ry="9" fill="'+(i%2?"#7FA35A":"#56783A")+'" transform="rotate('+a[2]+' '+a[0]+' '+a[1]+')"/>'}).join("")+'</svg>';
-    $("#slider").insertAdjacentHTML("afterbegin",'<a class="slide s-anniv" href="#memorial">'+br+'<span class="tag">الذكرى '+(ORD[n]||n)+' · '+(+m.date.slice(8,10))+' '+MO[+m.date.slice(5,7)-1]+' '+m.date.slice(0,4)+'</span><b>'+m.name+'</b><span>'+(m.job?m.job+" · ":"")+(m.badge||"")+'. ذكراها أمانة، ونضالنا من أجل ظروف عمل آمنة عهدٌ لا نحيد عنه.</span>'+(function(){var v=(SIITS.NEWS||[]).filter(function(x){return x.vid})[0];if(!v)return '';var t=v.t,h=5381;for(var i=0;i<t.length;i++)h=((h*33)^t.charCodeAt(i))>>>0;return '<span class="sa-vid" data-href="#n-'+(v.date||'').replace(/-/g,'')+'-'+h.toString(36).slice(0,5)+'">▶ شاهد الفيديو</span>'})()+'</a>');document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.sa-vid');if(!b)return;e.preventDefault();e.stopPropagation();location.hash=b.getAttribute('data-href').slice(1)},true);
+    var _nw=$("#slider .s-nw");(_nw||$("#slider")).insertAdjacentHTML(_nw?"afterend":"afterbegin",'<a class="slide s-anniv" href="#memorial">'+br+'<span class="tag">الذكرى '+(ORD[n]||n)+' · '+(+m.date.slice(8,10))+' '+MO[+m.date.slice(5,7)-1]+' '+m.date.slice(0,4)+'</span><b>'+m.name+'</b><span>'+(m.job?m.job+" · ":"")+(m.badge||"")+'. ذكراها أمانة، ونضالنا من أجل ظروف عمل آمنة عهدٌ لا نحيد عنه.</span>'+(function(){var v=(SIITS.NEWS||[]).filter(function(x){return x.vid})[0];if(!v)return '';var t=v.t,h=5381;for(var i=0;i<t.length;i++)h=((h*33)^t.charCodeAt(i))>>>0;return '<span class="sa-vid" data-href="#n-'+(v.date||'').replace(/-/g,'')+'-'+h.toString(36).slice(0,5)+'">▶ شاهد الفيديو</span>'})()+'</a>');document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.sa-vid');if(!b)return;e.preventDefault();e.stopPropagation();location.hash=b.getAttribute('data-href').slice(1)},true);
     var d=$("#dots");d.querySelectorAll("i").forEach(function(x){x.classList.remove("on")});d.insertAdjacentHTML("afterbegin",'<i class="on"></i>');var sl=$("#slider");sl.scrollLeft=0;requestAnimationFrame(function(){sl.scrollLeft=0})})();
   document.querySelectorAll(".slide").forEach(function(a){a.addEventListener("click",function(e){e.preventDefault();var h=a.getAttribute("href").slice(1);goTo(h,a.dataset.to||"")})});
   (function(){var sl=$("#slider"),dots=document.querySelectorAll("#dots i"),n=dots.length,i=0,paused=false;
