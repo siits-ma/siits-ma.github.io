@@ -545,6 +545,9 @@ header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
 .s-nw::after{display:none}
 .nw-play{position:absolute;top:14px;inset-inline-end:14px;z-index:1;width:44px;height:44px;border-radius:50%;background:#E5383B;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 6px rgba(229,56,59,.25)}
 .nw-play svg{margin-left:3px}
+
+.ncap{margin:6px 0 0;text-align:center;font-size:13px;font-weight:700;color:#8A6D1F}
+.nvid+.nimg,.nvid+.nimgs{margin-top:10px;display:block}
 </style>
 
 </head>
@@ -833,7 +836,7 @@ header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
   <div class="vw-pages" id="vwPages"></div>
 </div>
 <script>window.SIITS_SITE=true;window.SIITS_SITE_URL="https://siits.org/";</script>
-<script src="content.js?v=c5712773"></script>
+<script src="content.js?v=39e61ced"></script>
 <script>
 (function(){
   (function(){var t=window.SIITS_TODAY?new Date(window.SIITS_TODAY):new Date(),k=t.getFullYear()+"-"+("0"+(t.getMonth()+1)).slice(-2)+"-"+("0"+t.getDate()).slice(-2);SIITS.NEWS=SIITS.NEWS.filter(function(n){var f=n.from||n.date;return !f||f<=k});SIITS.NEWS.forEach(function(n){n._pin=!!(n.pin&&k<=n.pin)});SIITS.NEWS=SIITS.NEWS.filter(function(n){return n._pin}).concat(SIITS.NEWS.filter(function(n){return !n._pin}))})();
@@ -938,9 +941,9 @@ header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
   var SHARE_ICON='<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>';
   function nid(n){if(n.id)return n.id;var s=n.t,h=5381;for(var i=0;i<s.length;i++)h=((h*33)^s.charCodeAt(i))>>>0;return "n-"+(n.date||"").replace(/-/g,"")+"-"+h.toString(36).slice(0,5)}
   function shareLink(n){var t="*"+n.t+"*\n\n"+n.d+"\n\n— النقابة المستقلة للممرضين وتقنيي الصحة"+(SITE_URL?"\n"+SITE_URL+"s/"+nid(n)+"/":"");return "https://wa.me/?text="+encodeURIComponent(t)}
-  function nimgs(n){var L=n.img?(Array.isArray(n.img)?n.img:[n.img]):[];if(n.vid)return '<video class="nvid" controls playsinline preload="none"'+(L[0]?' poster="'+L[0]+'"':'')+' src="'+n.vid+'"></video>';if(!L.length)return "";
+  function nimgs(n){var L=n.img?(Array.isArray(n.img)?n.img:[n.img]):[],V="";if(n.vid){var P=n.poster||L[0];V='<video class="nvid" controls playsinline preload="none"'+(P?' poster="'+P+'"':'')+' src="'+n.vid+'"></video>';L=n.poster?L:[];if(!L.length)return V}if(!L.length)return "";
     var one=function(u,k){return '<a class="nimg" href="'+u+'" target="_blank" rel="noopener"><img src="'+u+'" alt="'+esc(n.t)+(L.length>1?' - صورة '+(k+1):'')+'" loading="lazy"></a>'};
-    return L.length===1?one(L[0],0):'<div class="nimgs">'+L.map(one).join("")+'</div><span class="nimgs-hint">'+L.length+' صور · اسحب لرؤية البقية</span>'}
+    return V+(L.length===1?one(L[0],0):'<div class="nimgs">'+L.map(one).join("")+'</div><span class="nimgs-hint">'+L.length+' صور · اسحب لرؤية البقية</span>')+(n.cap?'<p class="ncap">'+esc(n.cap)+'</p>':'')}
   (function(){var sh=$("#shSheet"),cur={};
     function close(){sh.hidden=true}
     sh.querySelectorAll("[data-x]").forEach(function(x){x.onclick=close});
@@ -976,7 +979,7 @@ header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
   renderNews();
   (function(){var MOV=["يناير","فبراير","مارس","أبريل","ماي","يونيو","يوليوز","غشت","شتنبر","أكتوبر","نونبر","دجنبر"];
     function df(d){return d?(+d.slice(8,10))+" "+MOV[+d.slice(5,7)-1]+" "+d.slice(0,4):""}
-    var V=NEWS.filter(function(n){return n.vid}).map(function(n){var L=n.img?(Array.isArray(n.img)?n.img:[n.img]):[];return {t:n.t,date:n.date,vid:n.vid,poster:L[0]||"",news:n}})
+    var V=NEWS.filter(function(n){return n.vid}).map(function(n){var L=n.img?(Array.isArray(n.img)?n.img:[n.img]):[];return {t:n.t,date:n.date,vid:n.vid,poster:n.poster||L[0]||"",news:n}})
       .concat((SIITS.VIDEOS||[]).map(function(v){return {t:v.t,date:v.date,vid:v.vid,poster:v.poster||"",d:v.d||""}}))
       .sort(function(a,b){return (b.date||"").localeCompare(a.date||"")});
     V.forEach(function(v,i){v.id="v"+i});
