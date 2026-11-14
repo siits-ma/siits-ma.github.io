@@ -505,6 +505,7 @@ header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
 .splash.anniv .sp-pics{display:none}
 @media (prefers-reduced-motion:reduce){.sp-pics figure.on img{animation:none}}
 
+.vdesc{margin:6px 0 0;font-size:13px;line-height:1.8;white-space:pre-line;color:var(--muted,#555)}
 /* صفحة البداية الجديدة: الصورة الجماعية + الهوية */
 .splash.sp2{background:#0C0C0E;color:#F5F5F5;padding:0;display:block;font-family:"Beiruti","Almarai",sans-serif}
 .splash.sp2::before,.splash.sp2::after{display:none}
@@ -968,7 +969,7 @@ header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
     var PLAY='<span class="vplay"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>';
     function sh(v){if(v.news)return shareLink(v.news);var t="*"+v.t+"*"+(v.d?"\n\n"+v.d:"")+"\n\n🎬 شاهد الفيديو في تطبيق النقابة المستقلة للممرضين وتقنيي الصحة"+(SITE_URL?"\n"+SITE_URL+"#videos":"");return "https://wa.me/?text="+encodeURIComponent(t)}
     $("#vstrip").innerHTML=V.slice(0,8).map(function(v){return '<button class="vtile" type="button" data-v="'+v.id+'"><span class="vthumb"'+(v.poster?' style="background-image:url(\''+v.poster+'\')"':'')+'>'+PLAY+'</span><b>'+v.t+'</b></button>'}).join("");
-    $("#vgrid").innerHTML=V.map(function(v){return '<article class="vcard" id="'+v.id+'"><video controls playsinline preload="none"'+(v.poster?' poster="'+v.poster+'"':'')+' src="'+v.vid+'"></video><h3>'+v.t+'</h3><span class="vmeta">'+df(v.date)+'</span><div class="vact"><a class="share" href="'+sh(v)+'" target="_blank" rel="noopener">'+SHARE_ICON+'مشاركة</a>'+(v.news?'<a class="vnews" href="#'+nid(v.news)+'">قراءة الخبر</a>':'')+'</div></article>'}).join("");
+    $("#vgrid").innerHTML=V.map(function(v){return '<article class="vcard" id="'+v.id+'"><video controls playsinline preload="none"'+(v.poster?' poster="'+v.poster+'"':'')+' src="'+v.vid+'"></video><h3>'+v.t+'</h3><span class="vmeta">'+df(v.date)+'</span>'+(v.d?'<p class="vdesc">'+esc(v.d)+'</p>':'')+'<div class="vact"><a class="share" href="'+sh(v)+'" target="_blank" rel="noopener">'+SHARE_ICON+'مشاركة</a>'+(v.news?'<a class="vnews" href="#'+nid(v.news)+'">قراءة الخبر</a>':'')+'</div></article>'}).join("");
     var vs=$("#vgrid").querySelectorAll("video");vs.forEach(function(x){x.addEventListener("play",function(){vs.forEach(function(o){if(o!==x)o.pause()})})});
     window.addEventListener("hashchange",function(){if(location.hash!=="#videos")vs.forEach(function(o){o.pause()})});
     $("#vstrip").querySelectorAll(".vtile").forEach(function(b){b.onclick=function(){location.hash="videos";setTimeout(function(){var c=document.getElementById(b.dataset.v);if(!c)return;c.scrollIntoView({block:"start"});c.classList.remove("hl");void c.offsetWidth;c.classList.add("hl");var x=c.querySelector("video");try{var p=x.play();if(p&&p.catch)p.catch(function(){})}catch(e){}},150)}})})();
