@@ -860,7 +860,7 @@ header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
   <div class="vw-pages" id="vwPages"></div>
 </div>
 <script>window.SIITS_SITE=true;window.SIITS_SITE_URL="https://siits.org/";</script>
-<script src="content.js?v=53af6352"></script>
+<script src="content.js?v=d447ff20"></script>
 <script>
 (function(){
   (function(){var t=window.SIITS_TODAY?new Date(window.SIITS_TODAY):new Date(),k=t.getFullYear()+"-"+("0"+(t.getMonth()+1)).slice(-2)+"-"+("0"+t.getDate()).slice(-2);SIITS.NEWS=SIITS.NEWS.filter(function(n){var f=n.from||n.date;return !f||f<=k});SIITS.NEWS.forEach(function(n){n._pin=!!(n.pin&&k<=n.pin)});SIITS.NEWS=SIITS.NEWS.filter(function(n){return n._pin}).concat(SIITS.NEWS.filter(function(n){return !n._pin}))})();
@@ -906,7 +906,7 @@ header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
     box.innerHTML=h;box.hidden=false;if(!on&&!prof)box.classList.add("soon");
     var x=box.querySelector(".live-x"),btn=box.querySelector(".live-row");
     btn.onclick=function(){var o=box.classList.toggle("open");btn.setAttribute("aria-expanded",o);
-      if(o&&!x.innerHTML){if(on){var src="https://www.facebook.com/plugins/video.php?href="+encodeURIComponent(L.url)+"&show_text=false&autoplay=true&width=560";
+      if(o&&!x.innerHTML){if(on&&L.noembed){x.innerHTML=(L.poster?'<img class="live-po" src="'+esc(L.poster)+'" alt="ملصق البث">':'')+'<a class="live-fb" href="'+esc(L.url)+'" target="_blank" rel="noopener">▶ شاهد البث المباشر على فيسبوك</a>'}else if(on){var src="https://www.facebook.com/plugins/video.php?href="+encodeURIComponent(L.url)+"&show_text=false&autoplay=true&width=560";
         x.innerHTML='<div class="live-pl'+(L.wide?" wide":"")+'"><iframe src="'+src+'" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowfullscreen title="البث المباشر"></iframe></div><a class="live-fb" href="'+esc(L.url)+'" target="_blank" rel="noopener">شاهد البث على فيسبوك</a>'}
         else{if(L.poster)x.innerHTML='<img class="live-po" src="'+esc(L.poster)+'" alt="ملصق البث">';if(L.profile)x.innerHTML+='<a class="live-fb" href="'+esc(L.profile)+'" target="_blank" rel="noopener">'+(prof?"شاهد البث على فيسبوك":"حساب المتحدث على فيسبوك")+'</a>'}}};if(location.hash==="#live")btn.click()})();
   (function(){var now=window.SIITS_TODAY?new Date(window.SIITS_TODAY):new Date(),y=now.getFullYear(),t0=new Date(y,now.getMonth(),now.getDate()).getTime();
