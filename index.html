@@ -860,7 +860,7 @@ header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
   <div class="vw-pages" id="vwPages"></div>
 </div>
 <script>window.SIITS_SITE=true;window.SIITS_SITE_URL="https://siits.org/";</script>
-<script src="content.js?v=edb4eae9"></script>
+<script src="content.js?v=95a5d183"></script>
 <script>
 (function(){
   (function(){var t=window.SIITS_TODAY?new Date(window.SIITS_TODAY):new Date(),k=t.getFullYear()+"-"+("0"+(t.getMonth()+1)).slice(-2)+"-"+("0"+t.getDate()).slice(-2);SIITS.NEWS=SIITS.NEWS.filter(function(n){var f=n.from||n.date;return !f||f<=k});SIITS.NEWS.forEach(function(n){n._pin=!!(n.pin&&k<=n.pin)});SIITS.NEWS=SIITS.NEWS.filter(function(n){return n._pin}).concat(SIITS.NEWS.filter(function(n){return !n._pin}))})();
@@ -899,15 +899,16 @@ header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
     var now=window.SIITS_TODAY?new Date(window.SIITS_TODAY):new Date(),at=L.at?new Date(L.at):null,end=L.end?new Date(L.end):(at?new Date(at.getTime()+3*36e5):null);
     if(end&&now>end&&!L.on)return;if(!at&&!L.url)return;
     var on=!!(L.url&&(L.on||(at&&now>=at)));
+    var prof=!on&&L.profile&&at&&now>=at;
     var MO=["يناير","فبراير","مارس","أبريل","ماي","يونيو","يوليوز","غشت","شتنبر","أكتوبر","نونبر","دجنبر"],when="";
     if(at){var hh=("0"+at.getHours()).slice(-2)+":"+("0"+at.getMinutes()).slice(-2),same=at.toDateString()===now.toDateString(),tm=new Date(now.getTime()+864e5).toDateString()===at.toDateString();when=(same?"اليوم":tm?"غدا":at.getDate()+" "+MO[at.getMonth()])+" · "+hh}
-    var h='<button class="live-row" type="button" aria-expanded="false"><span class="live-th"'+(L.poster?' style="background-image:url(\''+esc(L.poster)+'\')"':'')+'></span><span class="live-t"><span class="live-k"><i></i>'+(on?"مباشر الآن · اضغط للمشاهدة":"بث مباشر"+(when?" · "+when:""))+'</span><b>'+esc(L.title||"لقاء مباشر حول المستجدات")+'</b><span>'+esc(L.who||"")+(L.role?" · "+esc(L.role):"")+'</span></span><svg class="live-cv" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="live-x"></div>';
-    box.innerHTML=h;box.hidden=false;if(!on)box.classList.add("soon");
+    var h='<button class="live-row" type="button" aria-expanded="false"><span class="live-th"'+(L.poster?' style="background-image:url(\''+esc(L.poster)+'\')"':'')+'></span><span class="live-t"><span class="live-k"><i></i>'+(on?"مباشر الآن · اضغط للمشاهدة":prof?"مباشر الآن على فيسبوك":"بث مباشر"+(when?" · "+when:""))+'</span><b>'+esc(L.title||"لقاء مباشر حول المستجدات")+'</b><span>'+esc(L.who||"")+(L.role?" · "+esc(L.role):"")+'</span></span><svg class="live-cv" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="live-x"></div>';
+    box.innerHTML=h;box.hidden=false;if(!on&&!prof)box.classList.add("soon");
     var x=box.querySelector(".live-x"),btn=box.querySelector(".live-row");
     btn.onclick=function(){var o=box.classList.toggle("open");btn.setAttribute("aria-expanded",o);
       if(o&&!x.innerHTML){if(on){var src="https://www.facebook.com/plugins/video.php?href="+encodeURIComponent(L.url)+"&show_text=false&autoplay=true&width=560";
         x.innerHTML='<div class="live-pl'+(L.wide?" wide":"")+'"><iframe src="'+src+'" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowfullscreen title="البث المباشر"></iframe></div><a class="live-fb" href="'+esc(L.url)+'" target="_blank" rel="noopener">شاهد البث على فيسبوك</a>'}
-        else if(L.poster)x.innerHTML='<img class="live-po" src="'+esc(L.poster)+'" alt="ملصق البث">'}};if(location.hash==="#live")btn.click()})();
+        else{if(L.poster)x.innerHTML='<img class="live-po" src="'+esc(L.poster)+'" alt="ملصق البث">';if(L.profile)x.innerHTML+='<a class="live-fb" href="'+esc(L.profile)+'" target="_blank" rel="noopener">'+(prof?"شاهد البث على فيسبوك":"حساب المتحدث على فيسبوك")+'</a>'}}};if(location.hash==="#live")btn.click()})();
   (function(){var now=window.SIITS_TODAY?new Date(window.SIITS_TODAY):new Date(),y=now.getFullYear(),t0=new Date(y,now.getMonth(),now.getDate()).getTime();
     var ORD=["","الأولى","الثانية","الثالثة","الرابعة","الخامسة","السادسة","السابعة","الثامنة","التاسعة","العاشرة"];
     if(!SIITS.ANNIV)return;
