@@ -907,7 +907,7 @@ header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
     btn.onclick=function(){var o=box.classList.toggle("open");btn.setAttribute("aria-expanded",o);
       if(o&&!x.innerHTML){if(on){var src="https://www.facebook.com/plugins/video.php?href="+encodeURIComponent(L.url)+"&show_text=false&autoplay=true&width=560";
         x.innerHTML='<div class="live-pl'+(L.wide?" wide":"")+'"><iframe src="'+src+'" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowfullscreen title="البث المباشر"></iframe></div><a class="live-fb" href="'+esc(L.url)+'" target="_blank" rel="noopener">شاهد البث على فيسبوك</a>'}
-        else if(L.poster)x.innerHTML='<img class="live-po" src="'+esc(L.poster)+'" alt="ملصق البث">'}}})();
+        else if(L.poster)x.innerHTML='<img class="live-po" src="'+esc(L.poster)+'" alt="ملصق البث">'}}};if(location.hash==="#live")btn.click()})();
   (function(){var now=window.SIITS_TODAY?new Date(window.SIITS_TODAY):new Date(),y=now.getFullYear(),t0=new Date(y,now.getMonth(),now.getDate()).getTime();
     var ORD=["","الأولى","الثانية","الثالثة","الرابعة","الخامسة","السادسة","السابعة","الثامنة","التاسعة","العاشرة"];
     if(!SIITS.ANNIV)return;
