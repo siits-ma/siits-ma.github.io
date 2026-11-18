@@ -548,6 +548,24 @@ header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
 
 .ncap{margin:6px 0 0;text-align:center;font-size:13px;font-weight:700;color:#8A6D1F}
 .nvid+.nimg,.nvid+.nimgs{margin-top:10px;display:block}
+
+/* بث مباشر */
+.live{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:16px;display:flex;flex-direction:column;gap:12px;box-shadow:0 6px 20px rgba(23,41,12,.08)}
+.live-hd{display:flex;align-items:center;gap:12px}
+.live-dot{flex:0 0 auto;display:inline-flex;align-items:center;gap:7px;background:var(--signal);color:#fff;font-family:var(--display);font-weight:800;font-size:13px;padding:6px 12px;border-radius:999px}
+.live-dot i{width:9px;height:9px;border-radius:50%;background:#fff;animation:lvp 1.2s ease-in-out infinite}
+.live.soon .live-dot{background:var(--accent);color:var(--accent-ink)}
+.live.soon .live-dot i{background:currentColor}
+@keyframes lvp{50%{opacity:.25}}
+.live-t{min-width:0}
+.live-t b{display:block;font-family:var(--display);font-weight:800;font-size:17px;line-height:1.45;color:var(--fg);text-wrap:balance}
+.live-t span{display:block;font-size:14px;color:var(--muted);line-height:1.6}
+.live-when{font-family:var(--display);font-weight:700;font-size:15px;color:var(--accent);background:var(--soft);border-radius:12px;padding:10px 14px;text-align:center}
+.live-pl{position:relative;width:100%;max-width:420px;margin:0 auto;aspect-ratio:var(--ar,9/16);max-height:78vh;background:#000;border-radius:14px;overflow:hidden}
+.live-pl.wide{max-width:100%;--ar:16/9}
+.live-pl iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.live-po{display:block;width:100%;max-width:520px;margin:0 auto;border-radius:14px}
+.live-fb{display:flex;align-items:center;justify-content:center;gap:8px;background:#1877F2;color:#fff;text-decoration:none;font-family:var(--display);font-weight:700;font-size:15px;padding:12px;border-radius:12px}
 </style>
 
 </head>
@@ -579,6 +597,8 @@ header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
       <div class="gr"><div class="gr-hi"><h2 id="hello">مرحباً بك</h2><span class="today" id="today"></span></div>
       <a class="betapill" href="#contact" title="التطبيق في طور التطوير، ونرحّب بملاحظاتكم"><b>نسخة تجريبية</b><span>1.0</span></a></div>
     </div>
+
+    <div class="live" id="live" hidden></div>
 
     <div class="slider" id="slider" aria-label="بلاغات بارزة">
       <a class="slide s-cn s-nw" href="#n-20261114-naamwala-vid"><img src="images/splash/hero.jpg" alt="" loading="lazy"><span class="ov"></span><span class="nw-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span><span class="in"><span class="tag">المكتب الوطني · 14 نونبر 2026</span><b>سياسة <em>نعم ولا</em></b><span>3 ساعات من الحوار مع الوزير… والطريق واحد: النضال</span></span></a>
@@ -836,7 +856,7 @@ header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
   <div class="vw-pages" id="vwPages"></div>
 </div>
 <script>window.SIITS_SITE=true;window.SIITS_SITE_URL="https://siits.org/";</script>
-<script src="content.js?v=f0e25a04"></script>
+<script src="content.js?v=edb4eae9"></script>
 <script>
 (function(){
   (function(){var t=window.SIITS_TODAY?new Date(window.SIITS_TODAY):new Date(),k=t.getFullYear()+"-"+("0"+(t.getMonth()+1)).slice(-2)+"-"+("0"+t.getDate()).slice(-2);SIITS.NEWS=SIITS.NEWS.filter(function(n){var f=n.from||n.date;return !f||f<=k});SIITS.NEWS.forEach(function(n){n._pin=!!(n.pin&&k<=n.pin)});SIITS.NEWS=SIITS.NEWS.filter(function(n){return n._pin}).concat(SIITS.NEWS.filter(function(n){return !n._pin}))})();
@@ -870,6 +890,22 @@ header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
     if(to)setTimeout(function(){var t=document.getElementById(to);if(t)t.scrollIntoView({behavior:"smooth",block:"start"})},60)}
   document.querySelectorAll(".svc").forEach(function(b){b.addEventListener("click",function(){goTo(b.dataset.go,b.dataset.to)})});
   (function(){var t=window.SIITS_TODAY?new Date(window.SIITS_TODAY):new Date(),k=t.getFullYear()+"-"+("0"+(t.getMonth()+1)).slice(-2)+"-"+("0"+t.getDate()).slice(-2);[].forEach.call(document.querySelectorAll("#slider [data-until]"),function(e){if(k>e.getAttribute("data-until"))e.remove()})})();
+  // بث مباشر: SIITS.LIVE={at:"2026-11-18T21:00",who,role,title,url,wide,end}
+  (function(){var L=SIITS.LIVE,box=$("#live");if(!L||!box)return;
+    var now=window.SIITS_TODAY?new Date(window.SIITS_TODAY):new Date(),at=L.at?new Date(L.at):null,end=L.end?new Date(L.end):(at?new Date(at.getTime()+3*36e5):null);
+    if(end&&now>end&&!L.on)return;
+    var on=!!(L.url&&(L.on||(at&&now>=at)));
+    var MO=["يناير","فبراير","مارس","أبريل","ماي","يونيو","يوليوز","غشت","شتنبر","أكتوبر","نونبر","دجنبر"];
+    var hd='<div class="live-hd"><span class="live-dot"><i></i>'+(on?"مباشر الآن":"بث مباشر")+'</span><div class="live-t"><b>'+esc(L.title||"لقاء مباشر حول المستجدات")+'</b><span>'+esc(L.who||"")+(L.role?" · "+esc(L.role):"")+'</span></div></div>';
+    var h=hd;
+    if(on){var src="https://www.facebook.com/plugins/video.php?href="+encodeURIComponent(L.url)+"&show_text=false&autoplay=false&width=560";
+      h+='<div class="live-pl'+(L.wide?" wide":"")+'"><iframe src="'+src+'" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowfullscreen loading="lazy" title="البث المباشر"></iframe></div><a class="live-fb" href="'+esc(L.url)+'" target="_blank" rel="noopener">شاهد البث على فيسبوك</a>';
+    }else if(at){var hh=("0"+at.getHours()).slice(-2)+":"+("0"+at.getMinutes()).slice(-2),same=at.toDateString()===now.toDateString(),tm=new Date(now.getTime()+864e5).toDateString()===at.toDateString();
+      if(L.poster)h+='<img class="live-po" src="'+esc(L.poster)+'" alt="" loading="lazy">';
+      h+='<div class="live-when">'+(same?"اليوم":tm?"غدا":"يوم "+at.getDate()+" "+MO[at.getMonth()])+' على الساعة '+hh+'</div>';
+      box.classList.add("soon")}
+    else return;
+    box.innerHTML=h;box.hidden=false})();
   (function(){var now=window.SIITS_TODAY?new Date(window.SIITS_TODAY):new Date(),y=now.getFullYear(),t0=new Date(y,now.getMonth(),now.getDate()).getTime();
     var ORD=["","الأولى","الثانية","الثالثة","الرابعة","الخامسة","السادسة","السابعة","الثامنة","التاسعة","العاشرة"];
     if(!SIITS.ANNIV)return;
