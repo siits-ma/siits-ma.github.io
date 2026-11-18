@@ -7,7 +7,7 @@ var SIITS={};
 (function(){
   SIITS.ANNIV=true; // ذكرى الشهداء (صفحة البداية + بطاقة الرئيسية): مؤجلة بطلب جواد
   /* الفيديوهات المستقلة (غير المرتبطة بخبر). فيديوهات الأخبار (vid) تظهر تلقائياً في جناح الفيديوهات */
-  SIITS.LIVE={at:"2026-11-18T20:00",title:"ندوب الاحتقار، مهنة التمريض خلال قرن",who:"حسن كاسمي",role:"الكاتب الجهوي لجهة الشرق - عضو المكتب الوطني",poster:"images/live/kasmi-nudub.jpg",profile:"https://www.facebook.com/share/1A6GoWpF1e/",url:""}; // بث مباشر: ضع رابط فيسبوك في url عند الانطلاق
+  SIITS.LIVE={at:"2026-11-18T20:00",title:"ندوب الاحتقار، مهنة التمريض خلال قرن",who:"حسن كاسمي",role:"الكاتب الجهوي لجهة الشرق - عضو المكتب الوطني",poster:"images/live/kasmi-nudub.jpg",profile:"https://www.facebook.com/share/1A6GoWpF1e/",url:"https://www.facebook.com/share/v/1HJMFJSeag/",on:true}; // بث مباشر: ضع رابط فيسبوك في url عند الانطلاق
   SIITS.VIDEOS=[
     {t:"تهنئة بمناسبة اليوم العالمي للأشعة",date:"2026-11-08",vid:"images/videos/radiology-day-2026-11-08.mp4",poster:"images/videos/radiology-day-2026-11-08.jpg",d:"إلى تقنيات وتقنيي الأشعة في كل ربوع الوطن"}
   ];
