@@ -7,6 +7,8 @@ var SIITS={};
 (function(){
   SIITS.ANNIV=true; // ذكرى الشهداء (صفحة البداية + بطاقة الرئيسية): مؤجلة بطلب جواد
   /* الفيديوهات المستقلة (غير المرتبطة بخبر). فيديوهات الأخبار (vid) تظهر تلقائياً في جناح الفيديوهات */
+  // صفحة البداية الخاصة بحملة نضالية: تظهر بدل صفحة البداية العادية حتى until، ثم تختفي تلقائياً. لإيقافها: SIITS.CAMPAIGN=null
+  SIITS.CAMPAIGN={title:"إنزال وطني",city:"الرباط",at:"2026-12-05T11:00:00+01:00",until:"2026-12-05T18:00:00+01:00",place:"أمام وزارة الصحة والحماية الاجتماعية",img:"images/splash/inzal-rabat.jpg",news:"n-20261124-balagh2-inzal",slogan:"من الخصوصية إلى اللصوصية… لن نكون شهود زور"};
   SIITS.LIVE=null; // بث مباشر: {at:"YYYY-MM-DDTHH:MM",title,who,role,poster,profile,url,noembed}
   SIITS.VIDEOS=[
     {t:"تهنئة بمناسبة اليوم العالمي للأشعة",date:"2026-11-08",vid:"images/videos/radiology-day-2026-11-08.mp4",poster:"images/videos/radiology-day-2026-11-08.jpg",d:"إلى تقنيات وتقنيي الأشعة في كل ربوع الوطن"}

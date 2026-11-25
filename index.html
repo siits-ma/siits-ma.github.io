@@ -570,6 +570,26 @@ header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
 .live-pl iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .live-po{display:block;width:100%;max-width:520px;margin:0 auto;border-radius:12px}
 .live-fb{display:flex;align-items:center;justify-content:center;gap:8px;background:#1877F2;color:#fff;text-decoration:none;font-family:var(--display);font-weight:700;font-size:14px;padding:11px;border-radius:12px}
+/* صفحة بداية الحملة (إنزال وطني...): تُفعَّل من SIITS.CAMPAIGN في content.js وتختفي تلقائياً بعد until */
+.splash.camp .nv-hero,.splash.camp .nv-in{display:none}
+.cz{max-width:520px;margin:0 auto;min-height:100%;display:flex;flex-direction:column}
+.cz-hero{position:relative;height:min(300px,38vh);background:#222 center/cover no-repeat}
+.cz-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,14,17,.4),rgba(14,14,17,0) 40%,#0E0E11)}
+.cz-top{position:absolute;z-index:2;top:max(16px,env(safe-area-inset-top,0px));right:16px;display:flex;gap:9px;align-items:center;font-family:var(--display);font-size:12.5px;font-weight:700;line-height:1.35;color:#fff;text-shadow:0 1px 6px #000}
+.cz-top .logo{width:42px;height:42px;border-radius:50%;background:#fff var(--logo) center/94% no-repeat;display:block;flex:none}
+.cz-in{position:relative;z-index:2;margin-top:-64px;padding:0 20px calc(22px + env(safe-area-inset-bottom,0px))}
+.cz-band{display:inline-block;background:#E5383B;color:#fff;padding:4px 14px;font-family:var(--display);font-weight:700;font-size:15px;border-radius:6px}
+.cz h1{margin:10px 0 0;font-family:var(--display);font-weight:700;font-size:clamp(36px,11vw,46px);line-height:1.25;color:#fff}.cz h1 span{color:#93C572}
+.cz-dt{display:flex;gap:14px;align-items:center;margin-top:16px}
+.cz-dt .b{flex:none;background:#E5383B;color:#fff;border-radius:14px;padding:6px 14px;text-align:center;line-height:1.2}.cz-dt .b strong{display:block;font-family:var(--display);font-size:32px;font-weight:700}.cz-dt .b small{font-size:12px}
+.cz-dt p{margin:0;font-size:14.5px;line-height:1.7;color:#E4E4E7}.cz-dt p b{color:#fff}
+.cz-cd{display:flex;gap:8px;margin-top:18px}.cz-cd div{flex:1;border:1px solid #3F3F46;border-radius:12px;padding:8px 0;text-align:center}.cz-cd strong{display:block;font-family:var(--display);font-weight:700;font-size:26px;color:#fff}.cz-cd span{font-size:11.5px;color:#A1A1AA}
+.cz-now{margin-top:18px;border:1px solid #E5383B;border-radius:12px;padding:12px;text-align:center;font-family:var(--display);font-weight:700;font-size:18px;color:#fff;background:rgba(229,56,59,.15)}
+.cz-go{margin-top:18px;width:100%;background:#E5383B;color:#fff;border:0;border-radius:16px;padding:16px;font:inherit;font-family:var(--display);font-weight:700;font-size:18px;cursor:pointer;box-shadow:0 8px 26px rgba(229,56,59,.4)}
+.cz-go:active,.cz-sh:active{transform:scale(.98)}
+.cz-sh{margin-top:10px;width:100%;display:flex;align-items:center;justify-content:center;gap:8px;color:#fff;text-decoration:none;border:1.5px solid #25D366;border-radius:16px;padding:13px;font-family:var(--display);font-weight:700;font-size:16px}
+.cz-sl{margin:14px 0 0;text-align:center;font-size:12px;color:#A1A1AA}
+@media (prefers-reduced-motion:no-preference){.cz-in>*{animation:nvUp .6s cubic-bezier(.215,.61,.355,1) both}.cz-in>:nth-child(2){animation-delay:.08s}.cz-in>:nth-child(3){animation-delay:.16s}.cz-in>:nth-child(4){animation-delay:.24s}.cz-in>:nth-child(5){animation-delay:.32s}}
 </style>
 
 </head>
@@ -860,7 +880,7 @@ header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
   <div class="vw-pages" id="vwPages"></div>
 </div>
 <script>window.SIITS_SITE=true;window.SIITS_SITE_URL="https://siits.org/";</script>
-<script src="content.js?v=ffb579bd"></script>
+<script src="content.js?v=fd02037c"></script>
 <script>
 (function(){
   (function(){var t=window.SIITS_TODAY?new Date(window.SIITS_TODAY):new Date(),k=t.getFullYear()+"-"+("0"+(t.getMonth()+1)).slice(-2)+"-"+("0"+t.getDate()).slice(-2);SIITS.NEWS=SIITS.NEWS.filter(function(n){var f=n.from||n.date;return !f||f<=k});SIITS.NEWS.forEach(function(n){n._pin=!!(n.pin&&k<=n.pin)});SIITS.NEWS=SIITS.NEWS.filter(function(n){return n._pin}).concat(SIITS.NEWS.filter(function(n){return !n._pin}))})();
@@ -1104,13 +1124,33 @@ header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
     document.body.style.overflow="hidden";
     function enter(){try{sessionStorage.setItem("siits-entered","1")}catch(e){}
       sp.classList.add("out");document.body.style.overflow="";var sl0=$("#slider");if(sl0)sl0.scrollLeft=0;setTimeout(function(){sp.hidden=true},450)}
-    $("#enterBtn").onclick=enter;$("#spMart").onclick=function(){enter()}})();
+    $("#enterBtn").onclick=enter;$("#spMart").onclick=function(){enter()};
+    // حملة نضالية: صفحة بداية خاصة (SIITS.CAMPAIGN) إلى غاية until
+    var C=SIITS.CAMPAIGN,now=window.SIITS_TODAY?new Date(window.SIITS_TODAY):new Date();
+    if(C&&C.at&&now<new Date(C.until||C.at)){
+      var T=new Date(C.at),MO=["يناير","فبراير","مارس","أبريل","ماي","يونيو","يوليوز","غشت","شتنبر","أكتوبر","نونبر","دجنبر"],DW=["الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"];
+      var lt=new Date(T.getTime()+(T.getTimezoneOffset()+60)*6e4); // توقيت المغرب +01:00
+      var hh=("0"+lt.getHours()).slice(-2)+":"+("0"+lt.getMinutes()).slice(-2);
+      var url=(window.SIITS_SITE_URL||"https://siits.org/")+(C.news?"s/"+C.news+"/":"");
+      var msg=(C.share||("✊ *"+C.title+" ب"+C.city+"*\n"+DW[lt.getDay()]+" "+lt.getDate()+" "+MO[lt.getMonth()]+" "+lt.getFullYear()+"، ابتداءً من الساعة "+hh+"\n"+C.place+"\n\nفلنكن جميعاً في الموعد"))+"\n\n— النقابة المستقلة للممرضين وتقنيي الصحة\n"+url;
+      sp.insertAdjacentHTML("beforeend",'<div class="cz"><div class="cz-hero" style="background-image:url(\''+C.img+'\')"><div class="cz-top"><span class="logo" role="img" aria-label="شعار النقابة"></span><span>النقابة المستقلة<br>للممرضين وتقنيي الصحة</span></div></div>'+
+        '<div class="cz-in"><span class="cz-band">✊ '+C.title+'</span><h1>موعدنا <span>'+C.city+'</span></h1>'+
+        '<div class="cz-dt"><div class="b"><small>'+DW[lt.getDay()]+'</small><strong>'+("0"+lt.getDate()).slice(-2)+'</strong><small>'+MO[lt.getMonth()]+'</small></div><p><b>ابتداءً من '+hh+(+hh.slice(0,2)<12?' صباحاً':'')+'</b><br>'+C.place+'</p></div>'+
+        '<div id="czCd"></div>'+
+        '<div><button class="cz-go" id="czEnter" type="button">ادخل إلى التطبيق</button><a class="cz-sh" id="czShare" target="_blank" rel="noopener" href="https://wa.me/?text='+encodeURIComponent(msg)+'"><svg viewBox="0 0 24 24" width="20" height="20" fill="#25D366" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.2 1.4z"/></svg>شارك الدعوة على واتساب</a></div>'+
+        (C.slogan?'<p class="cz-sl">'+C.slogan+'</p>':'')+'</div></div>');
+      sp.classList.add("camp");$("#czEnter").onclick=enter;
+      var cd=$("#czCd");function tick(){var n=window.SIITS_TODAY?new Date(window.SIITS_TODAY):new Date(),s=Math.floor((T-n)/1e3);
+        if(s<=0){cd.innerHTML='<div class="cz-now">اليوم الموعد… نحن في الرباط ✊</div>';return}
+        cd.innerHTML='<div class="cz-cd"><div><strong>'+Math.floor(s/86400)+'</strong><span>يوم</span></div><div><strong>'+Math.floor(s%86400/3600)+'</strong><span>ساعة</span></div><div><strong>'+Math.floor(s%3600/60)+'</strong><span>دقيقة</span></div></div>'}
+      tick();var iv=setInterval(function(){if(sp.hidden){clearInterval(iv);return}tick()},30000)}
+  })();
 
   (function(){var b=$("#spPics");if(!b)return;var f=b.querySelectorAll("figure"),d=b.querySelectorAll(".sp-pd i"),i=0,sp=$("#splash");
     setInterval(function(){if(sp.hidden||sp.classList.contains("anniv"))return;f[i].classList.remove("on");d[i].classList.remove("on");i=(i+1)%f.length;f[i].classList.add("on");d[i].classList.add("on")},4500)})();
 
   // يوم ذكرى شهيد: صفحة بداية خاصة به (تلقائياً كل سنة)
-  (function(){var sp=$("#splash"),box=$("#spAnniv");if(!box||sp.hidden)return;
+  (function(){var sp=$("#splash"),box=$("#spAnniv");if(!box||sp.hidden||sp.classList.contains("camp"))return;
     var now=window.SIITS_TODAY?new Date(window.SIITS_TODAY):new Date(),md=("0"+(now.getMonth()+1)).slice(-2)+"-"+("0"+now.getDate()).slice(-2);
     if(!SIITS.ANNIV)return;
     var y0=now.getFullYear(),t0=new Date(y0,now.getMonth(),now.getDate()).getTime(),m=(SIITS.MARTYRS||[]).filter(function(x){if(!x.date||+x.date.slice(0,4)>=y0)return false;var k=Math.round((t0-new Date(y0,+x.date.slice(5,7)-1,+x.date.slice(8,10)).getTime())/864e5);return k>=-1&&(k<=6||!!(x.until&&t0<=new Date(x.until+"T00:00").getTime()))})[0];if(!m)return;
