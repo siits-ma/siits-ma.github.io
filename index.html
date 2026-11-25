@@ -880,7 +880,7 @@ header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
   <div class="vw-pages" id="vwPages"></div>
 </div>
 <script>window.SIITS_SITE=true;window.SIITS_SITE_URL="https://siits.org/";</script>
-<script src="content.js?v=fd02037c"></script>
+<script src="content.js?v=d77b7b20"></script>
 <script>
 (function(){
   (function(){var t=window.SIITS_TODAY?new Date(window.SIITS_TODAY):new Date(),k=t.getFullYear()+"-"+("0"+(t.getMonth()+1)).slice(-2)+"-"+("0"+t.getDate()).slice(-2);SIITS.NEWS=SIITS.NEWS.filter(function(n){var f=n.from||n.date;return !f||f<=k});SIITS.NEWS.forEach(function(n){n._pin=!!(n.pin&&k<=n.pin)});SIITS.NEWS=SIITS.NEWS.filter(function(n){return n._pin}).concat(SIITS.NEWS.filter(function(n){return !n._pin}))})();
@@ -1129,7 +1129,7 @@ header.scrolled{box-shadow:0 6px 20px rgba(10,25,5,.35)}
     var C=SIITS.CAMPAIGN,now=window.SIITS_TODAY?new Date(window.SIITS_TODAY):new Date();
     if(C&&C.at&&now<new Date(C.until||C.at)){
       var T=new Date(C.at),MO=["يناير","فبراير","مارس","أبريل","ماي","يونيو","يوليوز","غشت","شتنبر","أكتوبر","نونبر","دجنبر"],DW=["الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"];
-      var lt=new Date(T.getTime()+(T.getTimezoneOffset()+60)*6e4); // توقيت المغرب +01:00
+      var tz=/([+-])(\d\d):(\d\d)$/.exec(C.at),off=tz?(tz[1]=="-"?-1:1)*(+tz[2]*60+ +tz[3]):0,lt=new Date(T.getTime()+(T.getTimezoneOffset()+off)*6e4); // يعرض الساعة بتوقيت المغرب كما كُتبت في at
       var hh=("0"+lt.getHours()).slice(-2)+":"+("0"+lt.getMinutes()).slice(-2);
       var url=(window.SIITS_SITE_URL||"https://siits.org/")+(C.news?"s/"+C.news+"/":"");
       var msg=(C.share||("✊ *"+C.title+" ب"+C.city+"*\n"+DW[lt.getDay()]+" "+lt.getDate()+" "+MO[lt.getMonth()]+" "+lt.getFullYear()+"، ابتداءً من الساعة "+hh+"\n"+C.place+"\n\nفلنكن جميعاً في الموعد"))+"\n\n— النقابة المستقلة للممرضين وتقنيي الصحة\n"+url;
